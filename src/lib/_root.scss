@@ -1,0 +1,15 @@
+@use '../defaults.scss';
+
+:root {
+  #{defaults.$atomic-var-color-brand-name}: #{defaults.$atomic-color-brand-base};
+  #{defaults.$atomic-var-color-white-name}: #{defaults.$atomic-color-white-base};
+  #{defaults.$atomic-var-color-black-name}: #{defaults.$atomic-color-black-base};
+  #{defaults.$atomic-var-color-gray-name}: #{defaults.$atomic-color-gray-base};
+  #{defaults.$atomic-var-color-red-name}: #{defaults.$atomic-color-red-base};
+  #{defaults.$atomic-var-color-yellow-name}: #{defaults.$atomic-color-yellow-base};
+  #{defaults.$atomic-var-color-green-name}: #{defaults.$atomic-color-green-base};
+  #{defaults.$atomic-var-color-blue-name}: #{defaults.$atomic-color-blue-base};
+  #{defaults.$atomic-var-color-indigo-name}: #{defaults.$atomic-color-indigo-base};
+  #{defaults.$atomic-var-color-purple-name}: #{defaults.$atomic-color-purple-base};
+  #{defaults.$atomic-var-color-pink-name}: #{defaults.$atomic-color-pink-base};
+}

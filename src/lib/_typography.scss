@@ -1,0 +1,352 @@
+@use '../utils/util';
+
+/* - Typography 字体排版 -
+************************* */
+
+// Font Family
+#{selector-decorator(connector-decorator(($atomic-font-family-name, sans)))}
+{
+  font-family: ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    "Helvetica Neue",
+    Arial,
+    "Noto Sans",
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+#{selector-decorator(connector-decorator(($atomic-font-family-name, serif)))}
+{
+  font-family: ui-serif,
+    Georgia,
+    Cambria,
+    "Times New Roman",
+    Times,
+    serif;
+}
+
+#{selector-decorator(connector-decorator(($atomic-font-family-name, mono)))}
+{
+  font-family: ui-monospace,
+    SFMono-Regular,
+    Menlo,
+    Monaco,
+    Consolas,
+    "Liberation Mono",
+    "Courier New",
+    monospace;
+}
+
+// Font Size
+@each $key, $value in (
+  xs: (join-rem(0.75), join-rem(1)),
+  sm: (join-rem(0.875), join-rem(1.25)),
+  base: (join-rem(1), join-rem(1.5)),
+  lg: (join-rem(1.125), join-rem(1.75)),
+  xl: (join-rem(1.25), join-rem(1.75)),
+  2xl: (join-rem(1.5), join-rem(2)),
+  3xl: (join-rem(1.875), join-rem(2.25)),
+  4xl: (join-rem(2.25), join-rem(2.5)),
+  5xl: (join-rem(3), 1),
+  6xl: (join-rem(3.75), 1),
+  7xl: (join-rem(4.5), 1),
+  8xl: (join-rem(6), 1),
+  9xl: (join-rem(8), 1)
+) {
+  #{selector-decorator(connector-decorator(($atomic-font-size-name, $key)))}
+  {
+    font-size: nth($list: $value, $n: 1);
+    line-height: nth($list: $value, $n: 2);
+  }
+}
+
+// Font Smoothing
+#{selector-decorator(connector-decorator(($atomic-font-smoothing-name)))}
+{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#{selector-decorator(connector-decorator((subpixel, $atomic-font-smoothing-name)))}
+{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+// Font Style
+#{selector-decorator(connector-decorator(($atomic-font-style-name)))}
+{
+  font-style: italic;
+}
+
+#{selector-decorator(connector-decorator(('not', $atomic-font-style-name)))}
+{
+  font-style: normal;
+}
+
+// Font Weight
+@each $key, $value in (
+  thin: 100,
+  extralight: 200,
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+  extrabold: 800,
+  black: 900
+) {
+  #{selector-decorator(connector-decorator(($atomic-font-weight-name, $key)))}
+  {
+    font-weight: $value;
+  }
+}
+
+// Letter Spacing
+@each $key, $value in (
+  tighter: -0.05em,
+  tight: -0.025em,
+  normal: 0em,
+  wide: 0.025em,
+  wider: 0.05em,
+  widest: 0.1em,
+) {
+  #{selector-decorator(connector-decorator(($atomic-letter-spacing-name, $key)))}
+  {
+    font-weight: $value;
+  }
+}
+
+// Line Height
+@each $key, $value in (
+  3: join-rem(0.75),
+  4: join-rem(1),
+  5: join-rem(1.25),
+  6: join-rem(1.5),
+  7: join-rem(1.75),
+  8: join-rem(2),
+  9: join-rem(2.25),
+  10: join-rem(2.5),
+  none: 1,
+  tight: 1.25,
+  snug: 1.375,
+  normal: 1.5,
+  relaxed: 1.625,
+  loose: 2,
+) {
+  #{selector-decorator(connector-decorator(($atomic-line-height-name, $key)))}
+  {
+    line-height: $value;
+  }
+}
+
+// List Style Type
+#{selector-decorator(connector-decorator(($atomic-list-style-name, none)))}
+{
+  list-style-type: none;
+}
+
+#{selector-decorator(connector-decorator(($atomic-list-style-name, disc)))}
+{
+  list-style-type: disc;
+}
+
+#{selector-decorator(connector-decorator(($atomic-list-style-name, decimal)))}
+{
+  list-style-type: decimal;
+}
+
+// List Style Position
+#{selector-decorator(connector-decorator(($atomic-list-style-name, inside)))}
+{
+  list-style-position: inside;
+}
+
+#{selector-decorator(connector-decorator(($atomic-list-style-name, outside)))}
+{
+  list-style-position: outside;
+}
+
+// Text Align
+@each $value in (left, center, right, justify) {
+  #{selector-decorator(connector-decorator(($atomic-text-align-name, $value)))}
+  {
+    text-align: $value;
+  }
+}
+
+// Text Color
+#{selector-decorator(connector-decorator(($atomic-text-color-name, transparent)))}
+{
+  color: transparent;
+}
+
+#{selector-decorator(connector-decorator(($atomic-text-color-name, current)))}
+{
+  color: currentColor;
+}
+
+#{selector-decorator(connector-decorator(($atomic-text-color-name, black)))}
+{
+  #{$atomic-var-text-opacity-name}: 1;
+  color: rgba($color: $atomic-color-black-base, $alpha: var(#{$atomic-var-text-opacity-name}, 1));
+}
+
+#{selector-decorator(connector-decorator(($atomic-text-color-name, white)))}
+{
+  #{$atomic-var-text-opacity-name}: 1;
+  color: rgba($color: $atomic-color-white-base, $alpha: var(#{$atomic-var-text-opacity-name}, 1));
+}
+
+@each $color-key, $color-value in util.color-hues-generator() {
+  #{selector-decorator(connector-decorator(($atomic-text-color-name, $color-key)))}
+  {
+    #{$atomic-var-text-opacity-name}: 1;
+    color: rgba($color: $color-value, $alpha: var(#{$atomic-var-text-opacity-name}, 1));
+  }
+
+  @each $opacity in util.color-brightness-generator() {
+    #{selector-decorator(connector-decorator(($atomic-text-color-name, $color-key, $opacity)))}
+    {
+      #{$atomic-var-text-opacity-name}: 1;
+      color: rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: var(#{$atomic-var-text-opacity-name}, 1));
+    }
+  }
+}
+
+// Text Color Opacity
+@each $key, $value in util.opacities-generator() {
+  #{selector-decorator(connector-decorator(($atomic-text-opacity-name, $key)))}
+  {
+    #{$atomic-var-text-opacity-name}: #{$value};
+  }
+}
+
+// Text Decoration
+@each $key, $value in (
+  underline: underline,
+  line-through: line-through,
+  no-underline: none
+) {
+  #{selector-decorator(connector-decorator(($key)))}
+  {
+    text-decoration: $value;
+  }
+}
+
+// Text Transform
+@each $key, $value in (
+  uppercase: uppercase,
+  lowercase: lowercase,
+  capitalize: capitalize,
+  normal-case: none
+) {
+  #{selector-decorator(connector-decorator(($key)))}
+  {
+    text-transform: $value;
+  }
+}
+
+// Text Overflow
+#{selector-decorator(connector-decorator((truncate)))}
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#{selector-decorator(connector-decorator(($atomic-text-overflow-name, ellipsis)))}
+{
+  text-overflow: ellipsis;
+}
+
+#{selector-decorator(connector-decorator(($atomic-text-overflow-name, clip)))}
+{
+  text-overflow: clip;
+}
+
+// Line clamp
+#{selector-decorator(connector-decorator(($atomic-line-clamp-name, 1)))} {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%clamp-base {
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+$line-clamp-index: 2;
+@while $line-clamp-index <= 6 {
+  #{selector-decorator(#{connector-decorator(($atomic-line-clamp-name, $line-clamp-index))})} {
+    @extend %clamp-base;
+    -webkit-line-clamp: $line-clamp-index;
+  }
+  $line-clamp-index: util.big($line-clamp-index);
+}
+
+// Vertical Align
+@each $value in (
+  baseline,
+  top,
+  middle,
+  bottom,
+  text-top,
+  text-bottom
+) {
+  #{selector-decorator(connector-decorator(($atomic-vertical-align-name, $value)))}
+  {
+    vertical-align: $value;
+  }
+}
+
+// White Space
+@each $value in (
+  normal,
+  nowrap,
+  pre,
+  pre-line,
+  pre-wrap
+) {
+  #{selector-decorator(connector-decorator(($atomic-white-space-name, $value)))}
+  {
+    white-space: $value;
+  }
+}
+
+// Text Overflow
+#{selector-decorator(connector-decorator((truncate)))}
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Word Break
+#{selector-decorator(connector-decorator(($atomic-word-break-name, normal)))}
+{
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+#{selector-decorator(connector-decorator(($atomic-word-break-name, words)))}
+{
+  overflow-wrap: break-word;
+}
+
+#{selector-decorator(connector-decorator(($atomic-word-break-name, all)))}
+{
+  word-break: break-all;
+}
+

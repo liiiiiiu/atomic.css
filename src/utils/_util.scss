@@ -1,0 +1,272 @@
+@use '../defaults.scss';
+
+// 混合颜色
+// $color 需要被减淡的颜色
+// $weight 被减淡的颜色的权重
+@function mix-color($color, $weight, $mix-color: #fff) {
+  @return mix($color, $mix-color, $weight);
+}
+
+// 计算函数
+@function big($a, $b: 1, $operator:'plus') {
+  $result: '';
+
+  @if $operator == 'plus' {
+    $result: calc($a + $b);
+  }
+  @else if $operator == 'minus' {
+    $result: calc($a - $b);
+  }
+  @else if $operator == 'times' {
+
+    @if $b == 0 {
+      $b: 1;
+    }
+
+    $result: calc($a * $b);
+  }
+  @else if $operator == 'div' {
+
+    @if $b == 0 {
+      $b: 1;
+    }
+
+    $result: calc($a / $b);
+  }
+  @else {
+    $result: $a;
+  }
+
+  @return $result;
+}
+
+// 给类名打上选择器、前缀
+@function selector-decorator($name, $selector: '.', $prefix: defaults.$atomic-prefix) {
+  $_prefix: '';
+
+  @if $prefix != '' {
+    $_prefix: $prefix + defaults.$atomic-connector;
+  }
+
+  @return $selector + $_prefix + $name;
+}
+
+// 给类名打上连接符
+@function connector-decorator($list...) {
+  $result: '';
+  $list-len: 0;
+  $new-list: ();
+
+  $_index: 1;
+
+  @while $_index <= length($list) {
+
+    $value: nth($list: $list, $n: $_index);
+
+    @if $value != '' {
+      $new-list: append(
+        $list: $new-list,
+        $val: $value,
+        $separator: comma
+      );
+    }
+
+    $_index: big($_index);
+
+  }
+
+  $list-len: length($list: $new-list);
+
+  $connector: defaults.$atomic-connector;
+  $connectors: defaults.$atomic-connectors;
+  $connectors-len: 0;
+
+  @if defaults.$atomic-connectors {
+    $connectors-len: length($list: $connectors);
+  }
+
+  @if $connectors-len > 0 {
+    $connector: nth($list: $connectors, $n: 1);
+  }
+
+  $index: 1;
+
+  @while $index <= $list-len {
+
+    @if $connectors-len > 0 {
+
+      @if $index <= $connectors-len {
+        $connector: nth($list: $connectors, $n: $index);
+      }
+
+    }
+
+    @if $index == $list-len {
+      $connector: '';
+    }
+
+    $result: $result + nth($list: $new-list, $n: $index) + $connector;
+
+    $index: big($index);
+
+  }
+
+  @return $result;
+}
+
+@function selector-with-connector($list...) {
+  @return selector-decorator(connector-decorator($list...));
+}
+
+// 在字符串指定位置插入字符
+@function str-insert-backslash($string) {
+  $index: str-index($string, '.');
+
+  @if $index != null {
+    @return unquote($string: str-insert(quote($string: $string), '\\', $index));
+  }
+
+  @return unquote($string: $string);
+}
+
+// 将数值转换成 rem
+@function number-to-rem($number) {
+  $denominator: 4;
+  @return unquote($string: (calc($number / $denominator)) + 'rem');
+}
+
+// 在值后面添加 rem 单位
+@function join-rem($value) {
+  @return #{$value + rem};
+}
+
+// 带透明度的颜色混合
+@function mix-color-with-opacity($color, $opacity) {
+  @return mix-color($color, percentage(calc($opacity / 10 / 100)));
+}
+
+// Generator
+
+// 数值字典生成器
+// 用于宽、高、内外边距等属性的遍历；
+// 由于存在小数，数组 key 值必须要使用引号才能使用字符串函数进行转义
+@function numbers-map-generator() {
+  @return (
+    '0': 0px,
+    '0.5': number-to-rem(0.5),
+    '1': number-to-rem(1),
+    '1.5': number-to-rem(1.5),
+    '2': number-to-rem(2),
+    '2.5': number-to-rem(2.5),
+    '3': number-to-rem(3),
+    '3.5': number-to-rem(3.5),
+    '4': number-to-rem(4),
+    '5': number-to-rem(5),
+    '6': number-to-rem(6),
+    '7': number-to-rem(7),
+    '8': number-to-rem(8),
+    '10': number-to-rem(10),
+    '11': number-to-rem(11),
+    '12': number-to-rem(12),
+    '14': number-to-rem(14),
+    '16': number-to-rem(16),
+    '20': number-to-rem(20),
+    '24': number-to-rem(24),
+    '28': number-to-rem(28),
+    '32': number-to-rem(32),
+    '36': number-to-rem(36),
+    '40': number-to-rem(40),
+    '44': number-to-rem(44),
+    '48': number-to-rem(48),
+    '52': number-to-rem(52),
+    '56': number-to-rem(56),
+    '60': number-to-rem(60),
+    '64': number-to-rem(64),
+    '72': number-to-rem(72),
+    '80': number-to-rem(80),
+    '96': number-to-rem(96),
+    'px': 1px,
+    'auto': auto,
+    'full': 100%
+  );
+}
+
+// 颜色明度数组生成器
+@function color-brightness-generator() {
+  @return (
+    50,
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900
+  );
+}
+
+// 颜色色相数组生成器
+@function color-hues-generator() {
+  @return (
+    brand: defaults.$atomic-color-brand-base,
+    gray: defaults.$atomic-color-gray-base,
+    red: defaults.$atomic-color-red-base,
+    yellow: defaults.$atomic-color-yellow-base,
+    green: defaults.$atomic-color-green-base,
+    blue: defaults.$atomic-color-blue-base,
+    indigo: defaults.$atomic-color-indigo-base,
+    purple: defaults.$atomic-color-purple-base,
+    pink: defaults.$atomic-color-pink-base
+  );
+}
+
+// 透明度数组生成器
+@function opacities-generator() {
+  @return (
+    0: 0,
+    5: 0.05,
+    10: 0.1,
+    20: 0.2,
+    30: 0.3,
+    40: 0.4,
+    50: 0.5,
+    60: 0.6,
+    70: 0.7,
+    75: 0.75,
+    80: 0.8,
+    90: 0.9,
+    95: 0.95,
+    100: 1
+  );
+}
+
+// 媒体查询断点数组生成器
+@function screen-media-queries-generator() {
+  @return (
+    sm: (min-width: #{defaults.$atomic-screen-sm-min}),
+    md: (min-width: #{defaults.$atomic-screen-md-min}),
+    lg: (min-width: #{defaults.$atomic-screen-lg-min}),
+    xl: (min-width: #{defaults.$atomic-screen-xl-min}),
+    2xl: (min-width: #{defaults.$atomic-screen-2xl-min})
+  );
+}
+
+// 数字列表生成器
+@function number-list-generator($min: 0, $max: 100, $step: 1) {
+  $list: ();
+  $index: $min;
+
+  @while $index <= $max {
+    $list: append(
+      $list: $list,
+      $val: $index,
+      $separator: comma
+    );
+
+    $index: big($index, $step);
+  }
+
+  @return $list;
+}

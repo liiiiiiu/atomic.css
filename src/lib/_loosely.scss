@@ -1,0 +1,63 @@
+/* Print */
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, bb, al))})} {
+  page-break-before: always;
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, bb, #{$_left-key}))})} {
+  page-break-before: parse-key-func($_left-key);
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, bb, #{$_right-key}))})} {
+  page-break-before: parse-key-func($_right-key);
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, bi, av))})} {
+  page-break-inside: avoid;
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, ba, al))})} {
+  page-break-after: always;
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, ba, #{$_left-key}))})} {
+  page-break-after: parse-key-func($_left-key);
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-page-name}, ba, #{$_right-key}))})} {
+  page-break-after: parse-key-func($_right-key);
+}
+
+/* Cursor */
+#{selector-decorator(#{connector-decorator((#{$atomic-cursor-name}))})},
+#{selector-decorator(#{connector-decorator((#{$atomic-cursor-name}, d))})} {
+  cursor: default;
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-cursor-name}, #{$_auto-key}))})} {
+  cursor: parse-key-func($_auto-key);
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-cursor-name}, p))})} {
+  cursor: pointer;
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-cursor-name}, t))})} {
+  cursor: text;
+}
+
+/* Others */
+#{selector-decorator(#{connector-decorator((#{$atomic-pointer-events-name}, #{$_none-key}))})} {
+  pointer-events: parse-key-func($_none-key);
+}
+
+#{selector-decorator(#{connector-decorator((#{$atomic-list-style-name}, #{$_none-key}))})} {
+  list-style: parse-key-func($_none-key);
+}
+
+
+
+
+/* Outline */
+#{selector-decorator(#{connector-decorator((#{$atomic-outline-name}, #{$_none-key}))})} {
+  outline: parse-key-func($_none-key);
+}

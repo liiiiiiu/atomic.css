@@ -1,0 +1,826 @@
+@use '../defaults.scss';
+@use '../utils/util';
+
+/* - Layout 布局 -
+************************* */
+
+// Container
+#{util.selector-with-connector(defaults.$atomic-container-name)},
+#{util.selector-with-connector(page, defaults.$atomic-container-name)}
+{
+  width: 100%;
+}
+
+// #{util.selector-with-connector(defaults.$atomic-container-name, sm)},
+// #{util.selector-with-connector(defaults.$atomic-container-name, sm)}
+// {
+//   max-width: defaults.$atomic-screen-sm-min;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-container-name, md)},
+// #{util.selector-with-connector(page, defaults.$atomic-container-name, md)}
+// {
+//   max-width: defaults.$atomic-screen-md-min;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-container-name, lg)},
+// #{util.selector-with-connector(page, defaults.$atomic-container-name, lg)}
+// {
+//   max-width: defaults.$atomic-screen-lg-min;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-container-name, xl)},
+// #{util.selector-with-connector(page, defaults.$atomic-container-name, xl)}
+// {
+//   max-width: defaults.$atomic-screen-xl-min;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-container-name, '2xl')},
+// #{util.selector-with-connector(page, defaults.$atomic-container-name, '2xl')}
+// {
+//   max-width: defaults.$atomic-screen-2xl-min;
+// }
+
+// // Box Decoration Break
+// #{util.selector-with-connector(defaults.$atomic-box-decoration-break-name, slice)}
+// {
+//   box-decoration-break: slice;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-box-decoration-break-name, clone)}
+// {
+//   box-decoration-break: clone;
+// }
+
+// // Box Sizing
+// #{util.selector-with-connector(defaults.$atomic-box-sizing-name, border)}
+// {
+//   box-sizing: border-box;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-box-sizing-name, content)}
+// {
+//   box-sizing: content-box;
+// }
+
+// // Display
+// @each $value in (
+//   block,
+//   inline-block,
+//   inline,
+//   flex,
+//   inline-flex,
+//   table,
+//   inline-table,
+//   table-caption,
+//   table-cell,
+//   table-column,
+//   table-column-group,
+//   table-footer-group,
+//   table-header-group,
+//   table-row-group,
+//   table-row,
+//   flow-root,
+//   grid,
+//   inline-grid,
+//   contents,
+//   list-item,
+//   hidden
+// ) {
+
+//   #{util.selector-with-connector($value)}
+//   {
+
+//     @if $value !='hidden' {
+//       display: $value;
+//     }
+//     @else {
+//       display: none;
+//     }
+
+//   }
+
+// }
+
+// // Float
+// @each $value in (
+//   left,
+//   right,
+//   none
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-float-name, $value)}
+//   {
+//     float: $value;
+//   }
+
+// }
+
+// // Clear Float
+// @each $value in (
+//   left,
+//   right,
+//   none
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-clear-name, $value)}
+//   {
+//     clear: $value;
+//   }
+
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-clear-name, both)}
+// {
+//   clear: both;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-clear-name)}
+// {
+//   display: inline-table;
+// }
+// #{util.selector-with-connector(defaults.$atomic-clear-name)}
+// {
+//   *zoom: 1;
+// }
+// #{util.selector-with-connector(defaults.$atomic-clear-name)}::after
+// {
+//   content: " ";
+//   display: block;
+//   visibility: hidden;
+//   height: 0;
+//   font-size: 0;
+//   clear: both;
+// }
+
+// // Isolation
+// #{util.selector-with-connector(isolate)}
+// {
+//   isolation: isolate;
+// }
+
+// #{util.selector-with-connector(isolation-auto)
+// }
+// {
+//   isolation: auto;
+// }
+
+// // Object Fit
+// @each $value in (
+//   contain,
+//   cover,
+//   fill,
+//   scale-down,
+//   none
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-object-fit-name, $value)}
+//   {
+//     object-fit: $value;
+//   }
+
+// }
+
+// // Object Position
+// @each $values in (
+//   (bottom),
+//   (center),
+//   (left),
+//   (left, bottom),
+//   (left, top),
+//   (right),
+//   (right, bottom),
+//   (right, top),
+//   (top)
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-object-fit-name, util.connector-decorator($values...))}
+//   {
+
+//     @if length($values) < 2 {
+//       object-position: nth($list: $values, $n: 1);
+//     }
+//     @else {
+//       object-position: nth($list: $values, $n: 1) nth($list: $values, $n: 2);
+//     }
+
+//   }
+
+// }
+
+// // Overflow
+// @each $values in (
+//   (auto),
+//   (hidden),
+//   (visible),
+//   (scroll),
+//   (x, auto),
+//   (y, auto),
+//   (x, hidden),
+//   (y, hidden),
+//   (x, visible),
+//   (y, visible),
+//   (x, scroll),
+//   (y, scroll)
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-overflow-name, util.connector-decorator($values...))}
+//   {
+
+//     @if length($values) < 2 {
+//       overflow: nth($list: $values, $n: 1);
+//     }
+//     @else {
+//       #{'overflow-'}#{nth($list: $values, $n: 1)}: nth($list: $values, $n: 2);
+//     }
+
+//   }
+
+// }
+
+// // Overscroll Behavior
+// @each $values in (
+//   (auto),
+//   (contain),
+//   (none),
+//   (y, auto),
+//   (y, contain),
+//   (y, none),
+//   (x, auto),
+//   (x, contain),
+//   (x, none)
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-overscroll-behavior-name, util.connector-decorator($values...))}
+//   {
+
+//     @if length($values) < 2 {
+//       overscroll-behavior: nth($list: $values, $n: 1);
+//     }
+//     @else {
+//       #{'overscroll-behavior-'}#{nth($list: $values, $n: 1)}: nth($list: $values, $n: 2);
+//     }
+
+//   }
+
+// }
+
+// // Position
+// @each $value in (
+//   static,
+//   fixed,
+//   absolute,
+//   relative,
+//   sticky
+// ) {
+
+//   #{util.selector-with-connector($value)}
+//   {
+//     position: $value;
+//   }
+
+// }
+
+// // Top Right Bottom Left
+// @each $outer-key, $outer-value in util.numbers-map-generator() {
+
+//   @each $inner-key, $inner-values in (
+//     defaults.$atomic-top-name: (top),
+//     defaults.$atomic-right-name: (right),
+//     defaults.$atomic-bottom-name: (bottom),
+//     defaults.$atomic-left-name: (left),
+//     defaults.$atomic-inset-name: (top, right, bottom, left),
+//     util.connector-decorator(defaults.$atomic-inset-name, x): (right, left),
+//     util.connector-decorator(defaults.$atomic-inset-name, y): (top, bottom)
+//   ) {
+
+//     @if $outer-key != 'auto' {
+//       #{util.selector-with-connector(#{'-'}#{$inner-key}, util.str-insert-backslash($outer-key))}
+//       {
+//         @each $inner-value in $inner-values {
+//           #{$inner-value}: #{'-' + $outer-value};
+//         }
+//       }
+//     }
+
+//     #{util.selector-with-connector($inner-key, util.str-insert-backslash($outer-key))}
+//     {
+//       @each $inner-value in $inner-values {
+//         #{$inner-value}: $outer-value;
+//       }
+//     }
+
+//   }
+
+// }
+
+// @each $outer-value in (
+//   (1, util.big(1, 1)),
+//   (1, util.big(1, 2)),
+//   (2, util.big(1, 2)),
+//   (1, util.big(1, 3)),
+//   (2, util.big(1, 3)),
+//   (3, util.big(1, 3))
+// ) {
+
+//   @each $inner-key, $inner-values in (
+//     defaults.$atomic-top-name: (top),
+//     defaults.$atomic-right-name: (right),
+//     defaults.$atomic-bottom-name: (bottom),
+//     defaults.$atomic-left-name: (left),
+//     defaults.$atomic-inset-name: (top, right, bottom, left),
+//     util.connector-decorator(defaults.$atomic-inset-name, x): (right, left),
+//     util.connector-decorator(defaults.$atomic-inset-name, y): (top, bottom)
+//   ) {
+
+//     #{util.selector-with-connector($inner-key, #{nth($outer-value, 1) + '\\/' + nth($outer-value, 2)})}
+//     {
+
+//       @each $inner-value in $inner-values {
+//         #{$inner-value}: percentage(calc(nth($outer-value, 1) / nth($outer-value, 2)));
+//       }
+
+//     }
+
+//   }
+
+// }
+
+// // Visible
+// #{util.selector-with-connector(defaults.$atomic-visible-name)}
+// {
+//   visibility: visible;
+// }
+
+// #{util.selector-with-connector(#{'in'}#{defaults.$atomic-visible-name})}
+// {
+//   visibility: hidden;
+// }
+
+// // Z-Index
+// @each $value in util.number-list-generator(0, 50, 10) {
+
+//   #{util.selector-with-connector(defaults.$atomic-z-index-name, $value)}
+//   {
+//     z-index: $value;
+//   }
+
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-z-index-name, auto)}
+// {
+//   z-index: auto;
+// }
+
+// // Flex Direction
+// @each $key, $value in (
+//   row: row,
+//   util.connector-decorator(row, reverse): row-reverse,
+//   col: column,
+//   util.connector-decorator(col, reverse): column-reverse
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-flex-name, $key)}
+//   {
+//     flex-direction: $value;
+//   }
+
+// }
+
+// // Flex Wrap
+// @each $key, $value in (
+//   wrap: wrap,
+//   util.connector-decorator(wrap, reverse): wrap-reverse,
+//   nowrap: nowrap
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-flex-name, $key)}
+//   {
+//     flex-wrap: $value;
+//   }
+
+// }
+
+// // Flex
+// @each $key, $value in (
+//   1: 1 1 0%,
+//   auto: 1 1 auto,
+//   initial: 0 1 auto,
+//   none: none
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-flex-name, $key)}
+//   {
+//     flex: $value;
+//   }
+
+// }
+
+// // Flex Grow
+// #{util.selector-with-connector(defaults.$atomic-flex-name, grow, 0)}
+// {
+//   flex-grow: 0;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-flex-name, grow)}
+// {
+//   flex-grow: 1;
+// }
+
+// // Flex Shrink
+// #{util.selector-with-connector(defaults.$atomic-flex-name, shrink, 0)}
+// {
+//   flex-shrink: 0;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-flex-name, shrink)}
+// {
+//   flex-shrink: 1;
+// }
+
+// // Order
+// @each $value in util.number-list-generator(1, 12) {
+
+//   #{util.selector-with-connector(defaults.$atomic-order-name, $value)}
+//   {
+//     order: $value;
+//   }
+
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-order-name, first)}
+// {
+//   order: -9999;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-order-name, last)}
+// {
+//   order: 9999;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-order-name, none)}
+// {
+//   order: 0;
+// }
+
+// // Grid Template Columns
+// @each $value in util.number-list-generator(1, 12) {
+
+//   #{util.selector-with-connector(defaults.$atomic-grid-name, cols, $value)}
+//   {
+//     grid-template-columns: repeat($value, minmax(0, 1fr));
+//   }
+
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-name, cols, none)}
+// {
+//   grid-template-columns: none;
+// }
+
+// // Grid Column Start / End
+// #{util.selector-with-connector(defaults.$atomic-grid-column-name, auto)}
+// {
+//   grid-column: auto;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-column-name, start, auto)}
+// {
+//   grid-column-start: auto;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-column-name, end, auto)}
+// {
+//   grid-column-end: auto;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-column-name, span, full)}
+// {
+//   grid-column: 1 / -1;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-column-name, start, 13)}
+// {
+//   grid-column-start: 13;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-column-name, end, 13)} {
+//   grid-column-end: 13;
+// }
+
+// @each $outer-value in util.number-list-generator(1, 12) {
+
+//   @each $inner-value in (
+//     span,
+//     start,
+//     end
+//   ) {
+
+//     #{util.selector-with-connector(defaults.$atomic-grid-column-name, $inner-value, $outer-value)}
+//     {
+
+//       @if $inner-value == span {
+//         grid-column: #{'span'} $outer-value #{'/'} #{'span'} $outer-value;
+//       }
+//       @else {
+//         #{'grid-column-'}#{$inner-value}: $outer-value;
+//       }
+
+//     }
+
+//   }
+
+// }
+
+// // Grid Template Rows
+// @each $value in util.number-list-generator(1, 6) {
+
+//   #{util.selector-with-connector(defaults.$atomic-grid-name, rows, $value)}
+//   {
+//     grid-template-rows: repeat($value, minmax(0, 1fr));
+//   }
+
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-name, rows, none)}
+// {
+//   grid-template-rows: none;
+// }
+
+// // Grid Row Start / End
+// #{util.selector-with-connector(defaults.$atomic-grid-row-name, auto)}
+// {
+//   grid-row: auto;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-row-name, start, auto)}
+// {
+//   grid-row-start: auto;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-row-name, end, auto)}
+// {
+//   grid-row-end: auto;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-row-name, span, full)}
+// {
+//   grid-row: 1 / -1;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-row-name, start, 7)}
+// {
+//   grid-row-start: 7;
+// }
+
+// #{util.selector-with-connector(defaults.$atomic-grid-row-name, end, 7)} {
+//   grid-row-end: 7;
+// }
+
+// @each $outer-value in util.number-list-generator(1, 6) {
+
+//   @each $inner-value in (
+//     span,
+//     start,
+//     end
+//   ) {
+
+//     #{util.selector-with-connector(defaults.$atomic-grid-row-name, $inner-value, $outer-value)}
+//     {
+
+//       @if $inner-value == span {
+//         grid-row: #{'span'} $outer-value #{'/'} #{'span'} $outer-value;
+//       }
+//       @else {
+//         #{'grid-row-'}#{$inner-value}: $outer-value;
+//       }
+
+//     }
+
+//   }
+
+// }
+
+// // Grid Auto Flow
+// @each $key, $value in (
+//   row: row,
+//   col: column,
+//   util.connector-decorator(row, dense): row dense,
+//   util.connector-decorator(col, dense): column dense
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-grid-name, flow, $key)}
+//   {
+//     grid-auto-flow: $value;
+//   }
+
+// }
+
+// // Grid Auto Columns
+// @each $key, $value in (
+//   auto: auto,
+//   min: min-content,
+//   max: max-content,
+//   fr: minmax(0, 1fr)
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-grid-auto-name, cols, $key)}
+//   {
+//     grid-auto-columns: $value;
+//   }
+
+// }
+
+// // Grid Auto Rows
+// @each $key, $value in (
+//   auto: auto,
+//   min: min-content,
+//   max: max-content,
+//   fr: minmax(0, 1fr)
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-grid-auto-name, rows, $key)}
+//   {
+//     grid-auto-rows: $value;
+//   }
+
+// }
+
+// // Gap
+// @each $outer-key, $outer-value in util.numbers-map-generator() {
+
+//   @each $inner-key, $inner-value in (
+//     '': '',
+//     x: 'column-',
+//     y: 'row-'
+//   ) {
+
+//     @if $outer-key == 'auto' {}
+//     @else if $outer-key == 'full' {}
+//     @else {
+
+//       @if $inner-key == '' {
+//         #{util.selector-with-connector(defaults.$atomic-gap-name, util.str-insert-backslash($outer-key))}
+//         {
+//           #{$inner-value}#{'gap'}: $outer-value;
+//         }
+//       }
+//       @else {
+//         #{util.selector-with-connector(defaults.$atomic-gap-name, $inner-key, util.str-insert-backslash($outer-key))}
+//         {
+//           #{$inner-value}#{'gap'}: $outer-value;
+//         }
+//       }
+
+//     }
+
+//   }
+
+// }
+
+// // Justify Content
+// @each $key, $value in (
+//   start: flex-start,
+//   end: flex-end,
+//   center: center,
+//   between: space-between,
+//   around: space-around,
+//   evenly: space-evenly
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-justify-content-name, $key)}
+//   {
+//     justify-content: $value;
+//   }
+
+// }
+
+// // Justify Items
+// @each $key, $value in (
+//   start: start,
+//   end: end,
+//   center: center,
+//   stretch: stretch
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-justify-items-name, $key)}
+//   {
+//     justify-items: $value;
+//   }
+
+// }
+
+// // Justify Self
+// @each $key, $value in (
+//   auto: auto,
+//   start: start,
+//   end: end,
+//   center: center,
+//   stretch: stretch
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-justify-self-name, $key)}
+//   {
+//     justify-self: $value;
+//   }
+
+// }
+
+// // Align Content
+// @each $key, $value in (
+//   start: flex-start,
+//   end: flex-end,
+//   center: center,
+//   between: space-between,
+//   around: space-around,
+//   evenly: space-evenly
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-align-content-name, $key)}
+//   {
+//     align-content: $value;
+//   }
+
+// }
+
+// // Align Items
+// @each $key, $value in (
+//   start: flex-start,
+//   end: flex-end,
+//   center: center,
+//   baseline: baseline,
+//   stretch: stretch
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-align-items-name, $key)}
+//   {
+//     align-items: $value;
+//   }
+
+// }
+
+// // Align Self
+// @each $key, $value in (
+//   start: flex-start,
+//   end: flex-end,
+//   center: center,
+//   baseline: baseline,
+//   stretch: stretch,
+//   auto: auto
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-align-self-name, $key)}
+//   {
+//     align-self: $value;
+//   }
+
+// }
+
+// // Place Content
+// @each $key, $value in (
+//   start: start,
+//   end: end,
+//   center: center,
+//   between: space-between,
+//   around: space-around,
+//   evenly: space-evenly,
+//   stretch: stretch
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-place-content-name, $key)}
+//   {
+//     place-content: $value;
+//   }
+
+// }
+
+// // Place Items
+// @each $key, $value in (
+//   start: start,
+//   end: end,
+//   center: center,
+//   stretch: stretch
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-place-items-name, $key)}
+//   {
+//     place-items: $value;
+//   }
+
+// }
+
+// // Place Self
+// @each $key, $value in (
+//   start: start,
+//   end: end,
+//   center: center,
+//   stretch: stretch,
+//   auto: auto
+// ) {
+
+//   #{util.selector-with-connector(defaults.$atomic-place-self-name, $key)}
+//   {
+//     place-self: $value;
+//   }
+
+// }

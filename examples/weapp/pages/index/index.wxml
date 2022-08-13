@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<page-meta
+  root-font-size="20px"
+>
+  <view class="container">
+    <view class="w-100 h-100 bgc-blue fx fx-jc-c fx-ai-c bdrs-round bd mt-30">
+      <text class="c-black-6">test</text>
+    </view>
+    <view class="w-90vw h-10vh bgc-black mt-50 ta-c">
+      <text class="c-white ls-2 lh-5">2111</text>
+    </view>
+    <view class="a" style="margin: 1rem;">
+      esdsaa
+    </view>
+  </view>
+</page-meta>

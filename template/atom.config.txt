@@ -1,0 +1,11 @@
+<% _.each(defaults, function(outerValue, outerKey) { %>
+  <% if(typeof outerValue !== 'object') {%>
+    $<%= outerKey %>: <%= outerValue %>;
+  <%} else { %>
+    <% _.each(outerValue, function(innerValue, innerKey) { %>
+      <% _.each(innerValue, function(value, key) { %>
+        $<%= innerKey %>-<%= key %>: <%= value %>;
+      <% }) %>
+    <% }) %>
+  <% } %>
+<% }) %>

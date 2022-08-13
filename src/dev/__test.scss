@@ -1,0 +1,98 @@
+// 无效 CSS，仅用作开发调试！！
+
+@mixin breakpoint-mixin($breakpoints) {
+
+  $conditions: ();
+
+  // comma 指定列表中的列表项值之间使用逗号（,）分隔
+  // space 指定列表中的列表项值之间使用空格（ ）分隔
+  @each $breakpoint in $breakpoints {
+    $conditions: append(
+      $list: $conditions,
+      $val: #{inspect(map-get(util.screen-media-queries-generator(), $breakpoint))},
+      $separator: comma
+    );
+  }
+
+  @media #{$conditions} {
+    @content;
+  }
+
+}
+
+@mixin media($types...) {
+
+  @each $type in $types {
+    @content($type);
+  }
+
+}
+
+$layout-classes: (
+  container: (($atomic-container-name), (width, 100%), true),
+
+  container-sm: (($atomic-container-name, sm), (width, 100%), true)
+);
+
+$layout-normal-classes: ();
+
+$layout-breakpoint-classes: ();
+
+$index: 1;
+
+@each $class-tag, $class-values in $layout-classes {
+
+  $layout-normal-classes: append(
+    $list: $layout-normal-classes,
+    $val: (unquote(util.connector-decorator(nth($list: $class-values, $n: 1)...)), nth($list: $class-values, $n: 2)),
+    $separator: comma
+  );
+
+  // 生成断点类
+  @if nth($list: $class-values, $n: 3) == true {
+
+    $layout-breakpoint-classes: append(
+      $list: $layout-normal-classes,
+      $val: (unquote(util.connector-decorator(nth($list: $class-values, $n: 1)...)), nth($list: $class-values, $n: 2)),
+      $separator: comma
+    );
+
+  }
+
+  @if ($index < length($layout-classes)) {
+    $index: $index + 1;
+  }
+
+}
+
+@each $class-name, $class-values in $layout-normal-classes {
+
+  $class-prop: nth($class-values, 1);
+  $class-value: nth($class-values, 2);
+
+  #{util.selector-with-connector($class-name)} {
+    #{$class-prop}: #{$class-value};
+  }
+
+}
+
+@include media(sm, lg) using ($type) {
+
+  @include breakpoint-mixin($type) {
+
+    @debug '$type', $type;
+
+    @each $class-name, $class-values in $layout-breakpoint-classes {
+
+      $class-prop: nth($class-values, 1);
+      $class-value: nth($class-values, 2);
+
+      #{util.selector-with-connector($type, $class-name)} {
+        #{$class-prop}: #{$class-value};
+      }
+
+    }
+
+  }
+
+}

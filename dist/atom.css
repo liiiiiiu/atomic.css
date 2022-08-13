@@ -1,0 +1,22 @@
+@charset "UTF-8";
+:root {
+  --color-brand: #1890ff;
+  --color-white: #fff;
+  --color-black: black;
+  --color-gray: #111827;
+  --color-red: #f5222d;
+  --color-yellow: #fadb14;
+  --color-green: #52c41a;
+  --color-blue: #1890ff;
+  --color-indigo: #312e81;
+  --color-purple: #722ed1;
+  --color-pink: #eb2f96;
+}
+
+/* - Layout 布局 -
+************************* */
+.container,
+.page-container {
+  width: 100%;
+}
+
