@@ -4,7 +4,7 @@ const attempFileName = 'attemp'
 const atomDir = ''
 const sourceDir = 'src'
 const libDir = sourceDir + '/lib'
-const devDir = sourceDir + '/dev'
+const devDir = 'dev'
 const destDir = 'dist'
 const templateDir = 'template'
 
