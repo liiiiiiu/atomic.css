@@ -18,83 +18,110 @@
 
 }
 
-$class-prefix: pick(config.$class-prefix, '');
-
-$class-connector: pick(config.$class-connector, '-');
-
-$class-connectors: pick(config.$class-connectors, ());
-
 $use-normalize: pick(config.$use-normalize, true);
 
-// CSS 样式命名
-// $atomic-width-name: wth;
-// => .wth-screen { width: 100vw; }
-$atomic-container-name: container;
+$class-prefix: pick(config.$class-prefix, '');
+$class-connector: pick(config.$class-connector, '-');
+$class-connectors: pick(config.$class-connectors, ());
 
-$atomic-box-decoration-break-name: decoration;
+$abbr-container: pick(config.$abbr-container, container);
+$abbr-box-decoration-break: pick(config.$abbr-box-decoration-break, decoration);
+$abbr-box-sizing: pick(config.$abbr-box-sizing, box);
+$abbr-float: pick(config.$abbr-float, float);
+$abbr-clear: pick(config.$abbr-clear, clear);
+$abbr-object-fit: pick(config.$abbr-object-fit, object);
+$abbr-object-position: pick(config.$abbr-object-position, object);
+$abbr-overflow: pick(config.$abbr-overflow, overflow);
+$abbr-overscroll-behavior: pick(config.$abbr-overscroll-behavior, overscroll);
+$abbr-position: pick(config.$abbr-position, position);
+$abbr-inset: pick(config.$abbr-inset, inset);
+$abbr-top: pick(config.$abbr-top, top);
+$abbr-right: pick(config.$abbr-right, right);
+$abbr-bottom: pick(config.$abbr-bottom, bottom);
+$abbr-left: pick(config.$abbr-left, left);
+$abbr-visible: pick(config.$abbr-visible, visible);
+$abbr-z-index: pick(config.$abbr-z-index, z);
+$abbr-flex: pick(config.$abbr-flex, flex);
+$abbr-order: pick(config.$abbr-order, order);
+$abbr-grid: pick(config.$abbr-grid, grid);
+$abbr-grid-column: pick(config.$abbr-grid-column, col);
+$abbr-grid-row: pick(config.$abbr-grid-row, row);
+$abbr-grid-auto: pick(config.$abbr-grid-auto, auto);
+$abbr-gap: pick(config.$abbr-gap, gap);
+$abbr-justify-content: pick(config.$abbr-justify-content, justify);
+$abbr-justify-items: pick(config.$abbr-justify-items, justify-items);
+$abbr-justify-self: pick(config.$abbr-justify-self, justify-self);
+$abbr-align-content: pick(config.$abbr-align-content, content);
+$abbr-align-items: pick(config.$abbr-align-items, items);
+$abbr-align-self: pick(config.$abbr-align-self, self);
+$abbr-place-content: pick(config.$abbr-place-content, place-content);
+$abbr-place-items: pick(config.$abbr-place-items, place-items);
+$abbr-place-self: pick(config.$abbr-place-self, place-self);
+$abbr-padding: pick(config.$abbr-padding, p);
+$abbr-margin: pick(config.$abbr-margin, m);
+$abbr-width: pick(config.$abbr-width, w);
+$abbr-height: pick(config.$abbr-height, h);
 
-$atomic-box-sizing-name: box;
+$screens-sm: pick(config.$screens-sm, 640px);
+$screens-md: pick(config.$screens-md, 768px);
+$screens-lg: pick(config.$screens-lg, 1024px);
+$screens-xl: pick(config.$screens-xl, 1280px);
+$screens-2xl: pick(config.$screens-2xl, 1536px);
 
-$atomic-float-name: float;
+$colors-brand: pick(config.$colors-brand, #1890ff);
+$colors-white: pick(config.$colors-white, #fff);
+$colors-black: pick(config.$colors-black, invert($colors-white, 100%));
+$colors-gray: pick(config.$colors-gray, #111827);
+$colors-red: pick(config.$colors-red, #f5222d);
+$colors-yellow: pick(config.$colors-yellow, #fadb14);
+$colors-green: pick(config.$colors-green, #52c41a);
+$colors-blue: pick(config.$colors-blue, #1890ff);
+$colors-indigo: pick(config.$colors-indigo, #312e81);
+$colors-purple: pick(config.$colors-purple, #722ed1);
+$colors-pink: pick(config.$colors-pink, #eb2f96);
 
-$atomic-clear-name: clear;
+$spacing-px: pick(config.$spacing-px, 1px);
+$spacing-0: pick(config.$spacing-0, 0px);
+$spacing-0\.5: pick(config.$spacing-0\.5, 0.125rem);
+$spacing-1: pick(config.$spacing-1, 0.25rem);
+$spacing-1\.5: pick(config.$spacing-1\.5, 0.375rem);
+$spacing-2: pick(config.$spacing-2, 0.5rem);
+$spacing-2\.5: pick(config.$spacing-2\.5, 0.625rem);
+$spacing-3: pick(config.$spacing-3, 0.75rem);
+$spacing-3\.5: pick(config.$spacing-3\.5, 0.875rem);
+$spacing-4: pick(config.$spacing-4, 1rem);
+$spacing-5: pick(config.$spacing-5, 1.25rem);
+$spacing-6: pick(config.$spacing-6, 1.5rem);
+$spacing-7: pick(config.$spacing-7, 1.75rem);
+$spacing-8: pick(config.$spacing-8, 2rem);
+$spacing-9: pick(config.$spacing-9, 2.25rem);
+$spacing-10: pick(config.$spacing-10, 2.5rem);
+$spacing-11: pick(config.$spacing-11, 2.75rem);
+$spacing-12: pick(config.$spacing-12, 3rem);
+$spacing-14: pick(config.$spacing-14, 3.5rem);
+$spacing-16: pick(config.$spacing-16, 4rem);
+$spacing-20: pick(config.$spacing-20, 5rem);
+$spacing-24: pick(config.$spacing-24, 6rem);
+$spacing-28: pick(config.$spacing-28, 7rem);
+$spacing-32: pick(config.$spacing-32, 8rem);
+$spacing-36: pick(config.$spacing-36, 9rem);
+$spacing-40: pick(config.$spacing-40, 10rem);
+$spacing-44: pick(config.$spacing-44, 11rem);
+$spacing-48: pick(config.$spacing-48, 12rem);
+$spacing-52: pick(config.$spacing-52, 13rem);
+$spacing-56: pick(config.$spacing-56, 14rem);
+$spacing-60: pick(config.$spacing-60, 15rem);
+$spacing-64: pick(config.$spacing-64, 16rem);
+$spacing-72: pick(config.$spacing-72, 18rem);
+$spacing-80: pick(config.$spacing-80, 20rem);
+$spacing-96: pick(config.$spacing-96, 24rem);
 
-$atomic-object-fit-name: object;
 
-$atomic-object-position-name: object;
 
-$atomic-overflow-name: overflow;
 
-$atomic-overscroll-behavior-name: overscroll;
 
-$atomic-position-name: position;
 
-$atomic-inset-name: inset;
-$atomic-top-name: top;
-$atomic-right-name: right;
-$atomic-bottom-name: bottom;
-$atomic-left-name: left;
 
-$atomic-visible-name: visible;
-
-$atomic-z-index-name: z;
-
-$atomic-flex-name: flex;
-
-$atomic-order-name: order;
-
-$atomic-grid-name: grid;
-$atomic-grid-column-name: col;
-$atomic-grid-row-name: row;
-$atomic-grid-auto-name: auto;
-
-$atomic-gap-name: gap;
-
-$atomic-justify-content-name: justify;
-
-$atomic-justify-items-name: justify-items;
-
-$atomic-justify-self-name: justify-self;
-
-$atomic-align-content-name: content;
-
-$atomic-align-items-name: items;
-
-$atomic-align-self-name: self;
-
-$atomic-place-content-name: place-content;
-
-$atomic-place-items-name: place-items;
-
-$atomic-place-self-name: place-self;
-
-$atomic-padding-name: p;
-
-$atomic-margin-name: m;
-
-$atomic-width-name: w;
-
-$atomic-height-name: h;
 
 $atomic-font-family-name: font;
 
@@ -159,75 +186,38 @@ $atomic-var-gradient-stops-name: --gradient-stops;
 $atomic-var-gradient-from-name: --gradient-from;
 $atomic-var-gradient-to-name: --gradient-to;
 
-// CSS Root Var命名
-$atomic-var-color-brand-name: --color-brand;
 
-$atomic-var-color-white-name: --color-white;
 
-$atomic-var-color-black-name: --color-black;
 
-$atomic-var-color-gray-name: --color-gray;
-
-$atomic-var-color-red-name: --color-red;
-
-$atomic-var-color-yellow-name: --color-yellow;
-
-$atomic-var-color-green-name: --color-green;
-
-$atomic-var-color-blue-name: --color-blue;
-
-$atomic-var-color-indigo-name: --color-indigo;
-
-$atomic-var-color-purple-name: --color-purple;
-
-$atomic-var-color-pink-name: --color-pink;
-
-// CSS 颜色
-// $atomic-color-brand-base: #52c41a;
-// => .text-brand { color: #52c41a; }
-// => .text-brand-50 { color: #f6fcf4; }
-// => ...
-// => .text-brand-900 { color: #63ca31; }
-$atomic-color-brand-base: #1890ff;
-
-$atomic-color-white-base: #fff;
-
-$atomic-color-black-base: invert($atomic-color-white-base, 100%);
-
-$atomic-color-gray-base: #111827;
-
-$atomic-color-red-base: #f5222d;
-
-$atomic-color-yellow-base: #fadb14;
-
-$atomic-color-green-base: #52c41a;
-
-$atomic-color-blue-base: #1890ff;
-
-$atomic-color-indigo-base: #312e81;
-
-$atomic-color-purple-base: #722ed1;
-
-$atomic-color-pink-base: #eb2f96;
-
-// CSS 响应式断点前缀
-$atomic-breakpoint-sm-name: sm;
-
-$atomic-breakpoint-md-name: md;
-
-$atomic-breakpoint-lg-name: lg;
-
-$atomic-breakpoint-xl-name: xl;
-
-$atomic-breakpoint-2xl-name: 2xl;
-
-// CSS 媒体查询屏幕宽度
-$atomic-screen-sm-min: 640px;
-
-$atomic-screen-md-min: 768px;
-
-$atomic-screen-lg-min: 1024px;
-
-$atomic-screen-xl-min: 1280px;
-
-$atomic-screen-2xl-min: 1536px;
+// Position 定位
+// Display 元素盒类型
+// Hidden 元素不可见
+// Outline 元素边框
+$atomic-outline-name: 'ol';
+// LineClamp 内容指定行数
+// Width 宽度
+// Height 高度
+// Border 边框
+$atomic-border-name: 'bd';
+// BorderCollapse 合并边框
+$atomic-border-collapse-name: 'bdcl';
+// BorderRadius 边框圆角
+$atomic-border-radius-name: 'bdrs';
+// BoxShadow 盒阴影
+$atomic-box-shadow-name: 'bxs';
+// VerticalAlign 垂直对齐
+// TextAlign 文本对齐
+// TextDecoration 文本装饰
+// WhiteSpace 空格处理
+// LineHeight 行高
+// Opacity 透明度
+$atomic-opacity-name: 'op';
+// Cursor 鼠标
+$atomic-cursor-name: 'cur';
+// Page 页面
+$atomic-page-name: 'pg';
+// PointerEvents 元素是否对指针事件做出反应
+$atomic-pointer-events-name: 'pe';
+// ListStyle 列表样式
+// Print 打印
+$atomic-print-name: 'pt';

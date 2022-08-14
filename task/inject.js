@@ -4,6 +4,8 @@ const concat = require('gulp-concat')
 const path = require('path')
 const fs = require('fs')
 
+const { defaults } = require('../atom.config')
+
 const {
   attempFileName,
   sourceFileName,
@@ -35,21 +37,45 @@ function injectAttemp(cb) {
   }
 }
 
+function genMediaQuery(content) {
+  if (defaults && defaults.theme && defaults.theme.screens) {
+    if (fs.existsSync(devDir)) {
+      let filePath = path.join(devDir, 'breakpoint.css')
+      if (fs.existsSync(filePath)) {
+        fs.unlink(filePath, err => {
+          if (err) console.log('unlink breakpoint.css error', err)
+        })
+      }
+      fs.writeFileSync(filePath, content)
+
+    } else {
+      return false
+    }
+
+    return true
+  }
+
+  return false
+}
+
 // 将响应式断点注入源码
 function injectBreakpoint(cb) {
-  const cssFile = path.join(destDir, addFileExt(sourceFileName, 'css'))
-  const css = fs.readFileSync(cssFile, {
-    encoding: 'utf-8'
-  })
+  const sourceFilePath = path.join(destDir, addFileExt(sourceFileName, 'css'))
+  const content = fs.readFileSync(sourceFilePath, { encoding: 'utf-8' })
 
-  // console.log('css', css)
-  pump([
-    gulp.src(cssFile, {
-      allowEmpty: true
-    }),
+  if (!genMediaQuery(content)) {
+    cb()
+  } else {
+    console.log('content', content)
+    pump([
+      gulp.src(sourceFilePath, {
+        allowEmpty: true
+      }),
 
-    gulp.dest(destDir),
-  ], cb)
+      gulp.dest(destDir),
+    ], cb)
+  }
+
 }
 
 module.exports = {

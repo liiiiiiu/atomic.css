@@ -1,12 +1,12 @@
-@use '../defaults.scss';
+@use '../base/var';
 @use '../utils/util';
 
 /* - Layout 布局 -
 ************************* */
 
 // Container
-#{util.selector-with-connector(defaults.$atomic-container-name)},
-#{util.selector-with-connector(page, defaults.$atomic-container-name)}
+#{util.selector-with-connector(var.$abbr-container)},
+#{util.selector-with-connector(page, var.$abbr-container)}
 {
   width: 100%;
 }
@@ -282,16 +282,16 @@
 // }
 
 // // Top Right Bottom Left
-// @each $outer-key, $outer-value in util.numbers-map-generator() {
+// @each $outer-key, $outer-value in util.spacing-generator() {
 
 //   @each $inner-key, $inner-values in (
-//     defaults.$atomic-top-name: (top),
-//     defaults.$atomic-right-name: (right),
-//     defaults.$atomic-bottom-name: (bottom),
-//     defaults.$atomic-left-name: (left),
-//     defaults.$atomic-inset-name: (top, right, bottom, left),
-//     util.connector-decorator(defaults.$atomic-inset-name, x): (right, left),
-//     util.connector-decorator(defaults.$atomic-inset-name, y): (top, bottom)
+//     var.$abbr-top: (top),
+//     var.$abbr-right: (right),
+//     var.$abbr-bottom: (bottom),
+//     var.$abbr-left: (left),
+//     var.$abbr-inset: (top, right, bottom, left),
+//     util.connector-decorator(var.$abbr-inset, x): (right, left),
+//     util.connector-decorator(var.$abbr-inset, y): (top, bottom)
 //   ) {
 
 //     @if $outer-key != 'auto' {
@@ -542,7 +542,7 @@
 
 // }
 
-#{util.selector-with-connector(defaults.$atomic-grid-name, rows, none)}
+#{util.selector-with-connector(var.$abbr-grid, rows, none)}
 {
   grid-template-rows: none;
 }
@@ -647,7 +647,7 @@
 // }
 
 // // Gap
-// @each $outer-key, $outer-value in util.numbers-map-generator() {
+// @each $outer-key, $outer-value in util.spacing-generator() {
 
 //   @each $inner-key, $inner-value in (
 //     '': '',

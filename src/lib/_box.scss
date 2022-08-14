@@ -4,7 +4,7 @@
 ************************* */
 
 // Padding
-@each $number-key, $number-value in util.numbers-map-generator() {
+@each $number-key, $number-value in util.spacing-generator() {
   @each $side-key, $side-value in (
     '': (padding),
     't': (padding-top),
@@ -37,7 +37,7 @@
 }
 
 // Margin
-@each $number-key, $number-value in util.numbers-map-generator() {
+@each $number-key, $number-value in util.spacing-generator() {
   @each $side-key, $side-value in (
     '': (margin),
     't': (margin-top),
@@ -85,7 +85,7 @@
 }
 
 // Width
-@each $number-key, $number-value in util.numbers-map-generator() {
+@each $number-key, $number-value in util.spacing-generator() {
   #{selector-decorator(connector-decorator(($atomic-width-name, str-insert-backslash($number-key))))}
   {
     width: $number-value;
@@ -157,7 +157,7 @@
 }
 
 // Height
-@each $number-key, $number-value in util.numbers-map-generator() {
+@each $number-key, $number-value in util.spacing-generator() {
   #{selector-decorator(connector-decorator(($atomic-height-name, str-insert-backslash($number-key))))}
   {
     height: $number-value;
@@ -189,7 +189,7 @@
 }
 
 // Max Height
-@each $number-key, $number-value in util.numbers-map-generator() {
+@each $number-key, $number-value in util.spacing-generator() {
   @if $number-key != 'auto' {
     #{selector-decorator(connector-decorator((max, $atomic-height-name, str-insert-backslash($number-key))))}
     {

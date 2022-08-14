@@ -2,43 +2,85 @@ function quote(value) {
   return `'${value}'`
 }
 
+function escape(value) {
+  if (!value) return value
+
+  return (value + '').replaceAll('.', '\\.')
+}
+
 module.exports = {
-  // 中横线、 空字符串使用 quote 函数！
+  // 由于 sass 语法特性，中横线、 空字符串需使用 quote 函数！
   defaults: {
-    // CSS 公共前缀
-    // $default-prefix: 'my';
-    // => .my-w-screen { width: 100vw; }
-    'class-prefix': quote(''),
+    decorator: {
+      use: {
+        // CSS Normalize
+        normalize: true,
+      },
 
-    // CSS 单一连接符
-    // $default-connector: '_';
-    // => .w_screen { width: 100vw; }
-    'class-connector': quote('-'),
+      class: {
+        // CSS 公共前缀
+        // $class-prefix: 'my';
+        // => .my-w-screen { width: 100vw; }
+        prefix: quote(''),
 
-    // CSS 多连接符
-    // $default-connectors: `_,${quote('-')}`;
-    // => .max_w_full { max-width: 100%; }
-    //
-    // $default-connectors: `_,_,_`;
-    'class-connectors': quote(''),
+        // CSS 单一连接符
+        // $class-connector: '_';
+        // => .w_screen { width: 100vw; }
+        connector: quote('-'),
 
-    // CSS Normalize
-    'use-normalize': true,
+        // CSS 多连接符
+        // $class-connectors: `_,${quote('-')}`;
+        // => .max_w-full { max-width: 100%; }
+        //
+        // $default-connectors: `_,_,_`;
+        // => .max_w_full { max-width: 100%; }
+        connectors: quote(''),
+      },
+
+      // CSS 样式名缩写
+      abbr: {
+        container: 'container',
+        'box-decoration-break': 'decoration',
+        'box-sizing': 'box',
+        float: 'float',
+        clear: 'clear',
+        'object-fit': 'object',
+        'object-position': 'object',
+        overflow: 'overflow',
+        'overscroll-behavior': 'overscroll',
+        position: 'position',
+        inset: 'inset',
+        top: 'top',
+        right: 'right',
+        bottom: 'bottom',
+        left: 'left',
+        visible: 'visible',
+        'z-index': 'z',
+        flex: 'flex',
+        order: 'order',
+        grid: 'grid',
+        'grid-column': 'col',
+        'grid-row': 'row',
+        'grid-auto': 'auto',
+        gap: 'gap',
+        'justify-content': 'justify',
+        'justify-items': 'justify-items',
+        'justify-self': 'justify-self',
+        'align-content': 'content',
+        'align-items': 'items',
+        'align-self': 'self',
+        'place-content': 'place-content',
+        'place-items': 'place-items',
+        'place-self': 'place-self',
+        padding: 'p',
+        margin: 'm',
+        width: 'w',
+        height: 'h',
+      }
+    },
 
     theme: {
-      colours: {
-        primary: '#fc0'
-      },
-      sizes: {
-        small: '100px',
-        medium: '500px',
-        large: '1000px'
-      },
-      zIndex: {
-        model: 100,
-        dropdown: 50,
-        header: 10
-      },
+      // min-width
       screens: {
         sm: '640px',
         md: '768px',
@@ -46,14 +88,60 @@ module.exports = {
         xl: '1280px',
         '2xl': '1536px',
       },
-      gridTemplateRows: {
-        none: 'none',
-        1: 'repeat(1, minmax(0, 1fr))',
-        2: 'repeat(2, minmax(0, 1fr))',
-        3: 'repeat(3, minmax(0, 1fr))',
-        4: 'repeat(4, minmax(0, 1fr))',
-        5: 'repeat(5, minmax(0, 1fr))',
-        6: 'repeat(6, minmax(0, 1fr))',
+
+      colors: {
+        brand: '#1890ff', // 品牌色
+        inherit: 'inherit',
+        current: 'current',
+        transparent: 'transparent',
+        black: '#000',
+        white: '#fff',
+        gray: '#111827',
+        red: '#f5222d',
+        yellow: '#fadb14',
+        green: '#52c41a',
+        blue: '#1890ff',
+        indigo: '#312e81',
+        purple: '#722ed1',
+        pink: '#eb2f96',
+      },
+
+      spacing: {
+        px: '1px',
+        0: '0px',
+        [escape(0.5)]: '0.125rem',
+        1: '0.25rem',
+        [escape(1.5)]: '0.375rem',
+        2: '0.5rem',
+        [escape(2.5)]: '0.625rem',
+        3: '0.75rem',
+        [escape(3.5)]: '0.875rem',
+        4: '1rem',
+        5: '1.25rem',
+        6: '1.5rem',
+        7: '1.75rem',
+        8: '2rem',
+        9: '2.25rem',
+        10: '2.5rem',
+        11: '2.75rem',
+        12: '3rem',
+        14: '3.5rem',
+        16: '4rem',
+        20: '5rem',
+        24: '6rem',
+        28: '7rem',
+        32: '8rem',
+        36: '9rem',
+        40: '10rem',
+        44: '11rem',
+        48: '12rem',
+        52: '13rem',
+        56: '14rem',
+        60: '15rem',
+        64: '16rem',
+        72: '18rem',
+        80: '20rem',
+        96: '24rem',
       },
     }
   }
@@ -63,42 +151,6 @@ module.exports = {
 
 // module.exports = {
 //   theme: {
-//     screens: {
-//       sm: '640px',
-//       md: '768px',
-//       lg: '1024px',
-//       xl: '1280px',
-//       '2xl': '1536px',
-//     },
-//   //   colors: ({ colors }) => ({
-//   //     inherit: colors.inherit,
-//   //     current: colors.current,
-//   //     transparent: colors.transparent,
-//   //     black: colors.black,
-//   //     white: colors.white,
-//   //     slate: colors.slate,
-//   //     gray: colors.gray,
-//   //     zinc: colors.zinc,
-//   //     neutral: colors.neutral,
-//   //     stone: colors.stone,
-//   //     red: colors.red,
-//   //     orange: colors.orange,
-//   //     amber: colors.amber,
-//   //     yellow: colors.yellow,
-//   //     lime: colors.lime,
-//   //     green: colors.green,
-//   //     emerald: colors.emerald,
-//   //     teal: colors.teal,
-//   //     cyan: colors.cyan,
-//   //     sky: colors.sky,
-//   //     blue: colors.blue,
-//   //     indigo: colors.indigo,
-//   //     violet: colors.violet,
-//   //     purple: colors.purple,
-//   //     fuchsia: colors.fuchsia,
-//   //     pink: colors.pink,
-//   //     rose: colors.rose,
-//   //   }),
 //   //   columns: {
 //   //     auto: 'auto',
 //   //     1: '1',
@@ -127,43 +179,7 @@ module.exports = {
 //   //     '6xl': '72rem',
 //   //     '7xl': '80rem',
 //   //   },
-//   //   spacing: {
-//   //     px: '1px',
-//   //     0: '0px',
-//   //     0.5: '0.125rem',
-//   //     1: '0.25rem',
-//   //     1.5: '0.375rem',
-//   //     2: '0.5rem',
-//   //     2.5: '0.625rem',
-//   //     3: '0.75rem',
-//   //     3.5: '0.875rem',
-//   //     4: '1rem',
-//   //     5: '1.25rem',
-//   //     6: '1.5rem',
-//   //     7: '1.75rem',
-//   //     8: '2rem',
-//   //     9: '2.25rem',
-//   //     10: '2.5rem',
-//   //     11: '2.75rem',
-//   //     12: '3rem',
-//   //     14: '3.5rem',
-//   //     16: '4rem',
-//   //     20: '5rem',
-//   //     24: '6rem',
-//   //     28: '7rem',
-//   //     32: '8rem',
-//   //     36: '9rem',
-//   //     40: '10rem',
-//   //     44: '11rem',
-//   //     48: '12rem',
-//   //     52: '13rem',
-//   //     56: '14rem',
-//   //     60: '15rem',
-//   //     64: '16rem',
-//   //     72: '18rem',
-//   //     80: '20rem',
-//   //     96: '24rem',
-//   //   },
+
 //   //   animation: {
 //   //     none: 'none',
 //   //     spin: 'spin 1s linear infinite',
