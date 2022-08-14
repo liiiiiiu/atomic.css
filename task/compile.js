@@ -14,12 +14,11 @@ const removeEmptyLines = require('gulp-remove-empty-lines')
 const path = require('path')
 
 const {
-  atomDir,
-  sourceDir,
+  rootDir,
   devDir,
   destDir,
   templateDir,
-  atomFileName,
+  sourceFileName,
   attempFileName,
   addFileExt
 } = require('./base')
@@ -32,13 +31,13 @@ const {
 function compileSource(cb) {
   pump([
     // 输入文件
-    gulp.src(path.join(atomDir, addFileExt(atomFileName))),
+    gulp.src(path.join(rootDir, addFileExt(sourceFileName))),
 
     // 将 sass 编译为 css
     sass(),
 
     // 文件重命名
-    rename(function (path) { path.basename = atomFileName }),
+    rename(function (path) { path.basename = sourceFileName }),
 
     // 只处理变化的文件
     changed(destDir),
@@ -60,7 +59,7 @@ function compileSource(cb) {
 function compileAttemp(cb) {
   pump([
     // 输入文件
-    gulp.src(path.join(sourceDir, addFileExt(attempFileName))),
+    gulp.src(path.join(rootDir, addFileExt(attempFileName))),
 
     // 将 sass 编译为 css
     sass(),
@@ -78,11 +77,11 @@ function compileAttemp(cb) {
   ], cb)
 }
 
-// 编译配置文件
+// 编译 config 配置文件
 function compileConfig(cb) {
   pump([
     // 输入文件
-    gulp.src(path.join(templateDir, addFileExt('atom.config', 'txt'))),
+    gulp.src(path.join(templateDir, addFileExt('config', 'txt'))),
 
     // 使用 template 模版编译配置文件
     template({ defaults: JSON.parse(JSON.stringify(defaults)) }),
@@ -102,7 +101,7 @@ function compileConfig(cb) {
 function minifySource(cb) {
   pump([
     // 输入文件
-    gulp.src(path.join(destDir, addFileExt(atomFileName, 'css'))),
+    gulp.src(path.join(destDir, addFileExt(sourceFileName, 'css'))),
 
     // 文件重命名
     rename({ suffix: '.min' }),

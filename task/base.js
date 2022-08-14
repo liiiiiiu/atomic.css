@@ -1,7 +1,7 @@
-const atomFileName = 'atom'
-const attempFileName = 'attemp'
+const sourceFileName = 'atom'
+const attempFileName = 'atom.attemp'
 
-const atomDir = ''
+const rootDir = ''
 const sourceDir = 'src'
 const libDir = sourceDir + '/lib'
 const devDir = 'dev'
@@ -13,9 +13,9 @@ function addFileExt(fileName, ext = 'scss') {
 }
 
 module.exports = {
-  atomFileName,
+  sourceFileName,
   attempFileName,
-  atomDir,
+  rootDir,
   sourceDir,
   libDir,
   devDir,

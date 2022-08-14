@@ -23,7 +23,7 @@ const {
 } = require('./task/watch')
 
 // 执行 gulp 任务
-// 修改配置文件后需重新执行 gulp 任务
+// 修改[atom.config.js]后需重新执行 gulp 任务
 gulp.task('default',
   gulp.series(
     cleanDest,

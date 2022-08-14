@@ -6,7 +6,7 @@ const fs = require('fs')
 
 const {
   attempFileName,
-  atomFileName,
+  sourceFileName,
   addFileExt,
   destDir,
   devDir
@@ -15,7 +15,7 @@ const {
 // 将自定义样式注入源码
 function injectAttemp(cb) {
   const attempFilePath = path.join(devDir, addFileExt(attempFileName, 'css'))
-  const attempToFilePath = path.join(destDir, addFileExt(atomFileName, 'css'))
+  const attempToFilePath = path.join(destDir, addFileExt(sourceFileName, 'css'))
 
   if (fs.existsSync(attempFilePath) && fs.existsSync(attempToFilePath)) {
     pump([
@@ -23,7 +23,7 @@ function injectAttemp(cb) {
       gulp.src([attempToFilePath, attempFilePath]),
 
       // 拼接文件
-      concat(addFileExt(atomFileName, 'css'), {
+      concat(addFileExt(sourceFileName, 'css'), {
         newLine: '\n\n'
       }),
 
@@ -31,13 +31,13 @@ function injectAttemp(cb) {
       gulp.dest(destDir)
     ], cb)
   } else {
-    throw Error('InjectAttemp2Dest error, file not exists!')
+    throw Error('injectAttemp error, file not exists!')
   }
 }
 
 // 将响应式断点注入源码
 function injectBreakpoint(cb) {
-  const cssFile = path.join(destDir, addFileExt(atomFileName, 'css'))
+  const cssFile = path.join(destDir, addFileExt(sourceFileName, 'css'))
   const css = fs.readFileSync(cssFile, {
     encoding: 'utf-8'
   })

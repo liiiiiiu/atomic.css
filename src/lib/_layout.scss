@@ -542,10 +542,10 @@
 
 // }
 
-// #{util.selector-with-connector(defaults.$atomic-grid-name, rows, none)}
-// {
-//   grid-template-rows: none;
-// }
+#{util.selector-with-connector(defaults.$atomic-grid-name, rows, none)}
+{
+  grid-template-rows: none;
+}
 
 // // Grid Row Start / End
 // #{util.selector-with-connector(defaults.$atomic-grid-row-name, auto)}

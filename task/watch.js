@@ -2,8 +2,7 @@ const gulp = require('gulp')
 const path = require('path')
 
 const {
-  sourceDir,
-  libDir
+  rootDir
 } = require('./base')
 
 const {
@@ -21,12 +20,11 @@ const {
   minifySource
 } = require('./compile')
 
-// 执行 gulp 监听任务
+// 监听源码文件变化
 function watchSourceChange(cb) {
   gulp.watch(
     [
-      path.join(sourceDir, '/**/*.scss'),
-      path.join(libDir, '/**/*.scss')
+      path.join(rootDir, './**/*.scss')
     ],
 
     gulp.series(

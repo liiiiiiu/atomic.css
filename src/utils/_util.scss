@@ -1,4 +1,5 @@
 @use '../defaults.scss';
+@use '../base/var';
 
 // 混合颜色
 // $color 需要被减淡的颜色
@@ -41,11 +42,11 @@
 }
 
 // 给类名打上选择器、前缀
-@function selector-decorator($name, $selector: '.', $prefix: defaults.$atomic-prefix) {
+@function selector-decorator($name, $selector: '.', $prefix: var.$class-prefix) {
   $_prefix: '';
 
   @if $prefix != '' {
-    $_prefix: $prefix + defaults.$atomic-connector;
+    $_prefix: $prefix + var.$class-connector;
   }
 
   @return $selector + $_prefix + $name;
@@ -77,11 +78,17 @@
 
   $list-len: length($list: $new-list);
 
-  $connector: defaults.$atomic-connector;
-  $connectors: defaults.$atomic-connectors;
+  $connector: var.$class-connector;
+
+  $connectors: var.$class-connectors;
+
+  @if type-of($value: $connectors)=='string' {
+    $connectors: (unquote($string: $connectors));
+  }
+
   $connectors-len: 0;
 
-  @if defaults.$atomic-connectors {
+  @if var.$class-connector {
     $connectors-len: length($list: $connectors);
   }
 

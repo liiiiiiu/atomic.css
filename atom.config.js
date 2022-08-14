@@ -1,6 +1,30 @@
+function quote(value) {
+  return `'${value}'`
+}
+
 module.exports = {
+  // 中横线、 空字符串使用 quote 函数！
   defaults: {
-    normalize: true,
+    // CSS 公共前缀
+    // $default-prefix: 'my';
+    // => .my-w-screen { width: 100vw; }
+    'class-prefix': quote(''),
+
+    // CSS 单一连接符
+    // $default-connector: '_';
+    // => .w_screen { width: 100vw; }
+    'class-connector': quote('-'),
+
+    // CSS 多连接符
+    // $default-connectors: `_,${quote('-')}`;
+    // => .max_w_full { max-width: 100%; }
+    //
+    // $default-connectors: `_,_,_`;
+    'class-connectors': quote(''),
+
+    // CSS Normalize
+    'use-normalize': true,
+
     theme: {
       colours: {
         primary: '#fc0'
@@ -30,43 +54,6 @@ module.exports = {
         4: 'repeat(4, minmax(0, 1fr))',
         5: 'repeat(5, minmax(0, 1fr))',
         6: 'repeat(6, minmax(0, 1fr))',
-      },
-      spacing: {
-        px: '1px',
-        0: '0px',
-        // 0.5: '0.125rem',
-        // 1: '0.25rem',
-        // 1.5: '0.375rem',
-        // 2: '0.5rem',
-        // 2.5: '0.625rem',
-        // 3: '0.75rem',
-        // 3.5: '0.875rem',
-        4: '1rem',
-        5: '1.25rem',
-        6: '1.5rem',
-        7: '1.75rem',
-        8: '2rem',
-        9: '2.25rem',
-        10: '2.5rem',
-        11: '2.75rem',
-        12: '3rem',
-        14: '3.5rem',
-        16: '4rem',
-        20: '5rem',
-        24: '6rem',
-        28: '7rem',
-        32: '8rem',
-        36: '9rem',
-        40: '10rem',
-        44: '11rem',
-        48: '12rem',
-        52: '13rem',
-        56: '14rem',
-        60: '15rem',
-        64: '16rem',
-        72: '18rem',
-        80: '20rem',
-        96: '24rem',
       },
     }
   }
