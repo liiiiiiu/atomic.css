@@ -6,32 +6,29 @@ const sorting = require('postcss-sorting')
 const size = require('gulp-size')
 const rename = require('gulp-rename')
 const changed = require('gulp-changed')
-const autoprefixer = require('gulp-autoprefixer')
-const sourcemaps = require('gulp-sourcemaps')
-const cssnano = require('cssnano')
-const template = require('gulp-template')
 const removeEmptyLines = require('gulp-remove-empty-lines')
 const path = require('path')
+const fs = require('fs')
 
 const {
   rootDir,
   devDir,
   destDir,
-  templateDir,
   sourceFileName,
   attempFileName,
-  addFileExt
+  fscss
 } = require('./base')
 
 const {
-  defaults
+  decorator,
+  theme
 } = require(`../atom.config`)
 
 // 将源码 sass 编译为 css 并输出
 function compileSource(cb) {
   pump([
     // 输入文件
-    gulp.src(path.join(rootDir, addFileExt(sourceFileName))),
+    gulp.src(path.join(rootDir, fscss(sourceFileName))),
 
     // 将 sass 编译为 css
     sass(),
@@ -59,7 +56,7 @@ function compileSource(cb) {
 function compileAttemp(cb) {
   pump([
     // 输入文件
-    gulp.src(path.join(rootDir, addFileExt(attempFileName))),
+    gulp.src(path.join(rootDir, fscss(attempFileName))),
 
     // 将 sass 编译为 css
     sass(),
@@ -77,66 +74,138 @@ function compileAttemp(cb) {
   ], cb)
 }
 
-// 编译 config 配置文件
-function compileConfig(cb) {
-  pump([
-    // 输入文件
-    gulp.src(path.join(templateDir, addFileExt('config', 'txt'))),
+function parseKey(value) {
+  if (!value) return value
 
-    // 使用 template 模版编译配置文件
-    template({ defaults: JSON.parse(JSON.stringify(defaults)) }),
+  value = value + ''
 
-    // 文件重命名
-    rename(addFileExt('_config')),
+  value = value.replaceAll('.', '\\.')
+  value = value.replaceAll('/', '\\/')
 
-    // 移除空行
-    removeEmptyLines(),
-
-    // 输出目录
-    gulp.dest(devDir),
-  ], cb)
+  return value
 }
 
-// 压缩编译后 css 并输出到 dist 目录
-function minifySource(cb) {
-  pump([
-    // 输入文件
-    gulp.src(path.join(destDir, addFileExt(sourceFileName, 'css'))),
+function parseValue(value) {
+  if (['', '-', '_'].includes(value)) {
+    return `'${value}'`
+  }
 
-    // 文件重命名
-    rename({ suffix: '.min' }),
+  if (Array.isArray(value)) {
+    let saasList = '('
 
-    sourcemaps.init(),
+    Array.from(value, val => val && (saasList += `'${val}', `))
 
-    // 添加厂商前缀
-    autoprefixer({
-      overrideBrowserslist: ['> 0.15% in CN'],
-      cascade: true
-    }),
+    saasList += ')'
 
-    postcss([
-      // 样式属性自动排序
-      sorting(),
-      // 样式压缩
-      cssnano(),
-    ]),
+    return saasList
+  }
 
-    // 输出文件大小
-    size(),
+  return value
+}
 
-    // 生成 sourcemap
-    sourcemaps.write('.'),
+function isPlainObject(value) {
+  return typeof value === 'object' && value != null && Object.prototype.toString.call(value) === '[object Object]'
+}
 
-    // 输出目录
-    gulp.dest(destDir)
-  ], cb)
+function parseDecoratorConfig(config) {
+  let content = ''
+  let parentKey = ''
 
-  console.log(new Date().toLocaleTimeString())
+  const parser = (obj) => {
+    Object.keys(obj).forEach(key => {
+      if (isPlainObject(obj[key])) {
+        parentKey = key
+        parser(obj[key])
+      } else {
+        content += (`$${parseKey(parentKey)}-${parseKey(key)}: ${parseValue(obj[key])};\n`)
+      }
+    })
+  }
+
+  parser(config)
+
+  return content
+}
+
+const themeDefault = {
+  screens: '$screens: (',
+  colors: '$colors: (',
+  spacing: '$spacing: (',
+  inset: '$inset: (',
+  flex: '$flex: (',
+  order: '$order: (',
+  zIndex: '$zIndex: (',
+  gridAutoColumns: '$gridAutoColumns: (',
+  gridAutoRows: '$gridAutoRows: (',
+  gridColumn: '$gridColumn: (',
+  gridColumnEnd: '$gridColumnEnd: (',
+  gridColumnStart: '$gridColumnStart: (',
+  gridRow: '$gridRow: (',
+  gridRowStart: '$gridRowStart: (',
+  gridRowEnd: '$gridRowEnd: (',
+  gridTemplateColumns: '$gridTemplateColumns: (',
+  gridTemplateRows: '$gridTemplateRows: (',
+  gap: '$gap: (',
+  objectPosition: '$objectPosition: (',
+}
+
+// theme 配置需要返回 sass 列表数据结构
+function parseThemeConfig(config) {
+  let themeObj = JSON.parse(JSON.stringify(themeDefault))
+  let content = ''
+
+  Object.keys(themeObj).forEach(outerKey => {
+    if (Object.prototype.hasOwnProperty.call(config, outerKey)) {
+      if (typeof config[outerKey] === 'function') {
+        config[outerKey] = config[outerKey](config)
+      }
+      Object.keys(config[outerKey]).forEach(innerKey => {
+        themeObj[outerKey] += (`'${parseKey(innerKey)}': ${parseValue(config[outerKey][innerKey])},\n`)
+      })
+    }
+    themeObj[outerKey] += ');\n'
+  })
+
+  Object.values(themeObj).forEach(value => content += value)
+
+  return content
+}
+
+// 编译 config 配置文件
+function compileConfig(cb) {
+  if (!decorator || !theme) {
+    cb()
+  } else {
+    let configContent = ''
+
+    let decoratorConfigContent = parseDecoratorConfig(decorator)
+    // console.log('decoratorConfigContent', decoratorConfigContent)
+
+    let themeConfigContent = parseThemeConfig(theme)
+    // console.log('themeConfigContent', themeConfigContent)
+
+    configContent += (decoratorConfigContent + '\n' + themeConfigContent)
+
+    let filePath = path.join(devDir, fscss('_config'))
+    fs.writeFileSync(filePath, configContent, {
+      flag: 'w'
+    })
+
+    pump([
+      // 输入文件
+      gulp.src(path.join(devDir, fscss('_config'))),
+
+      // 移除空行
+      removeEmptyLines(),
+
+      // 输出目录
+      gulp.dest(devDir),
+    ], cb)
+  }
 }
 
 module.exports = {
   compileConfig,
   compileSource,
-  compileAttemp,
-  minifySource
+  compileAttemp
 }

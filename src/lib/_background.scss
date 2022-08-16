@@ -94,7 +94,7 @@
     #{selector-decorator(connector-decorator(($atomic-background-color-name, $color-key, $opacity)))}
     {
       #{$atomic-var-background-opacity-name}: 1;
-      @include background(color, rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: var(#{$atomic-var-background-opacity-name}, 1)));
+      @include background(color, rgba($color: lighter-color($color-value, $opacity), $alpha: var(#{$atomic-var-background-opacity-name}, 1)));
     }
   }
 }
@@ -236,10 +236,10 @@
     #{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, $color-key, $opacity)))}
     {
       #{$atomic-var-gradient-from-name}:
-        rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: 1);
+        rgba($color: lighter-color($color-value, $opacity), $alpha: 1);
       #{$atomic-var-gradient-stops-name}:
         var($atomic-var-gradient-from-name),
-        var($atomic-var-gradient-to-name, rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: 0));
+        var($atomic-var-gradient-to-name, rgba($color: lighter-color($color-value, $opacity), $alpha: 0));
     }
   }
 }
@@ -289,8 +289,8 @@
     #{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, $color-key, $opacity)))}
     {
       #{$atomic-var-gradient-stops-name}: var($atomic-var-gradient-from-name),
-      rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: 1),
-      var($atomic-var-gradient-to-name, rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: 0));
+      rgba($color: lighter-color($color-value, $opacity), $alpha: 1),
+      var($atomic-var-gradient-to-name, rgba($color: lighter-color($color-value, $opacity), $alpha: 0));
     }
   }
 }
@@ -325,7 +325,7 @@
   @each $opacity in util.color-brightness-generator() {
     #{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, $color-key, $opacity)))}
     {
-      #{$atomic-var-gradient-to-name}: rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: 1);
+      #{$atomic-var-gradient-to-name}: rgba($color: lighter-color($color-value, $opacity), $alpha: 1);
     }
   }
 }

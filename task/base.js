@@ -1,25 +1,26 @@
 const sourceFileName = 'atom'
 const attempFileName = 'atom.attemp'
+const breakpointFileName = 'atom.breakpoint'
 
 const rootDir = ''
 const sourceDir = 'src'
 const libDir = sourceDir + '/lib'
 const devDir = 'dev'
 const destDir = 'dist'
-const templateDir = 'template'
 
-function addFileExt(fileName, ext = 'scss') {
-  return fileName ? fileName + '.' + ext : fileName
-}
+const concatFileExt = (fileName, ext = 'scss') => fileName ? fileName + '.' + ext : fileName
+const fscss = fileName => concatFileExt(fileName, 'scss')
+const fcss = fileName => concatFileExt(fileName, 'css')
 
 module.exports = {
   sourceFileName,
   attempFileName,
+  breakpointFileName,
   rootDir,
   sourceDir,
   libDir,
   devDir,
   destDir,
-  templateDir,
-  addFileExt
+  fscss,
+  fcss
 }

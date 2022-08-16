@@ -1,15 +1,13 @@
 @use '../base/var';
 
 :root {
-  --color-brand: #{var.$colors-brand};
-  --color-white: #{var.$colors-white};
-  --color-black: #{var.$colors-black};
-  --color-gray: #{var.$colors-gray};
-  --color-red: #{var.$colors-red};
-  --color-yellow: #{var.$colors-yellow};
-  --color-green: #{var.$colors-green};
-  --color-blue: #{var.$colors-blue};
-  --color-indigo: #{var.$colors-indigo};
-  --color-purple: #{var.$colors-purple};
-  --color-pink: #{var.$colors-pink};
+  @each $key, $value in var.$color-hues {
+
+    @if ($key != inherit and $key != current and $key != '' + transparent) {
+
+      #{--color-}#{"" + $key}: $value;
+
+    }
+
+  }
 }

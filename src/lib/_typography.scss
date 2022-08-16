@@ -46,19 +46,19 @@
 
 // Font Size
 @each $key, $value in (
-  xs: (join-rem(0.75), join-rem(1)),
-  sm: (join-rem(0.875), join-rem(1.25)),
-  base: (join-rem(1), join-rem(1.5)),
-  lg: (join-rem(1.125), join-rem(1.75)),
-  xl: (join-rem(1.25), join-rem(1.75)),
-  2xl: (join-rem(1.5), join-rem(2)),
-  3xl: (join-rem(1.875), join-rem(2.25)),
-  4xl: (join-rem(2.25), join-rem(2.5)),
-  5xl: (join-rem(3), 1),
-  6xl: (join-rem(3.75), 1),
-  7xl: (join-rem(4.5), 1),
-  8xl: (join-rem(6), 1),
-  9xl: (join-rem(8), 1)
+  xs: (vrem(0.75), vrem(1)),
+  sm: (vrem(0.875), vrem(1.25)),
+  base: (vrem(1), vrem(1.5)),
+  lg: (vrem(1.125), vrem(1.75)),
+  xl: (vrem(1.25), vrem(1.75)),
+  2xl: (vrem(1.5), vrem(2)),
+  3xl: (vrem(1.875), vrem(2.25)),
+  4xl: (vrem(2.25), vrem(2.5)),
+  5xl: (vrem(3), 1),
+  6xl: (vrem(3.75), 1),
+  7xl: (vrem(4.5), 1),
+  8xl: (vrem(6), 1),
+  9xl: (vrem(8), 1)
 ) {
   #{selector-decorator(connector-decorator(($atomic-font-size-name, $key)))}
   {
@@ -126,14 +126,14 @@
 
 // Line Height
 @each $key, $value in (
-  3: join-rem(0.75),
-  4: join-rem(1),
-  5: join-rem(1.25),
-  6: join-rem(1.5),
-  7: join-rem(1.75),
-  8: join-rem(2),
-  9: join-rem(2.25),
-  10: join-rem(2.5),
+  3: vrem(0.75),
+  4: vrem(1),
+  5: vrem(1.25),
+  6: vrem(1.5),
+  7: vrem(1.75),
+  8: vrem(2),
+  9: vrem(2.25),
+  10: vrem(2.5),
   none: 1,
   tight: 1.25,
   snug: 1.375,
@@ -216,7 +216,7 @@
     #{selector-decorator(connector-decorator(($atomic-text-color-name, $color-key, $opacity)))}
     {
       #{$atomic-var-text-opacity-name}: 1;
-      color: rgba($color: mix-color-with-opacity($color-value, $opacity), $alpha: var(#{$atomic-var-text-opacity-name}, 1));
+      color: rgba($color: lighter-color($color-value, $opacity), $alpha: var(#{$atomic-var-text-opacity-name}, 1));
     }
   }
 }

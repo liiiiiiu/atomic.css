@@ -16,9 +16,13 @@ const {
 
 const {
   compileSource,
-  compileAttemp,
-  minifySource
+  compileAttemp
 } = require('./compile')
+
+const {
+  minifyBreakpoint,
+  minifySource
+} = require('./nano')
 
 // 监听源码文件变化
 function watchSourceChange(cb) {
@@ -37,6 +41,8 @@ function watchSourceChange(cb) {
       injectAttemp,
 
       cleanAttemp,
+
+      minifyBreakpoint,
 
       minifySource
     )

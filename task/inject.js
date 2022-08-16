@@ -4,20 +4,21 @@ const concat = require('gulp-concat')
 const path = require('path')
 const fs = require('fs')
 
-const { defaults } = require('../atom.config')
+const { theme } = require('../atom.config')
 
 const {
   attempFileName,
   sourceFileName,
-  addFileExt,
+  breakpointFileName,
   destDir,
-  devDir
+  devDir,
+  fcss
 } = require('./base')
 
 // 将自定义样式注入源码
 function injectAttemp(cb) {
-  const attempFilePath = path.join(devDir, addFileExt(attempFileName, 'css'))
-  const attempToFilePath = path.join(destDir, addFileExt(sourceFileName, 'css'))
+  const attempFilePath = path.join(devDir, fcss(attempFileName))
+  const attempToFilePath = path.join(destDir, fcss(sourceFileName))
 
   if (fs.existsSync(attempFilePath) && fs.existsSync(attempToFilePath)) {
     pump([
@@ -25,7 +26,7 @@ function injectAttemp(cb) {
       gulp.src([attempToFilePath, attempFilePath]),
 
       // 拼接文件
-      concat(addFileExt(sourceFileName, 'css'), {
+      concat(fcss(sourceFileName), {
         newLine: '\n\n'
       }),
 
@@ -37,46 +38,72 @@ function injectAttemp(cb) {
   }
 }
 
-function genMediaQuery(content) {
-  if (defaults && defaults.theme && defaults.theme.screens) {
-    if (fs.existsSync(devDir)) {
-      let filePath = path.join(devDir, 'breakpoint.css')
-      if (fs.existsSync(filePath)) {
-        fs.unlink(filePath, err => {
-          if (err) console.log('unlink breakpoint.css error', err)
-        })
-      }
-      fs.writeFileSync(filePath, content)
+// 生成响应式断点样式文件并注入 dest 目录
+function injectBreakpoint(content, mediaQueryContent) {
+  if (
+    !content
+    || !mediaQueryContent
+    || !(theme && theme.screens)
+  ) return false
 
-    } else {
-      return false
+  const classNames = mediaQueryContent.match(/([\n\s]+\.[\w\d\-\_\\.]+(,|\s*))/g)
+
+  // const test = /([\n\s]+\.[\w\d\-\_\\.]+(,|\s*)){1,}/g
+  // // console.log('test', '.-inset-x-2\.5 {'.match(test))
+  // console.log('test', '\n.-inset-x-3 { right: -0.75rem; }'.match(test))
+  // // .-inset-x-2\.5
+
+  const props = mediaQueryContent.match(/\{([^}])*}/g)
+  const screens = theme.screens
+
+  let finalContent = content
+  let mediaContent = ''
+
+  Object.keys(screens).forEach(key => {
+    let mediaHeader = `\n@media (min-width: ${screens[key]}) {`
+    let mediaFooter = '}'
+    mediaContent += mediaHeader + '\n'
+    let i = 0
+    let j = 0
+
+    if (key[0] === +key[0] + '') {
+      key = '\\' + key
     }
 
-    return true
-  }
+    while (i < classNames.length) {
+      let className = classNames[i].replaceAll(/\n\s\t\r/g, '').trim()
+      let sibling = false
 
-  return false
+      // .a, .b {} 这种情况下两种类名使用同一种属性
+      if (className.indexOf(',') > -1) {
+        sibling = true
+        className = className.slice(0, -1)
+      }
+
+      mediaContent += (className.slice(0, 1) + `${key}\\:` + className.slice(1))
+      mediaContent += '\t'
+      mediaContent += props[j]
+      mediaContent += '\n'
+
+      if (i >= classNames.length - 1) {
+        mediaContent += mediaFooter
+      }
+
+      i++
+      if (!sibling) j++
+    }
+  })
+
+  finalContent += mediaContent
+
+  let filePath = path.join(destDir, fcss(breakpointFileName))
+  fs.writeFileSync(filePath, finalContent, {
+    flag: 'w'
+  })
+
+  return true
 }
 
-// 将响应式断点注入源码
-function injectBreakpoint(cb) {
-  const sourceFilePath = path.join(destDir, addFileExt(sourceFileName, 'css'))
-  const content = fs.readFileSync(sourceFilePath, { encoding: 'utf-8' })
-
-  if (!genMediaQuery(content)) {
-    cb()
-  } else {
-    console.log('content', content)
-    pump([
-      gulp.src(sourceFilePath, {
-        allowEmpty: true
-      }),
-
-      gulp.dest(destDir),
-    ], cb)
-  }
-
-}
 
 module.exports = {
   injectAttemp,

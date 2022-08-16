@@ -7,7 +7,8 @@ const {
   destDir,
   devDir,
   attempFileName,
-  addFileExt
+  fcss,
+  fscss
 } = require('./base')
 
 // 删除 dest 目录
@@ -24,7 +25,7 @@ function cleanDest(cb) {
 // 删除 attemp 样式文件
 function cleanAttemp(cb) {
   pump([
-    gulp.src(path.join(devDir, addFileExt(attempFileName, 'css')), {
+    gulp.src(path.join(devDir, fcss(attempFileName)), {
       allowEmpty: true
     }),
 
@@ -35,7 +36,7 @@ function cleanAttemp(cb) {
 // 删除 config 样式文件
 function cleanConfig(cb) {
   pump([
-    gulp.src(path.join(devDir, addFileExt('_config')), {
+    gulp.src(path.join(devDir, fscss('_config')), {
       allowEmpty: true
     }),
 
