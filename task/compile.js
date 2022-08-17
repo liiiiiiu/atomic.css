@@ -127,46 +127,23 @@ function parseDecoratorConfig(config) {
   return content
 }
 
-const themeDefault = {
-  screens: '$screens: (',
-  colors: '$colors: (',
-  spacing: '$spacing: (',
-  inset: '$inset: (',
-  flex: '$flex: (',
-  order: '$order: (',
-  zIndex: '$zIndex: (',
-  gridAutoColumns: '$gridAutoColumns: (',
-  gridAutoRows: '$gridAutoRows: (',
-  gridColumn: '$gridColumn: (',
-  gridColumnEnd: '$gridColumnEnd: (',
-  gridColumnStart: '$gridColumnStart: (',
-  gridRow: '$gridRow: (',
-  gridRowStart: '$gridRowStart: (',
-  gridRowEnd: '$gridRowEnd: (',
-  gridTemplateColumns: '$gridTemplateColumns: (',
-  gridTemplateRows: '$gridTemplateRows: (',
-  gap: '$gap: (',
-  objectPosition: '$objectPosition: (',
-}
-
 // theme 配置需要返回 sass 列表数据结构
 function parseThemeConfig(config) {
-  let themeObj = JSON.parse(JSON.stringify(themeDefault))
   let content = ''
 
-  Object.keys(themeObj).forEach(outerKey => {
-    if (Object.prototype.hasOwnProperty.call(config, outerKey)) {
-      if (typeof config[outerKey] === 'function') {
-        config[outerKey] = config[outerKey](config)
-      }
-      Object.keys(config[outerKey]).forEach(innerKey => {
-        themeObj[outerKey] += (`'${parseKey(innerKey)}': ${parseValue(config[outerKey][innerKey])},\n`)
-      })
-    }
-    themeObj[outerKey] += ');\n'
-  })
+  Object.keys(config).forEach(outerKey => {
+    content += `$${outerKey}: (`
 
-  Object.values(themeObj).forEach(value => content += value)
+    if (typeof config[outerKey] === 'function') {
+      config[outerKey] = config[outerKey](config)
+    }
+    Object.keys(config[outerKey]).forEach(innerKey => {
+      let propValue = config[outerKey][innerKey]
+      content += (`'${parseKey(innerKey)}': ${parseValue(propValue)},\n`)
+    })
+
+    content += ');\n'
+  })
 
   return content
 }

@@ -63,7 +63,7 @@
 
     $value: nth($list: $list, $n: $_index);
 
-    @if $value != '' {
+    @if $value != '' and $value != DEFAULT {
       $new-list: append(
         $list: $new-list,
         $val: $value,

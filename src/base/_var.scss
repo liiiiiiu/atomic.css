@@ -284,6 +284,148 @@ $abbr-height: pick(
   h
 );
 
+$abbr-font-family: pick(
+  config.$abbr-font-family,
+  font
+);
+
+$abbr-font-size: pick(
+  config.$abbr-font-size,
+  text
+);
+
+$abbr-font-smoothing: pick(
+  config.$abbr-font-smoothing,
+  antialiased
+);
+
+$abbr-font-style: pick(
+  config.$abbr-font-style,
+  italic
+);
+
+$abbr-font-weight: pick(
+  config.$abbr-font-weight,
+  font
+);
+
+$abbr-letter-spacing: pick(
+  config.$abbr-letter-spacing,
+  tracking
+);
+
+$abbr-line-height: pick(
+  config.$abbr-line-height,
+  leading
+);
+
+$abbr-list-style: pick(
+  config.$abbr-list-style,
+  list
+);
+
+$abbr-text-align: pick(
+  config.$abbr-text-align,
+  text
+);
+
+$abbr-text-color: pick(
+  config.$abbr-text-color,
+  text
+);
+
+$abbr-text-opacity: pick(
+  config.$abbr-text-opacity,
+  text-opacity
+);
+
+$abbr-text-overflow: pick(
+  config.$abbr-text-overflow,
+  overflow
+);
+
+$abbr-line-clamp: pick(
+  config.$abbr-line-clamp,
+  line-clamp
+);
+
+$abbr-vertical-align: pick(
+  config.$abbr-vertical-align,
+  align
+);
+
+$abbr-white-space: pick(
+  config.$abbr-white-space,
+  whitespace
+);
+
+$abbr-word-break: pick(
+  config.$abbr-word-break,
+  break
+);
+
+$abbr-background-attachment: pick(
+  config.$abbr-background-attachment,
+  bg
+);
+
+$abbr-background-clip: pick(
+  config.$abbr-background-clip,
+  bg-clip
+);
+
+$abbr-background-color: pick(
+  config.$abbr-background-color,
+  bg
+);
+
+$abbr-background-opacity: pick(
+  config.$abbr-background-opacity,
+  bg-opacity
+);
+
+$abbr-background-origin: pick(
+  config.$abbr-background-origin,
+  bg-origin
+);
+
+$abbr-background-position: pick(
+  config.$abbr-background-position,
+  bg
+);
+
+$abbr-background-repeat: pick(
+  config.$abbr-background-repeat,
+  bg
+);
+
+$abbr-background-size: pick(
+  config.$abbr-background-size,
+  bg
+);
+
+$abbr-background-image: pick(
+  config.$abbr-background-image,
+  bg
+);
+
+$abbr-background-image-gradient-from: pick(
+  config.$abbr-background-image-gradient-from,
+  from
+);
+
+$abbr-background-image-gradient-via: pick(
+  config.$abbr-background-image-gradient-via,
+  via
+);
+
+$abbr-background-image-gradient-to: pick(
+  config.$abbr-background-image-gradient-to,
+  to
+);
+
+// 以下数组用于 CSS 属性名/值的遍历
+
 $screens: pick-map(
   config.$screens,
   (
@@ -296,7 +438,6 @@ $screens: pick-map(
 );
 
 // TODO: 需要额外处理inherit current transparent black white 属性
-// 颜色色相数组
 $color-hues: pick-map(
   config.$colors,
   (
@@ -317,95 +458,65 @@ $color-hues: pick-map(
   )
 );
 
+$common-spacing: (
+  'px': 1px,
+  '0': 0px,
+  '0.5': 0.125rem,
+  '1': 0.25rem,
+  '1.5': 0.375rem,
+  '2': 0.5rem,
+  '2.5': 0.625rem,
+  '3': 0.75rem,
+  '3.5': 0.875rem,
+  '4': 1rem,
+  '5': 1.25rem,
+  '6': 1.5rem,
+  '7': 1.75rem,
+  '8': 2rem,
+  '9': 2.25rem,
+  '10': 2.5rem,
+  '11': 2.75rem,
+  '12': 3rem,
+  '14': 3.5rem,
+  '16': 4rem,
+  '20': 5rem,
+  '24': 6rem,
+  '28': 7rem,
+  '32': 8rem,
+  '36': 9rem,
+  '40': 10rem,
+  '44': 11rem,
+  '48': 12rem,
+  '52': 13rem,
+  '56': 14rem,
+  '60': 15rem,
+  '64': 16rem,
+  '72': 18rem,
+  '80': 20rem,
+  '96': 24rem
+);
+
 // 间距数组
 $spaces: pick-map(
   config.$spacing,
-  (
-    'px': 1px,
-    '0': 0px,
-    '0.5': 0.125rem,
-    '1': 0.25rem,
-    '1.5': 0.375rem,
-    '2': 0.5rem,
-    '2.5': 0.625rem,
-    '3': 0.75rem,
-    '3.5': 0.875rem,
-    '4': 1rem,
-    '5': 1.25rem,
-    '6': 1.5rem,
-    '7': 1.75rem,
-    '8': 2rem,
-    '9': 2.25rem,
-    '10': 2.5rem,
-    '11': 2.75rem,
-    '12': 3rem,
-    '14': 3.5rem,
-    '16': 4rem,
-    '20': 5rem,
-    '24': 6rem,
-    '28': 7rem,
-    '32': 8rem,
-    '36': 9rem,
-    '40': 10rem,
-    '44': 11rem,
-    '48': 12rem,
-    '52': 13rem,
-    '56': 14rem,
-    '60': 15rem,
-    '64': 16rem,
-    '72': 18rem,
-    '80': 20rem,
-    '96': 24rem
-  )
+  $common-spacing
 );
 
 // 定位元素 Top Right Bottom Left 距离数组
 $insets: pick-map(
   config.$inset,
-  (
-    'px': 1px,
-    '0': 0px,
-    '0.5': 0.125rem,
-    '1': 0.25rem,
-    '1.5': 0.375rem,
-    '2': 0.5rem,
-    '2.5': 0.625rem,
-    '3': 0.75rem,
-    '3.5': 0.875rem,
-    '4': 1rem,
-    '5': 1.25rem,
-    '6': 1.5rem,
-    '7': 1.75rem,
-    '8': 2rem,
-    '9': 2.25rem,
-    '10': 2.5rem,
-    '11': 2.75rem,
-    '12': 3rem,
-    '14': 3.5rem,
-    '16': 4rem,
-    '20': 5rem,
-    '24': 6rem,
-    '28': 7rem,
-    '32': 8rem,
-    '36': 9rem,
-    '40': 10rem,
-    '44': 11rem,
-    '48': 12rem,
-    '52': 13rem,
-    '56': 14rem,
-    '60': 15rem,
-    '64': 16rem,
-    '72': 18rem,
-    '80': 20rem,
-    '96': 24rem,
-    'auto': auto,
-    'full': 100%,
-    '1/2': '50%',
-    '1/3': '33.333333%',
-    '2/3': '66.666667%',
-    '1/4': '25%',
-    '2/4': '50%',
-    '3/4': '75%'
+  map-merge(
+    $map1: $common-spacing,
+    $map2: (
+      'auto': auto,
+      'full': 100%,
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%'
+    )
   )
 );
 
@@ -416,6 +527,22 @@ $flexes: pick-map(
     auto: '1 1 auto',
     initial: '0 1 auto',
     none: 'none',
+  )
+);
+
+$flexGrows: pick-map(
+  config.$flexGrow,
+  (
+    0: '0',
+    DEFAULT: '1',
+  )
+);
+
+$flexShrinks: pick-map(
+  config.$flexShrink,
+  (
+    0: '0',
+    DEFAULT: '1',
   )
 );
 
@@ -493,44 +620,31 @@ $gridColumn: pick-map(
   )
 );
 
+$common-grid-column: (
+  auto: 'auto',
+  1: '1',
+  2: '2',
+  3: '3',
+  4: '4',
+  5: '5',
+  6: '6',
+  7: '7',
+  8: '8',
+  9: '9',
+  10: '10',
+  11: '11',
+  12: '12',
+  13: '13',
+);
+
 $gridColumnEnd: pick-map(
   config.$gridColumnEnd,
-  (
-    auto: 'auto',
-    1: '1',
-    2: '2',
-    3: '3',
-    4: '4',
-    5: '5',
-    6: '6',
-    7: '7',
-    8: '8',
-    9: '9',
-    10: '10',
-    11: '11',
-    12: '12',
-    13: '13',
-  )
+  $common-grid-column
 );
 
 $gridColumnStart: pick-map(
   config.$gridColumnStart,
-  (
-    auto: 'auto',
-    1: '1',
-    2: '2',
-    3: '3',
-    4: '4',
-    5: '5',
-    6: '6',
-    7: '7',
-    8: '8',
-    9: '9',
-    10: '10',
-    11: '11',
-    12: '12',
-    13: '13',
-  )
+  $common-grid-column
 );
 
 $gridRow: pick-map(
@@ -547,32 +661,25 @@ $gridRow: pick-map(
   )
 );
 
+$common-grid-row: (
+  auto: 'auto',
+  1: '1',
+  2: '2',
+  3: '3',
+  4: '4',
+  5: '5',
+  6: '6',
+  7: '7',
+);
+
 $gridRowStart: pick-map(
   config.$gridRowStart,
-  (
-    auto: 'auto',
-    1: '1',
-    2: '2',
-    3: '3',
-    4: '4',
-    5: '5',
-    6: '6',
-    7: '7',
-  )
+  $common-grid-row
 );
 
 $gridRowEnd: pick-map(
   config.$gridRowEnd,
-  (
-    auto: 'auto',
-    1: '1',
-    2: '2',
-    3: '3',
-    4: '4',
-    5: '5',
-    6: '6',
-    7: '7',
-  )
+  $common-grid-row
 );
 
 $gridTemplateColumns: pick-map(
@@ -609,45 +716,8 @@ $gridTemplateRows: pick-map(
 
 $gaps: pick-map(
   config.$gap,
-  (
-    'px': 1px,
-    '0': 0px,
-    '0.5': 0.125rem,
-    '1': 0.25rem,
-    '1.5': 0.375rem,
-    '2': 0.5rem,
-    '2.5': 0.625rem,
-    '3': 0.75rem,
-    '3.5': 0.875rem,
-    '4': 1rem,
-    '5': 1.25rem,
-    '6': 1.5rem,
-    '7': 1.75rem,
-    '8': 2rem,
-    '9': 2.25rem,
-    '10': 2.5rem,
-    '11': 2.75rem,
-    '12': 3rem,
-    '14': 3.5rem,
-    '16': 4rem,
-    '20': 5rem,
-    '24': 6rem,
-    '28': 7rem,
-    '32': 8rem,
-    '36': 9rem,
-    '40': 10rem,
-    '44': 11rem,
-    '48': 12rem,
-    '52': 13rem,
-    '56': 14rem,
-    '60': 15rem,
-    '64': 16rem,
-    '72': 18rem,
-    '80': 20rem,
-    '96': 24rem
-  )
+  $common-spacing
 );
-
 
 $objectPositions: pick-map(
   config.$objectPosition,
@@ -664,61 +734,194 @@ $objectPositions: pick-map(
   )
 );
 
+$margins: pick-map(
+  config.$margin,
+  map-merge(
+    $map1: $common-spacing,
+    $map2: (
+      'auto': auto
+    )
+  )
+);
+
+$paddings: pick-map(
+  config.$padding,
+  $common-spacing
+);
+
+$widths: pick-map(
+  config.$width,
+  map-merge(
+    $map1: $common-spacing,
+    $map2: (
+      'auto': auto,
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666667%',
+      '2/6': '33.333333%',
+      '3/6': '50%',
+      '4/6': '66.666667%',
+      '5/6': '83.333333%',
+      '1/12': '8.333333%',
+      '2/12': '16.666667%',
+      '3/12': '25%',
+      '4/12': '33.333333%',
+      '5/12': '41.666667%',
+      '6/12': '50%',
+      '7/12': '58.333333%',
+      '8/12': '66.666667%',
+      '9/12': '75%',
+      '10/12': '83.333333%',
+      '11/12': '91.666667%',
+      full: '100%',
+      screen: '100vw',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    )
+  )
+);
+
+$heights: pick-map(
+  config.$height,
+  map-merge(
+    $map1: $common-spacing,
+    $map2: (
+      'auto': auto,
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      '1/5': '20%',
+      '2/5': '40%',
+      '3/5': '60%',
+      '4/5': '80%',
+      '1/6': '16.666667%',
+      '2/6': '33.333333%',
+      '3/6': '50%',
+      '4/6': '66.666667%',
+      '5/6': '83.333333%',
+      full: '100%',
+      screen: '100vh',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    )
+  )
+);
+
+$maxHeights: pick-map(
+  config.$maxHeight,
+  map-merge(
+    $map1: $common-spacing,
+    $map2: (
+      full: '100%',
+      screen: '100vh',
+      min: 'min-content',
+      max: 'max-content',
+      fit: 'fit-content',
+    )
+  )
+);
+
+$maxWidths: pick-map(
+  config.$maxWidth,
+  (
+    none: 'none',
+    0: '0rem',
+    xs: '20rem',
+    sm: '24rem',
+    md: '28rem',
+    lg: '32rem',
+    xl: '36rem',
+    '2xl': '42rem',
+    '3xl': '48rem',
+    '4xl': '56rem',
+    '5xl': '64rem',
+    '6xl': '72rem',
+    '7xl': '80rem',
+    full: '100%',
+    min: 'min-content',
+    max: 'max-content',
+    fit: 'fit-content',
+    prose: '65ch',
+  )
+);
+
+$minHeights: pick-map(
+  config.$minHeight,
+  (
+    0: '0px',
+    full: '100%',
+    screen: '100vh',
+    min: 'min-content',
+    max: 'max-content',
+    fit: 'fit-content',
+  )
+);
+
+$minWidths: pick-map(
+  config.$minWidth,
+  (
+    0: '0px',
+    full: '100%',
+    min: 'min-content',
+    max: 'max-content',
+    fit: 'fit-content',
+  )
+);
+
+$fontSizes: pick-map(
+  config.$fontSize,
+  (
+    xs: 0.75rem,
+    sm: 0.875rem,
+    base: 1rem,
+    lg: 1.125rem,
+    xl: 1.25rem,
+    2xl: 1.5rem,
+    3xl: 1.875rem,
+    4xl: 2.25rem,
+    5xl: 3rem,
+    6xl: 3.75rem,
+    7xl: 4.5rem,
+    8xl: 6rem,
+    9xl: 8rem,
+  )
+);
+$fontSizeLineHeights: pick-map(
+  config.$fontSizeLineHeight,
+  (
+    xs: 1rem,
+    sm: 1.25rem,
+    base: 1.5rem,
+    lg: 1.75rem,
+    xl: 1.75rem,
+    2xl: 2rem,
+    3xl: 2.25rem,
+    4xl: 2.5rem,
+    5xl: 1,
+    6xl: 1,
+    7xl: 1,
+    8xl: 1,
+    9xl: 1,
+  )
+);
 
 
-$atomic-font-family-name: font;
 
-$atomic-font-size-name: text;
 
-$atomic-font-smoothing-name: antialiased;
 
-$atomic-font-style-name: italic;
-
-$atomic-font-weight-name: font;
-
-$atomic-letter-spacing-name: tracking;
-
-$atomic-line-height-name: leading;
-
-$atomic-list-style-name: list;
-
-$atomic-text-align-name: text;
-
-$atomic-text-color-name: text;
-
-$atomic-text-opacity-name: text-opacity;
-
-$atomic-text-overflow-name: overflow;
-
-$atomic-line-clamp-name: line-clamp;
-
-$atomic-vertical-align-name: align;
-
-$atomic-white-space-name: whitespace;
-
-$atomic-word-break-name: break;
-
-$atomic-background-attachment-name: bg;
-
-$atomic-background-clip-name: bg-clip;
-
-$atomic-background-color-name: bg;
-
-$atomic-background-opacity-name: bg-opacity;
-
-$atomic-background-origin-name: bg-origin;
-
-$atomic-background-position-name: bg;
-
-$atomic-background-repeat-name: bg;
-
-$atomic-background-size-name: bg;
-
-$atomic-background-image-name: bg;
-
-$atomic-background-image-gradient-from-name: from;
-$atomic-background-image-gradient-via-name: via;
-$atomic-background-image-gradient-to-name: to;
 
 // CSS Var命名
 $atomic-var-text-opacity-name: --text-opacity;

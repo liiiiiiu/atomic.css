@@ -53,6 +53,8 @@ function injectBreakpoint(content, mediaQueryContent) {
   // console.log('test', '\n.-inset-x-3 { right: -0.75rem; }'.match(test))
   // // .-inset-x-2\.5
 
+  if (!classNames || !classNames.length) return false
+
   const props = mediaQueryContent.match(/\{([^}])*}/g)
   const screens = theme.screens
 

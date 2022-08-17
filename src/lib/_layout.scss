@@ -346,25 +346,23 @@
 }
 
 // Flex Grow
-#{util.class-generator(var.$abbr-flex, grow, 0)}
-{
-  flex-grow: 0;
-}
+@each $key, $value in var.$flexGrows {
 
-#{util.class-generator(var.$abbr-flex, grow)}
-{
-  flex-grow: 1;
+  #{util.class-generator(var.$abbr-flex, grow, $key)}
+  {
+    flex-grow: $value;
+  }
+
 }
 
 // Flex Shrink
-#{util.class-generator(var.$abbr-flex, shrink, 0)}
-{
-  flex-shrink: 0;
-}
+@each $key, $value in var.$flexShrinks {
 
-#{util.class-generator(var.$abbr-flex, shrink)}
-{
-  flex-shrink: 1;
+  #{util.class-generator(var.$abbr-flex, shrink, $key)}
+  {
+    flex-shrink: $value;
+  }
+
 }
 
 // Order
