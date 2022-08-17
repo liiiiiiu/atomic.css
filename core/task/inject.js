@@ -4,7 +4,7 @@ const concat = require('gulp-concat')
 const path = require('path')
 const fs = require('fs')
 
-const { theme } = require('../atom.config')
+const { theme } = require('../../atom.config')
 
 const {
   attempFileName,

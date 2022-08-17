@@ -27,6 +27,233 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.text_xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text_sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text_base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text_lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text_xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text_2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text_3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.text_4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.text_5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.text_6xl {
+  font-size: 3.75rem;
+  line-height: 1;
+}
+
+.text_7xl {
+  font-size: 4.5rem;
+  line-height: 1;
+}
+
+.text_8xl {
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.text_9xl {
+  font-size: 8rem;
+  line-height: 1;
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.subpixel_antialiased {
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.not_italic {
+  font-style: normal;
+}
+
+.font_thin {
+  font-weight: 100;
+}
+
+.font_extralight {
+  font-weight: 200;
+}
+
+.font_light {
+  font-weight: 300;
+}
+
+.font_normal {
+  font-weight: 400;
+}
+
+.font_medium {
+  font-weight: 500;
+}
+
+.font_semibold {
+  font-weight: 600;
+}
+
+.font_bold {
+  font-weight: 700;
+}
+
+.font_extrabold {
+  font-weight: 800;
+}
+
+.font_black {
+  font-weight: 900;
+}
+
+.tracking_tighter {
+  letter-spacing: -0.05em;
+}
+
+.tracking_tight {
+  letter-spacing: -0.025em;
+}
+
+.tracking_normal {
+  letter-spacing: 0em;
+}
+
+.tracking_wide {
+  letter-spacing: 0.025em;
+}
+
+.tracking_wider {
+  letter-spacing: 0.05em;
+}
+
+.tracking_widest {
+  letter-spacing: 0.1em;
+}
+
+.leading_3 {
+  line-height: 0.75rem;
+}
+
+.leading_4 {
+  line-height: 1rem;
+}
+
+.leading_5 {
+  line-height: 1.25rem;
+}
+
+.leading_6 {
+  line-height: 1.5rem;
+}
+
+.leading_7 {
+  line-height: 1.75rem;
+}
+
+.leading_8 {
+  line-height: 2rem;
+}
+
+.leading_9 {
+  line-height: 2.25rem;
+}
+
+.leading_10 {
+  line-height: 2.5rem;
+}
+
+.leading_none {
+  line-height: 1;
+}
+
+.leading_tight {
+  line-height: 1.25;
+}
+
+.leading_snug {
+  line-height: 1.375;
+}
+
+.leading_normal {
+  line-height: 1.5;
+}
+
+.leading_relaxed {
+  line-height: 1.625;
+}
+
+.leading_loose {
+  line-height: 2;
+}
+
+.list_none {
+  list-style-type: none;
+}
+
+.list_disc {
+  list-style-type: disc;
+}
+
+.list_decimal {
+  list-style-type: decimal;
+}
+
+.text_left {
+  text-align: left;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.text_right {
+  text-align: right;
+}
+
+.text_justify {
+  text-align: justify;
+}
+
 
 @media (min-width: 640px) {
 .sm\:font_sans	{
@@ -37,6 +264,180 @@
 }
 .sm\:font_mono	{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.sm\:text_xs	{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.sm\:text_sm	{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.sm\:text_base	{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.sm\:text_lg	{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.sm\:text_xl	{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.sm\:text_2xl	{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.sm\:text_3xl	{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.sm\:text_4xl	{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.sm\:text_5xl	{
+  font-size: 3rem;
+  line-height: 1;
+}
+.sm\:text_6xl	{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.sm\:text_7xl	{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.sm\:text_8xl	{
+  font-size: 6rem;
+  line-height: 1;
+}
+.sm\:text_9xl	{
+  font-size: 8rem;
+  line-height: 1;
+}
+.sm\:antialiased	{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.sm\:subpixel_antialiased	{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.sm\:italic	{
+  font-style: italic;
+}
+.sm\:not_italic	{
+  font-style: normal;
+}
+.sm\:font_thin	{
+  font-weight: 100;
+}
+.sm\:font_extralight	{
+  font-weight: 200;
+}
+.sm\:font_light	{
+  font-weight: 300;
+}
+.sm\:font_normal	{
+  font-weight: 400;
+}
+.sm\:font_medium	{
+  font-weight: 500;
+}
+.sm\:font_semibold	{
+  font-weight: 600;
+}
+.sm\:font_bold	{
+  font-weight: 700;
+}
+.sm\:font_extrabold	{
+  font-weight: 800;
+}
+.sm\:font_black	{
+  font-weight: 900;
+}
+.sm\:tracking_tighter	{
+  letter-spacing: -0.05em;
+}
+.sm\:tracking_tight	{
+  letter-spacing: -0.025em;
+}
+.sm\:tracking_normal	{
+  letter-spacing: 0em;
+}
+.sm\:tracking_wide	{
+  letter-spacing: 0.025em;
+}
+.sm\:tracking_wider	{
+  letter-spacing: 0.05em;
+}
+.sm\:tracking_widest	{
+  letter-spacing: 0.1em;
+}
+.sm\:leading_3	{
+  line-height: 0.75rem;
+}
+.sm\:leading_4	{
+  line-height: 1rem;
+}
+.sm\:leading_5	{
+  line-height: 1.25rem;
+}
+.sm\:leading_6	{
+  line-height: 1.5rem;
+}
+.sm\:leading_7	{
+  line-height: 1.75rem;
+}
+.sm\:leading_8	{
+  line-height: 2rem;
+}
+.sm\:leading_9	{
+  line-height: 2.25rem;
+}
+.sm\:leading_10	{
+  line-height: 2.5rem;
+}
+.sm\:leading_none	{
+  line-height: 1;
+}
+.sm\:leading_tight	{
+  line-height: 1.25;
+}
+.sm\:leading_snug	{
+  line-height: 1.375;
+}
+.sm\:leading_normal	{
+  line-height: 1.5;
+}
+.sm\:leading_relaxed	{
+  line-height: 1.625;
+}
+.sm\:leading_loose	{
+  line-height: 2;
+}
+.sm\:list_none	{
+  list-style-type: none;
+}
+.sm\:list_disc	{
+  list-style-type: disc;
+}
+.sm\:list_decimal	{
+  list-style-type: decimal;
+}
+.sm\:text_left	{
+  text-align: left;
+}
+.sm\:text_center	{
+  text-align: center;
+}
+.sm\:text_right	{
+  text-align: right;
+}
+.sm\:text_justify	{
+  text-align: justify;
 }
 }
 @media (min-width: 768px) {
@@ -49,6 +450,180 @@
 .md\:font_mono	{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+.md\:text_xs	{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.md\:text_sm	{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.md\:text_base	{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.md\:text_lg	{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.md\:text_xl	{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.md\:text_2xl	{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.md\:text_3xl	{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.md\:text_4xl	{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.md\:text_5xl	{
+  font-size: 3rem;
+  line-height: 1;
+}
+.md\:text_6xl	{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.md\:text_7xl	{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.md\:text_8xl	{
+  font-size: 6rem;
+  line-height: 1;
+}
+.md\:text_9xl	{
+  font-size: 8rem;
+  line-height: 1;
+}
+.md\:antialiased	{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.md\:subpixel_antialiased	{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.md\:italic	{
+  font-style: italic;
+}
+.md\:not_italic	{
+  font-style: normal;
+}
+.md\:font_thin	{
+  font-weight: 100;
+}
+.md\:font_extralight	{
+  font-weight: 200;
+}
+.md\:font_light	{
+  font-weight: 300;
+}
+.md\:font_normal	{
+  font-weight: 400;
+}
+.md\:font_medium	{
+  font-weight: 500;
+}
+.md\:font_semibold	{
+  font-weight: 600;
+}
+.md\:font_bold	{
+  font-weight: 700;
+}
+.md\:font_extrabold	{
+  font-weight: 800;
+}
+.md\:font_black	{
+  font-weight: 900;
+}
+.md\:tracking_tighter	{
+  letter-spacing: -0.05em;
+}
+.md\:tracking_tight	{
+  letter-spacing: -0.025em;
+}
+.md\:tracking_normal	{
+  letter-spacing: 0em;
+}
+.md\:tracking_wide	{
+  letter-spacing: 0.025em;
+}
+.md\:tracking_wider	{
+  letter-spacing: 0.05em;
+}
+.md\:tracking_widest	{
+  letter-spacing: 0.1em;
+}
+.md\:leading_3	{
+  line-height: 0.75rem;
+}
+.md\:leading_4	{
+  line-height: 1rem;
+}
+.md\:leading_5	{
+  line-height: 1.25rem;
+}
+.md\:leading_6	{
+  line-height: 1.5rem;
+}
+.md\:leading_7	{
+  line-height: 1.75rem;
+}
+.md\:leading_8	{
+  line-height: 2rem;
+}
+.md\:leading_9	{
+  line-height: 2.25rem;
+}
+.md\:leading_10	{
+  line-height: 2.5rem;
+}
+.md\:leading_none	{
+  line-height: 1;
+}
+.md\:leading_tight	{
+  line-height: 1.25;
+}
+.md\:leading_snug	{
+  line-height: 1.375;
+}
+.md\:leading_normal	{
+  line-height: 1.5;
+}
+.md\:leading_relaxed	{
+  line-height: 1.625;
+}
+.md\:leading_loose	{
+  line-height: 2;
+}
+.md\:list_none	{
+  list-style-type: none;
+}
+.md\:list_disc	{
+  list-style-type: disc;
+}
+.md\:list_decimal	{
+  list-style-type: decimal;
+}
+.md\:text_left	{
+  text-align: left;
+}
+.md\:text_center	{
+  text-align: center;
+}
+.md\:text_right	{
+  text-align: right;
+}
+.md\:text_justify	{
+  text-align: justify;
+}
 }
 @media (min-width: 1024px) {
 .lg\:font_sans	{
@@ -59,6 +634,180 @@
 }
 .lg\:font_mono	{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.lg\:text_xs	{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.lg\:text_sm	{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.lg\:text_base	{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.lg\:text_lg	{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.lg\:text_xl	{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.lg\:text_2xl	{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.lg\:text_3xl	{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.lg\:text_4xl	{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.lg\:text_5xl	{
+  font-size: 3rem;
+  line-height: 1;
+}
+.lg\:text_6xl	{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.lg\:text_7xl	{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.lg\:text_8xl	{
+  font-size: 6rem;
+  line-height: 1;
+}
+.lg\:text_9xl	{
+  font-size: 8rem;
+  line-height: 1;
+}
+.lg\:antialiased	{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.lg\:subpixel_antialiased	{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.lg\:italic	{
+  font-style: italic;
+}
+.lg\:not_italic	{
+  font-style: normal;
+}
+.lg\:font_thin	{
+  font-weight: 100;
+}
+.lg\:font_extralight	{
+  font-weight: 200;
+}
+.lg\:font_light	{
+  font-weight: 300;
+}
+.lg\:font_normal	{
+  font-weight: 400;
+}
+.lg\:font_medium	{
+  font-weight: 500;
+}
+.lg\:font_semibold	{
+  font-weight: 600;
+}
+.lg\:font_bold	{
+  font-weight: 700;
+}
+.lg\:font_extrabold	{
+  font-weight: 800;
+}
+.lg\:font_black	{
+  font-weight: 900;
+}
+.lg\:tracking_tighter	{
+  letter-spacing: -0.05em;
+}
+.lg\:tracking_tight	{
+  letter-spacing: -0.025em;
+}
+.lg\:tracking_normal	{
+  letter-spacing: 0em;
+}
+.lg\:tracking_wide	{
+  letter-spacing: 0.025em;
+}
+.lg\:tracking_wider	{
+  letter-spacing: 0.05em;
+}
+.lg\:tracking_widest	{
+  letter-spacing: 0.1em;
+}
+.lg\:leading_3	{
+  line-height: 0.75rem;
+}
+.lg\:leading_4	{
+  line-height: 1rem;
+}
+.lg\:leading_5	{
+  line-height: 1.25rem;
+}
+.lg\:leading_6	{
+  line-height: 1.5rem;
+}
+.lg\:leading_7	{
+  line-height: 1.75rem;
+}
+.lg\:leading_8	{
+  line-height: 2rem;
+}
+.lg\:leading_9	{
+  line-height: 2.25rem;
+}
+.lg\:leading_10	{
+  line-height: 2.5rem;
+}
+.lg\:leading_none	{
+  line-height: 1;
+}
+.lg\:leading_tight	{
+  line-height: 1.25;
+}
+.lg\:leading_snug	{
+  line-height: 1.375;
+}
+.lg\:leading_normal	{
+  line-height: 1.5;
+}
+.lg\:leading_relaxed	{
+  line-height: 1.625;
+}
+.lg\:leading_loose	{
+  line-height: 2;
+}
+.lg\:list_none	{
+  list-style-type: none;
+}
+.lg\:list_disc	{
+  list-style-type: disc;
+}
+.lg\:list_decimal	{
+  list-style-type: decimal;
+}
+.lg\:text_left	{
+  text-align: left;
+}
+.lg\:text_center	{
+  text-align: center;
+}
+.lg\:text_right	{
+  text-align: right;
+}
+.lg\:text_justify	{
+  text-align: justify;
 }
 }
 @media (min-width: 1280px) {
@@ -71,6 +820,180 @@
 .xl\:font_mono	{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
+.xl\:text_xs	{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.xl\:text_sm	{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.xl\:text_base	{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.xl\:text_lg	{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.xl\:text_xl	{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.xl\:text_2xl	{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.xl\:text_3xl	{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.xl\:text_4xl	{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.xl\:text_5xl	{
+  font-size: 3rem;
+  line-height: 1;
+}
+.xl\:text_6xl	{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.xl\:text_7xl	{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.xl\:text_8xl	{
+  font-size: 6rem;
+  line-height: 1;
+}
+.xl\:text_9xl	{
+  font-size: 8rem;
+  line-height: 1;
+}
+.xl\:antialiased	{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.xl\:subpixel_antialiased	{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.xl\:italic	{
+  font-style: italic;
+}
+.xl\:not_italic	{
+  font-style: normal;
+}
+.xl\:font_thin	{
+  font-weight: 100;
+}
+.xl\:font_extralight	{
+  font-weight: 200;
+}
+.xl\:font_light	{
+  font-weight: 300;
+}
+.xl\:font_normal	{
+  font-weight: 400;
+}
+.xl\:font_medium	{
+  font-weight: 500;
+}
+.xl\:font_semibold	{
+  font-weight: 600;
+}
+.xl\:font_bold	{
+  font-weight: 700;
+}
+.xl\:font_extrabold	{
+  font-weight: 800;
+}
+.xl\:font_black	{
+  font-weight: 900;
+}
+.xl\:tracking_tighter	{
+  letter-spacing: -0.05em;
+}
+.xl\:tracking_tight	{
+  letter-spacing: -0.025em;
+}
+.xl\:tracking_normal	{
+  letter-spacing: 0em;
+}
+.xl\:tracking_wide	{
+  letter-spacing: 0.025em;
+}
+.xl\:tracking_wider	{
+  letter-spacing: 0.05em;
+}
+.xl\:tracking_widest	{
+  letter-spacing: 0.1em;
+}
+.xl\:leading_3	{
+  line-height: 0.75rem;
+}
+.xl\:leading_4	{
+  line-height: 1rem;
+}
+.xl\:leading_5	{
+  line-height: 1.25rem;
+}
+.xl\:leading_6	{
+  line-height: 1.5rem;
+}
+.xl\:leading_7	{
+  line-height: 1.75rem;
+}
+.xl\:leading_8	{
+  line-height: 2rem;
+}
+.xl\:leading_9	{
+  line-height: 2.25rem;
+}
+.xl\:leading_10	{
+  line-height: 2.5rem;
+}
+.xl\:leading_none	{
+  line-height: 1;
+}
+.xl\:leading_tight	{
+  line-height: 1.25;
+}
+.xl\:leading_snug	{
+  line-height: 1.375;
+}
+.xl\:leading_normal	{
+  line-height: 1.5;
+}
+.xl\:leading_relaxed	{
+  line-height: 1.625;
+}
+.xl\:leading_loose	{
+  line-height: 2;
+}
+.xl\:list_none	{
+  list-style-type: none;
+}
+.xl\:list_disc	{
+  list-style-type: disc;
+}
+.xl\:list_decimal	{
+  list-style-type: decimal;
+}
+.xl\:text_left	{
+  text-align: left;
+}
+.xl\:text_center	{
+  text-align: center;
+}
+.xl\:text_right	{
+  text-align: right;
+}
+.xl\:text_justify	{
+  text-align: justify;
+}
 }
 @media (min-width: 1536px) {
 .\2xl\:font_sans	{
@@ -81,5 +1004,179 @@
 }
 .\2xl\:font_mono	{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+.\2xl\:text_xs	{
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.\2xl\:text_sm	{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.\2xl\:text_base	{
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+.\2xl\:text_lg	{
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+.\2xl\:text_xl	{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.\2xl\:text_2xl	{
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.\2xl\:text_3xl	{
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.\2xl\:text_4xl	{
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+.\2xl\:text_5xl	{
+  font-size: 3rem;
+  line-height: 1;
+}
+.\2xl\:text_6xl	{
+  font-size: 3.75rem;
+  line-height: 1;
+}
+.\2xl\:text_7xl	{
+  font-size: 4.5rem;
+  line-height: 1;
+}
+.\2xl\:text_8xl	{
+  font-size: 6rem;
+  line-height: 1;
+}
+.\2xl\:text_9xl	{
+  font-size: 8rem;
+  line-height: 1;
+}
+.\2xl\:antialiased	{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.\2xl\:subpixel_antialiased	{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
+.\2xl\:italic	{
+  font-style: italic;
+}
+.\2xl\:not_italic	{
+  font-style: normal;
+}
+.\2xl\:font_thin	{
+  font-weight: 100;
+}
+.\2xl\:font_extralight	{
+  font-weight: 200;
+}
+.\2xl\:font_light	{
+  font-weight: 300;
+}
+.\2xl\:font_normal	{
+  font-weight: 400;
+}
+.\2xl\:font_medium	{
+  font-weight: 500;
+}
+.\2xl\:font_semibold	{
+  font-weight: 600;
+}
+.\2xl\:font_bold	{
+  font-weight: 700;
+}
+.\2xl\:font_extrabold	{
+  font-weight: 800;
+}
+.\2xl\:font_black	{
+  font-weight: 900;
+}
+.\2xl\:tracking_tighter	{
+  letter-spacing: -0.05em;
+}
+.\2xl\:tracking_tight	{
+  letter-spacing: -0.025em;
+}
+.\2xl\:tracking_normal	{
+  letter-spacing: 0em;
+}
+.\2xl\:tracking_wide	{
+  letter-spacing: 0.025em;
+}
+.\2xl\:tracking_wider	{
+  letter-spacing: 0.05em;
+}
+.\2xl\:tracking_widest	{
+  letter-spacing: 0.1em;
+}
+.\2xl\:leading_3	{
+  line-height: 0.75rem;
+}
+.\2xl\:leading_4	{
+  line-height: 1rem;
+}
+.\2xl\:leading_5	{
+  line-height: 1.25rem;
+}
+.\2xl\:leading_6	{
+  line-height: 1.5rem;
+}
+.\2xl\:leading_7	{
+  line-height: 1.75rem;
+}
+.\2xl\:leading_8	{
+  line-height: 2rem;
+}
+.\2xl\:leading_9	{
+  line-height: 2.25rem;
+}
+.\2xl\:leading_10	{
+  line-height: 2.5rem;
+}
+.\2xl\:leading_none	{
+  line-height: 1;
+}
+.\2xl\:leading_tight	{
+  line-height: 1.25;
+}
+.\2xl\:leading_snug	{
+  line-height: 1.375;
+}
+.\2xl\:leading_normal	{
+  line-height: 1.5;
+}
+.\2xl\:leading_relaxed	{
+  line-height: 1.625;
+}
+.\2xl\:leading_loose	{
+  line-height: 2;
+}
+.\2xl\:list_none	{
+  list-style-type: none;
+}
+.\2xl\:list_disc	{
+  list-style-type: disc;
+}
+.\2xl\:list_decimal	{
+  list-style-type: decimal;
+}
+.\2xl\:text_left	{
+  text-align: left;
+}
+.\2xl\:text_center	{
+  text-align: center;
+}
+.\2xl\:text_right	{
+  text-align: right;
+}
+.\2xl\:text_justify	{
+  text-align: justify;
 }
 }

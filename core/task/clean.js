@@ -6,6 +6,7 @@ const path = require('path')
 const {
   destDir,
   devDir,
+  sourceDir,
   attempFileName,
   fcss,
   fscss
@@ -36,7 +37,7 @@ function cleanAttemp(cb) {
 // 删除 config 样式文件
 function cleanConfig(cb) {
   pump([
-    gulp.src(path.join(devDir, fscss('_config')), {
+    gulp.src(path.join(sourceDir, fscss('_config')), {
       allowEmpty: true
     }),
 

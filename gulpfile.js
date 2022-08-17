@@ -4,26 +4,26 @@ const {
   cleanDest,
   cleanAttemp,
   cleanConfig
-} = require('./task/clean')
+} = require('./core/task/clean')
 
 const {
   injectAttemp
-} = require('./task/inject')
+} = require('./core/task/inject')
 
 const {
   compileConfig,
   compileSource,
   compileAttemp
-} = require('./task/compile')
+} = require('./core/task/compile')
 
 const {
   minifySource,
   minifyBreakpoint,
-} = require('./task/nano')
+} = require('./core/task/nano')
 
 const {
   watchSourceChange
-} = require('./task/watch')
+} = require('./core/task/watch')
 
 // 执行 gulp 任务
 // 修改 atom.config.js 配置文件后需重新执行 gulp 任务

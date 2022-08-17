@@ -1,4 +1,4 @@
-@use '../base/var';
+@use '../config';
 @use '../utils/util';
 
 /* - Layout 布局 -
@@ -6,14 +6,14 @@
 
 // Container
 
-#{util.class-generator(var.$abbr-container)}
+#{util.class-generator(config.$abbr-container)}
 {
   width: 100%;
 }
 
-@each $key, $value in var.$screens {
+@each $key, $value in config.$map-screens {
 
-  #{util.class-generator(var.$abbr-container, $key)}
+  #{util.class-generator(config.$abbr-container, $key)}
   {
     max-width: $value;
   }
@@ -21,23 +21,23 @@
 }
 
 // Box Decoration Break
-#{util.class-generator(var.$abbr-box-decoration-break, slice)}
+#{util.class-generator(config.$abbr-box-decoration-break, slice)}
 {
   box-decoration-break: slice;
 }
 
-#{util.class-generator(var.$abbr-box-decoration-break, clone)}
+#{util.class-generator(config.$abbr-box-decoration-break, clone)}
 {
   box-decoration-break: clone;
 }
 
 // Box Sizing
-#{util.class-generator(var.$abbr-box-sizing, border)}
+#{util.class-generator(config.$abbr-box-sizing, border)}
 {
   box-sizing: border-box;
 }
 
-#{util.class-generator(var.$abbr-box-sizing, content)}
+#{util.class-generator(config.$abbr-box-sizing, content)}
 {
   box-sizing: content-box;
 }
@@ -81,7 +81,7 @@
   none
 ) {
 
-  #{util.class-generator(var.$abbr-float, $value)}
+  #{util.class-generator(config.$abbr-float, $value)}
   {
     float: $value;
   }
@@ -96,22 +96,22 @@
   both
 ) {
 
-  #{util.class-generator(var.$abbr-clear, $value)}
+  #{util.class-generator(config.$abbr-clear, $value)}
   {
     clear: $value;
   }
 
 }
 
-#{util.class-generator(var.$abbr-clear)}
+#{util.class-generator(config.$abbr-clear)}
 {
   display: inline-table;
 }
-#{util.class-generator(var.$abbr-clear)}
+#{util.class-generator(config.$abbr-clear)}
 {
   *zoom: 1;
 }
-#{util.class-generator(var.$abbr-clear)}::after
+#{util.class-generator(config.$abbr-clear)}::after
 {
   content: " ";
   display: block;
@@ -142,7 +142,7 @@
   none
 ) {
 
-  #{util.class-generator(var.$abbr-object-fit, $value)}
+  #{util.class-generator(config.$abbr-object-fit, $value)}
   {
     object-fit: $value;
   }
@@ -150,9 +150,9 @@
 }
 
 // Object Position
-@each $key, $value in var.$objectPositions {
+@each $key, $value in config.$map-objectPosition {
 
-  #{util.class-generator(var.$abbr-object-fit, $key)}
+  #{util.class-generator(config.$abbr-object-fit, $key)}
   {
     object-position: $value;
   }
@@ -175,7 +175,7 @@
   (y, scroll)
 ) {
 
-  #{util.class-generator(var.$abbr-overflow, $values...)}
+  #{util.class-generator(config.$abbr-overflow, $values...)}
   {
 
     @if length($list: $values) < 2 {
@@ -202,7 +202,7 @@
   (x, none)
 ) {
 
-  #{util.class-generator(var.$abbr-overscroll-behavior, $values...)}
+  #{util.class-generator(config.$abbr-overscroll-behavior, $values...)}
   {
 
     @if length($list: $values) < 2 {
@@ -233,30 +233,33 @@
 }
 
 // Top Right Bottom Left
-@each $outer-key, $outer-value in var.$insets {
+@each $outer-key, $outer-value in util.map-handler(config.$map-inset) {
 
   @each $inner-key, $inner-values in (
-    (var.$abbr-top, ''): (top),
-    (var.$abbr-right, ''): (right),
-    (var.$abbr-bottom, ''): (bottom),
-    (var.$abbr-left, ''): (left),
-    (var.$abbr-inset, ''): (top, right, bottom, left),
-    (var.$abbr-inset, x): (right, left),
-    (var.$abbr-inset, y): (top, bottom)
+    (config.$abbr-top, ''): (top),
+    (config.$abbr-right, ''): (right),
+    (config.$abbr-bottom, ''): (bottom),
+    (config.$abbr-left, ''): (left),
+    (config.$abbr-inset, ''): (top, right, bottom, left),
+    (config.$abbr-inset, x): (right, left),
+    (config.$abbr-inset, y): (top, bottom)
   ) {
 
     @if $outer-key != 'auto' {
+
       #{util.class-generator(#{'-'}#{
           nth($list: $inner-key, $n: 1)},
           nth($list: $inner-key, $n: 2),
           $outer-key
         )
       }
+
       {
-        @each $inner-value in $inner-values {
-          #{$inner-value}: #{'-' + $outer-value};
+        @each $value in $inner-values {
+          #{$value}: #{'-' + $outer-value};
         }
       }
+
     }
 
     #{util.class-generator(
@@ -265,9 +268,10 @@
         $outer-key
       )
     }
+
     {
-      @each $inner-value in $inner-values {
-        #{$inner-value}: $outer-value;
+      @each $value in $inner-values {
+        #{$value}: $outer-value;
       }
     }
 
@@ -276,20 +280,20 @@
 }
 
 // Visible
-#{util.class-generator(var.$abbr-visible)}
+#{util.class-generator(config.$abbr-visible)}
 {
   visibility: visible;
 }
 
-#{util.class-generator(#{'in'}#{var.$abbr-visible})}
+#{util.class-generator(#{'in'}#{config.$abbr-visible})}
 {
   visibility: hidden;
 }
 
 // Z-Index
-@each $key, $value in var.$zIndexes {
+@each $key, $value in util.map-handler(config.$map-zIndex) {
 
-  #{util.class-generator(var.$abbr-z-index, $key)}
+  #{util.class-generator(config.$abbr-z-index, $key)}
   {
     z-index: $value;
   }
@@ -305,7 +309,7 @@
 ) {
 
   #{util.class-generator(
-      var.$abbr-flex,
+      config.$abbr-flex,
       nth($list: $key, $n: 1),
       nth($list: $key, $n: 2)
     )
@@ -324,7 +328,7 @@
 ) {
 
   #{util.class-generator(
-      var.$abbr-flex,
+      config.$abbr-flex,
       nth($list: $key, $n: 1),
       nth($list: $key, $n: 2)
     )
@@ -336,9 +340,9 @@
 }
 
 // Flex
-@each $key, $value in var.$flexes {
+@each $key, $value in util.map-handler(config.$map-flex) {
 
-  #{util.class-generator(var.$abbr-flex, $key)}
+  #{util.class-generator(config.$abbr-flex, $key)}
   {
     flex: $value;
   }
@@ -346,9 +350,9 @@
 }
 
 // Flex Grow
-@each $key, $value in var.$flexGrows {
+@each $key, $value in util.map-handler(config.$map-flexGrow) {
 
-  #{util.class-generator(var.$abbr-flex, grow, $key)}
+  #{util.class-generator(config.$abbr-flex, grow, $key)}
   {
     flex-grow: $value;
   }
@@ -356,9 +360,9 @@
 }
 
 // Flex Shrink
-@each $key, $value in var.$flexShrinks {
+@each $key, $value in util.map-handler(config.$map-flexShrink) {
 
-  #{util.class-generator(var.$abbr-flex, shrink, $key)}
+  #{util.class-generator(config.$abbr-flex, shrink, $key)}
   {
     flex-shrink: $value;
   }
@@ -366,9 +370,9 @@
 }
 
 // Order
-@each $key, $value in var.$orders {
+@each $key, $value in util.map-handler(config.$map-order) {
 
-  #{util.class-generator(var.$abbr-order, $key)}
+  #{util.class-generator(config.$abbr-order, $key)}
   {
     order: $value;
   }
@@ -376,9 +380,9 @@
 }
 
 // Grid Template Columns
-@each $key, $value in var.$gridTemplateColumns {
+@each $key, $value in util.map-handler(config.$map-gridTemplateColumns) {
 
-  #{util.class-generator(var.$abbr-grid, cols, $key)}
+  #{util.class-generator(config.$abbr-grid, cols, $key)}
   {
     grid-template-columns: $value;
   }
@@ -387,27 +391,27 @@
 
 
 // Grid Column Start / End
-@each $key, $value in var.$gridColumn {
+@each $key, $value in util.map-handler(config.$map-gridColumn) {
 
-  #{util.class-generator(var.$abbr-grid-column, $key)}
+  #{util.class-generator(config.$abbr-grid-column, $key)}
   {
     grid-column: $value;
   }
 
 }
 
-@each $key, $value in var.$gridColumnStart {
+@each $key, $value in util.map-handler(config.$map-gridColumnStart) {
 
-  #{util.class-generator(var.$abbr-grid-column, start, $key)}
+  #{util.class-generator(config.$abbr-grid-column, start, $key)}
   {
     grid-column-start: $value;
   }
 
 }
 
-@each $key, $value in var.$gridColumnEnd {
+@each $key, $value in util.map-handler(config.$map-gridColumnEnd) {
 
-  #{util.class-generator(var.$abbr-grid-column, end, $key)}
+  #{util.class-generator(config.$abbr-grid-column, end, $key)}
   {
     grid-column-end: $value;
   }
@@ -415,9 +419,9 @@
 }
 
 // Grid Template Rows
-@each $key, $value in var.$gridTemplateRows {
+@each $key, $value in util.map-handler(config.$map-gridTemplateRows) {
 
-  #{util.class-generator(var.$abbr-grid, rows, $key)}
+  #{util.class-generator(config.$abbr-grid, rows, $key)}
   {
     grid-template-rows: $value;
   }
@@ -425,27 +429,27 @@
 }
 
 // Grid Row Start / End
-@each $key, $value in var.$gridRow {
+@each $key, $value in util.map-handler(config.$map-gridRow) {
 
-  #{util.class-generator(var.$abbr-grid-row, $key)}
+  #{util.class-generator(config.$abbr-grid-row, $key)}
   {
     grid-row: $value;
   }
 
 }
 
-@each $key, $value in var.$gridRowStart {
+@each $key, $value in util.map-handler(config.$map-gridRowStart) {
 
-  #{util.class-generator(var.$abbr-grid-row, start, $key)}
+  #{util.class-generator(config.$abbr-grid-row, start, $key)}
   {
     grid-row-start: $value;
   }
 
 }
 
-@each $key, $value in var.$gridRowEnd {
+@each $key, $value in util.map-handler(config.$map-gridRowEnd) {
 
-  #{util.class-generator(var.$abbr-grid-row, end, $key)}
+  #{util.class-generator(config.$abbr-grid-row, end, $key)}
   {
     grid-row-end: $value;
   }
@@ -461,7 +465,7 @@
 ) {
 
   #{util.class-generator(
-      var.$abbr-grid,
+      config.$abbr-grid,
       flow,
       nth($list: $key, $n: 1),
       nth($list: $key, $n: 2),
@@ -474,9 +478,9 @@
 }
 
 // Grid Auto Columns
-@each $key, $value in var.$gridAutoColumns {
+@each $key, $value in util.map-handler(config.$map-gridAutoColumns) {
 
-  #{util.class-generator(var.$abbr-grid-auto, cols, $key)}
+  #{util.class-generator(config.$abbr-grid-auto, cols, $key)}
   {
     grid-auto-columns: $value;
   }
@@ -484,9 +488,9 @@
 }
 
 // Grid Auto Rows
-@each $key, $value in var.$gridAutoRows {
+@each $key, $value in util.map-handler(config.$map-gridAutoRows) {
 
-  #{util.class-generator(var.$abbr-grid-auto, rows, $key)}
+  #{util.class-generator(config.$abbr-grid-auto, rows, $key)}
   {
     grid-auto-rows: $value;
   }
@@ -494,7 +498,7 @@
 }
 
 // Gap
-@each $outer-key, $outer-value in var.$gaps {
+@each $outer-key, $outer-value in util.map-handler(config.$map-gap) {
 
   @each $inner-key, $inner-value in (
     '': '',
@@ -503,16 +507,20 @@
   ) {
 
     @if $inner-key == '' {
-      #{util.class-generator(var.$abbr-gap, $outer-key)}
+
+      #{util.class-generator(config.$abbr-gap, $outer-key)}
       {
         #{$inner-value}#{'gap'}: $outer-value;
       }
+
     }
     @else {
-      #{util.class-generator(var.$abbr-gap, $inner-key, $outer-key)}
+
+      #{util.class-generator(config.$abbr-gap, $inner-key, $outer-key)}
       {
         #{$inner-value}#{'gap'}: $outer-value;
       }
+
     }
 
   }
@@ -529,7 +537,7 @@
   evenly: space-evenly
 ) {
 
-  #{util.class-generator(var.$abbr-justify-content, $key)}
+  #{util.class-generator(config.$abbr-justify-content, $key)}
   {
     justify-content: $value;
   }
@@ -544,7 +552,7 @@
   stretch: stretch
 ) {
 
-  #{util.class-generator(var.$abbr-justify-items, $key)}
+  #{util.class-generator(config.$abbr-justify-items, $key)}
   {
     justify-items: $value;
   }
@@ -560,7 +568,7 @@
   stretch: stretch
 ) {
 
-  #{util.class-generator(var.$abbr-justify-self, $key)}
+  #{util.class-generator(config.$abbr-justify-self, $key)}
   {
     justify-self: $value;
   }
@@ -577,7 +585,7 @@
   evenly: space-evenly
 ) {
 
-  #{util.class-generator(var.$abbr-align-content, $key)}
+  #{util.class-generator(config.$abbr-align-content, $key)}
   {
     align-content: $value;
   }
@@ -593,7 +601,7 @@
   stretch: stretch
 ) {
 
-  #{util.class-generator(var.$abbr-align-items, $key)}
+  #{util.class-generator(config.$abbr-align-items, $key)}
   {
     align-items: $value;
   }
@@ -610,7 +618,7 @@
   auto: auto
 ) {
 
-  #{util.class-generator(var.$abbr-align-self, $key)}
+  #{util.class-generator(config.$abbr-align-self, $key)}
   {
     align-self: $value;
   }
@@ -628,7 +636,7 @@
   stretch: stretch
 ) {
 
-  #{util.class-generator(var.$abbr-place-content, $key)}
+  #{util.class-generator(config.$abbr-place-content, $key)}
   {
     place-content: $value;
   }
@@ -643,7 +651,7 @@
   stretch: stretch
 ) {
 
-  #{util.class-generator(var.$abbr-place-items, $key)}
+  #{util.class-generator(config.$abbr-place-items, $key)}
   {
     place-items: $value;
   }
@@ -659,7 +667,7 @@
   auto: auto
 ) {
 
-  #{util.class-generator(var.$abbr-place-self, $key)}
+  #{util.class-generator(config.$abbr-place-self, $key)}
   {
     place-self: $value;
   }

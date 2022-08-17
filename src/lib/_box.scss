@@ -1,11 +1,11 @@
-@use '../base/var';
+@use '../config';
 @use '../utils/util';
 
 /* - Box 盒模型 -
 ************************* */
 
 // Padding
-@each $outer-key, $outer-value in var.$paddings {
+@each $outer-key, $outer-value in util.map-handler(config.$map-padding) {
 
   @each $inner-key, $inner-values in (
     '': (padding),
@@ -17,7 +17,8 @@
     'y': (padding-top, padding-bottom)) {
 
     @if $inner-key == '' {
-      #{util.class-generator(var.$abbr-padding, $outer-key)}
+
+      #{util.class-generator(config.$abbr-padding, $outer-key)}
       {
 
         @each $value in $inner-values {
@@ -25,9 +26,11 @@
         }
 
       }
+
     }
     @else {
-      #{util.class-generator(#{var.$abbr-padding + $inner-key}, $outer-key)}
+
+      #{util.class-generator(#{config.$abbr-padding + $inner-key}, $outer-key)}
       {
 
         @each $value in $inner-values {
@@ -35,6 +38,7 @@
         }
 
       }
+
     }
 
   }
@@ -42,7 +46,7 @@
 }
 
 // Margin
-@each $outer-key, $outer-value in var.$margins {
+@each $outer-key, $outer-value in util.map-handler(config.$map-margin) {
 
   @each $inner-key, $inner-values in (
     '': (margin),
@@ -56,7 +60,8 @@
     @if $outer-key == '' {
 
       @if $outer-key != 'auto' {
-        #{util.class-generator(#{'-' + var.$abbr-margin}, $outer-key)}
+
+        #{util.class-generator(#{'-' + config.$abbr-margin}, $outer-key)}
         {
 
           @each $value in $inner-values {
@@ -64,9 +69,10 @@
           }
 
         }
+
       }
 
-      #{util.class-generator(var.$abbr-margin, $outer-key)}
+      #{util.class-generator(config.$abbr-margin, $outer-key)}
       {
 
         @each $value in $inner-values {
@@ -79,7 +85,8 @@
     @else {
 
       @if $outer-key != 'auto' {
-        #{util.class-generator(#{'-' + var.$abbr-margin + $inner-key}, $outer-key)}
+
+        #{util.class-generator(#{'-' + config.$abbr-margin + $inner-key}, $outer-key)}
         {
 
           @each $value in $inner-values {
@@ -87,9 +94,10 @@
           }
 
         }
+
       }
 
-      #{util.class-generator(#{var.$abbr-margin + $inner-key}, $outer-key)}
+      #{util.class-generator(#{config.$abbr-margin + $inner-key}, $outer-key)}
       {
 
         @each $value in $inner-values {
@@ -103,9 +111,9 @@
 }
 
 // Width
-@each $key, $value in var.$widths {
+@each $key, $value in util.map-handler(config.$map-width) {
 
-  #{util.class-generator(var.$abbr-width, $key)}
+  #{util.class-generator(config.$abbr-width, $key)}
   {
     width: $value;
   }
@@ -113,9 +121,9 @@
 }
 
 // Min Width
-@each $key, $value in var.$minWidths {
+@each $key, $value in util.map-handler(config.$map-minWidth) {
 
-  #{util.class-generator(min, var.$abbr-width, $key)}
+  #{util.class-generator(min, config.$abbr-width, $key)}
   {
     min-width: $value;
   }
@@ -123,9 +131,9 @@
 }
 
 // Max Width
-@each $key, $value in var.$maxWidths {
+@each $key, $value in util.map-handler(config.$map-maxWidth) {
 
-  #{util.class-generator(max, var.$abbr-width, $key)}
+  #{util.class-generator(max, config.$abbr-width, $key)}
   {
     max-width: $value;
   }
@@ -133,9 +141,9 @@
 }
 
 // Height
-@each $key, $value in var.$heights {
+@each $key, $value in util.map-handler(config.$map-height) {
 
-  #{util.class-generator(var.$abbr-height, $key)}
+  #{util.class-generator(config.$abbr-height, $key)}
   {
     height: $value;
   }
@@ -143,9 +151,9 @@
 }
 
 // Min Height
-@each $key, $value in var.$minHeights {
+@each $key, $value in util.map-handler(config.$map-minHeight) {
 
-  #{util.class-generator(min, var.$abbr-height, $key)}
+  #{util.class-generator(min, config.$abbr-height, $key)}
   {
     min-height: $value;
   }
@@ -153,9 +161,9 @@
 }
 
 // Max Height
-@each $key, $value in var.$maxHeights {
+@each $key, $value in util.map-handler(config.$map-maxHeight) {
 
-  #{util.class-generator(max, var.$abbr-height, $key)}
+  #{util.class-generator(max, config.$abbr-height, $key)}
   {
     max-height: $value;
   }

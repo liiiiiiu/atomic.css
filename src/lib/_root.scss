@@ -1,7 +1,7 @@
-@use '../base/var';
+@use '../config';
 
 :root {
-  @each $key, $value in var.$color-hues {
+  @each $key, $value in config.$map-colors {
 
     @if ($key != inherit and $key != current and $key != '' + transparent) {
 

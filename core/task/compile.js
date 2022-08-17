@@ -14,6 +14,7 @@ const {
   rootDir,
   devDir,
   destDir,
+  sourceDir,
   sourceFileName,
   attempFileName,
   fscss
@@ -22,7 +23,7 @@ const {
 const {
   decorator,
   theme
-} = require(`../atom.config`)
+} = require(`../../atom.config`)
 
 // 将源码 sass 编译为 css 并输出
 function compileSource(cb) {
@@ -74,17 +75,6 @@ function compileAttemp(cb) {
   ], cb)
 }
 
-function parseKey(value) {
-  if (!value) return value
-
-  value = value + ''
-
-  value = value.replaceAll('.', '\\.')
-  value = value.replaceAll('/', '\\/')
-
-  return value
-}
-
 function parseValue(value) {
   if (['', '-', '_'].includes(value)) {
     return `'${value}'`
@@ -117,7 +107,7 @@ function parseDecoratorConfig(config) {
         parentKey = key
         parser(obj[key])
       } else {
-        content += (`$${parseKey(parentKey)}-${parseKey(key)}: ${parseValue(obj[key])};\n`)
+        content += (`$${parentKey}-${key}: ${parseValue(obj[key])};\n`)
       }
     })
   }
@@ -127,19 +117,19 @@ function parseDecoratorConfig(config) {
   return content
 }
 
-// theme 配置需要返回 sass 列表数据结构
+// 返回 sass map 数据结构
 function parseThemeConfig(config) {
   let content = ''
 
   Object.keys(config).forEach(outerKey => {
-    content += `$${outerKey}: (`
+    content += `$map-${outerKey}: (`
 
     if (typeof config[outerKey] === 'function') {
       config[outerKey] = config[outerKey](config)
     }
     Object.keys(config[outerKey]).forEach(innerKey => {
       let propValue = config[outerKey][innerKey]
-      content += (`'${parseKey(innerKey)}': ${parseValue(propValue)},\n`)
+      content += (`'${innerKey}': ${parseValue(propValue)},\n`)
     })
 
     content += ');\n'
@@ -148,7 +138,7 @@ function parseThemeConfig(config) {
   return content
 }
 
-// 编译 config 配置文件
+// 编译 config 配置文件为 sass 变量
 function compileConfig(cb) {
   if (!decorator || !theme) {
     cb()
@@ -163,20 +153,20 @@ function compileConfig(cb) {
 
     configContent += (decoratorConfigContent + '\n' + themeConfigContent)
 
-    let filePath = path.join(devDir, fscss('_config'))
+    let filePath = path.join(sourceDir, fscss('_config'))
     fs.writeFileSync(filePath, configContent, {
       flag: 'w'
     })
 
     pump([
       // 输入文件
-      gulp.src(path.join(devDir, fscss('_config'))),
+      gulp.src(path.join(sourceDir, fscss('_config'))),
 
       // 移除空行
       removeEmptyLines(),
 
       // 输出目录
-      gulp.dest(devDir),
+      gulp.dest(sourceDir),
     ], cb)
   }
 }

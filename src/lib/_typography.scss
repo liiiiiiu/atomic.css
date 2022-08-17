@@ -1,11 +1,11 @@
-@use '../base/var';
+@use '../config';
 @use '../utils/util';
 
 /* - Typography 字体排版 -
 ************************* */
 
 // Font Family
-#{util.class-generator(var.$abbr-font-family, sans)}
+#{util.class-generator(config.$abbr-font-family, sans)}
 {
   font-family: ui-sans-serif,
     system-ui,
@@ -23,7 +23,7 @@
     "Noto Color Emoji";
 }
 
-#{util.class-generator(var.$abbr-font-family, serif)}
+#{util.class-generator(config.$abbr-font-family, serif)}
 {
   font-family: ui-serif,
     Georgia,
@@ -33,7 +33,7 @@
     serif;
 }
 
-#{util.class-generator(var.$abbr-font-family, mono)}
+#{util.class-generator(config.$abbr-font-family, mono)}
 {
   font-family: ui-monospace,
     SFMono-Regular,
@@ -45,143 +45,95 @@
     monospace;
 }
 
-// // Font Size
-// @each $key, $value in (
-//   xs: (vrem(0.75), vrem(1)),
-//   sm: (vrem(0.875), vrem(1.25)),
-//   base: (vrem(1), vrem(1.5)),
-//   lg: (vrem(1.125), vrem(1.75)),
-//   xl: (vrem(1.25), vrem(1.75)),
-//   2xl: (vrem(1.5), vrem(2)),
-//   3xl: (vrem(1.875), vrem(2.25)),
-//   4xl: (vrem(2.25), vrem(2.5)),
-//   5xl: (vrem(3), 1),
-//   6xl: (vrem(3.75), 1),
-//   7xl: (vrem(4.5), 1),
-//   8xl: (vrem(6), 1),
-//   9xl: (vrem(8), 1)
-// ) {
-//   #{selector-decorator(connector-decorator(($atomic-font-size-name, $key)))}
-//   {
-//     font-size: nth($list: $value, $n: 1);
-//     line-height: nth($list: $value, $n: 2);
-//   }
-// }
+// Font Size
+@each $key, $value in util.map-handler(config.$map-fontSize) {
 
-// // Font Smoothing
-// #{selector-decorator(connector-decorator(($atomic-font-smoothing-name)))}
-// {
-//   -webkit-font-smoothing: antialiased;
-//   -moz-osx-font-smoothing: grayscale;
-// }
+  #{util.class-generator(config.$abbr-font-size, $key)}
+  {
+    font-size: $value;
+    line-height: map-get($map: util.map-handler(config.$map-fontSizeLineHeight), $key: $key);
+  }
 
-// #{selector-decorator(connector-decorator((subpixel, $atomic-font-smoothing-name)))}
-// {
-//   -webkit-font-smoothing: auto;
-//   -moz-osx-font-smoothing: auto;
-// }
+}
+
+// Font Smoothing
+#{util.class-generator(config.$abbr-font-smoothing)}
+{
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#{util.class-generator(subpixel, config.$abbr-font-smoothing)}
+{
+  -webkit-font-smoothing: auto;
+  -moz-osx-font-smoothing: auto;
+}
 
 // // Font Style
-// #{selector-decorator(connector-decorator(($atomic-font-style-name)))}
-// {
-//   font-style: italic;
-// }
+#{util.class-generator(config.$abbr-font-style)}
+{
+  font-style: italic;
+}
 
-// #{selector-decorator(connector-decorator(('not', $atomic-font-style-name)))}
-// {
-//   font-style: normal;
-// }
+#{util.class-generator('not', config.$abbr-font-style)}
+{
+  font-style: normal;
+}
 
-// // Font Weight
-// @each $key, $value in (
-//   thin: 100,
-//   extralight: 200,
-//   light: 300,
-//   normal: 400,
-//   medium: 500,
-//   semibold: 600,
-//   bold: 700,
-//   extrabold: 800,
-//   black: 900
-// ) {
-//   #{selector-decorator(connector-decorator(($atomic-font-weight-name, $key)))}
-//   {
-//     font-weight: $value;
-//   }
-// }
+// Font Weight
+@each $key, $value in util.map-handler(config.$map-fontWeight) {
 
-// // Letter Spacing
-// @each $key, $value in (
-//   tighter: -0.05em,
-//   tight: -0.025em,
-//   normal: 0em,
-//   wide: 0.025em,
-//   wider: 0.05em,
-//   widest: 0.1em,
-// ) {
-//   #{selector-decorator(connector-decorator(($atomic-letter-spacing-name, $key)))}
-//   {
-//     font-weight: $value;
-//   }
-// }
+  #{util.class-generator(config.$abbr-font-weight, $key)}
+  {
+    font-weight: $value;
+  }
 
-// // Line Height
-// @each $key, $value in (
-//   3: vrem(0.75),
-//   4: vrem(1),
-//   5: vrem(1.25),
-//   6: vrem(1.5),
-//   7: vrem(1.75),
-//   8: vrem(2),
-//   9: vrem(2.25),
-//   10: vrem(2.5),
-//   none: 1,
-//   tight: 1.25,
-//   snug: 1.375,
-//   normal: 1.5,
-//   relaxed: 1.625,
-//   loose: 2,
-// ) {
-//   #{selector-decorator(connector-decorator(($atomic-line-height-name, $key)))}
-//   {
-//     line-height: $value;
-//   }
-// }
+}
 
-// // List Style Type
-// #{selector-decorator(connector-decorator(($atomic-list-style-name, none)))}
-// {
-//   list-style-type: none;
-// }
+// Letter Spacing
+@each $key, $value in util.map-handler(config.$map-letterSpacing) {
 
-// #{selector-decorator(connector-decorator(($atomic-list-style-name, disc)))}
-// {
-//   list-style-type: disc;
-// }
+  #{util.class-generator(config.$abbr-letter-spacing, $key)}
+  {
+    letter-spacing: $value;
+  }
 
-// #{selector-decorator(connector-decorator(($atomic-list-style-name, decimal)))}
-// {
-//   list-style-type: decimal;
-// }
+}
 
-// // List Style Position
-// #{selector-decorator(connector-decorator(($atomic-list-style-name, inside)))}
-// {
-//   list-style-position: inside;
-// }
+// Line Height
+@each $key, $value in util.map-handler(config.$map-lineHeight) {
 
-// #{selector-decorator(connector-decorator(($atomic-list-style-name, outside)))}
-// {
-//   list-style-position: outside;
-// }
+  #{util.class-generator(config.$abbr-line-height, $key)}
+  {
+    line-height: $value;
+  }
 
-// // Text Align
-// @each $value in (left, center, right, justify) {
-//   #{selector-decorator(connector-decorator(($atomic-text-align-name, $value)))}
-//   {
-//     text-align: $value;
-//   }
-// }
+}
+
+// List Style Type
+@each $key, $value in util.map-handler(config.$map-listStyleType) {
+
+  #{util.class-generator(config.$abbr-list-style, $key)}
+  {
+    list-style-type: $value;
+  }
+
+}
+
+// Text Align
+@each $value in (
+  left,
+  center,
+  right,
+  justify
+) {
+
+  #{util.class-generator(config.$abbr-text-align, $value)}
+  {
+    text-align: $value;
+  }
+
+}
 
 // // Text Color
 // #{selector-decorator(connector-decorator(($atomic-text-color-name, transparent)))}

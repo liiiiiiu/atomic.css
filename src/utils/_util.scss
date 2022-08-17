@@ -1,4 +1,4 @@
-@use '../base/var';
+@use '../config';
 
 // 混合颜色
 // $color 需要被减淡的颜色
@@ -41,11 +41,11 @@
 }
 
 // 给类名打上选择器、前缀
-@function selector-decorator($name, $selector: '.', $prefix: var.$class-prefix) {
+@function selector-decorator($name, $selector: '.', $prefix: config.$class-prefix) {
   $_prefix: '';
 
   @if $prefix != '' {
-    $_prefix: $prefix + var.$class-connector;
+    $_prefix: $prefix + config.$class-connector;
   }
 
   @return $selector + $_prefix + $name;
@@ -77,9 +77,9 @@
 
   $list-len: length($list: $new-list);
 
-  $connector: var.$class-connector;
+  $connector: config.$class-connector;
 
-  $connectors: var.$class-connectors;
+  $connectors: config.$class-connectors;
 
   @if type-of($value: $connectors) == 'string' {
     $connectors: (unquote($string: $connectors));
@@ -87,7 +87,7 @@
 
   $connectors-len: 0;
 
-  @if var.$class-connector {
+  @if config.$class-connector {
     $connectors-len: length($list: $connectors);
   }
 
@@ -124,14 +124,54 @@
   @return selector-decorator(connector-decorator($list...));
 }
 
-// 在给定值后面添加单位（rem）
-@function vrem($value) {
-  @return #{$value + rem};
-}
-
 // 带透明度的颜色混合
 @function lighter-color($color, $opacity) {
   @return mix-color($color, percentage(calc($opacity / 10 / 100)));
+}
+
+@function backslash-escape($value) {
+  $dot-index: str-index($value, '.');
+
+  $slash-index: str-index($value, '/');
+
+  @if $dot-index != null {
+    @return unquote($string: str-insert(quote($string: $value), '\\', $dot-index));
+  }
+
+  @if $slash-index != null {
+    @return unquote($string: str-insert(quote($string: $value), '\\', $slash-index));
+  }
+
+
+  @return unquote($string: $value);
+}
+
+// 处理字典数据，对特殊字符进行转义
+@function map-handler($value, $ext-map: null) {
+
+  @if $value !=''and $value !=null and length($list: $value)>0 {
+    $keys: map-keys($map: $value);
+    $values: map-values($map: $value);
+    $index: 1;
+
+    $result: (backslash-escape(nth($list: $keys, $n: $index)): nth($list: $values, $n: $index));
+
+    $index: $index + 1;
+
+    @while $index <=length($list: $value) {
+      $result: map-merge($map1: $result, $map2: (backslash-escape(nth($list: $keys, $n: $index)): nth($list: $values, $n: $index)));
+
+      $index: $index + 1;
+    }
+
+    @if $ext-map !=null and length($list: $ext-map)>0 {
+      $result: map-merge($map1: $result, $map2: $ext-map);
+    }
+
+    @return $result;
+  }
+
+  @return ();
 }
 
 // Generator
