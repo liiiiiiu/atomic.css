@@ -14,7 +14,8 @@
     'b': (padding-bottom),
     'l': (padding-left),
     'x': (padding-right, padding-left),
-    'y': (padding-top, padding-bottom)) {
+    'y': (padding-top, padding-bottom)
+  ) {
 
     @if $inner-key == '' {
 
@@ -55,7 +56,8 @@
     'b': (margin-bottom),
     'l': (margin-left),
     'x': (margin-right, margin-left),
-    'y': (margin-top, margin-bottom)) {
+    'y': (margin-top, margin-bottom)
+  ) {
 
     @if $outer-key == '' {
 
@@ -166,6 +168,327 @@
   #{util.class-generator(max, config.$abbr-height, $key)}
   {
     max-height: $value;
+  }
+
+}
+
+// Border Radius
+@each $outer-key, $outer-value in util.map-handler(config.$map-borderRadius) {
+
+  @each $inner-key, $inner-values in (
+    '': (),
+    't': (top-left, top-right),
+    'r': (top-right, bottom-right),
+    'b': (bottom-right, bottom-left),
+    'l': (top-left, bottom-left),
+    'tl': (top-left),
+    'tr': (top-right),
+    'br': (bottom-right),
+    'bl': (bottom-left)
+  ) {
+
+    @if $inner-key == '' {
+
+      #{util.class-generator(config.$abbr-border-radius, $outer-key)}
+      {
+        border-radius: $outer-value;
+      }
+
+    }
+    @else {
+
+      #{util.class-generator(config.$abbr-border-radius, $inner-key, $outer-key)}
+      {
+
+        @each $value in $inner-values {
+          #{'border-'}#{$value}#{'-radius'}: $outer-value;
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+// Border Width
+@each $key, $value in util.map-handler(config.$map-borderWidth) {
+
+  #{util.class-generator(config.$abbr-border-width, $key)}
+  {
+    border-width: $value;
+  }
+
+}
+
+// Border Color
+@each $outer-key, $outer-value in util.map-handler(config.$map-borderColor) {
+
+  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+    #{util.class-generator(config.$abbr-border-color, $outer-key)}
+    {
+      border-color: $outer-value;
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-border-color, $outer-key)}
+    {
+      --border-opacity: 1;
+      border-color: rgba($color: $outer-value, $alpha: var(--border-opacity, 1));
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-border-color, $outer-key, $inner-key)}
+      {
+        --border-opacity: 1;
+        border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--border-opacity, 1));
+      }
+
+    }
+
+  }
+
+}
+
+// Border Color Opacity
+@each $key, $value in util.map-handler(config.$map-borderOpacity) {
+
+  #{util.class-generator(config.$abbr-border-opacity, $key)}
+  {
+    --border-opacity: #{$value};
+  }
+
+}
+
+// Border Style
+@each $value in (
+  solid,
+  dashed,
+  dotted,
+  double,
+  none
+) {
+
+  #{util.class-generator(config.$abbr-border-style, $value)}
+  {
+    border-style: #{$value};
+  }
+
+}
+
+// Divide Width
+@each $outer-key, $outer-value in util.map-handler(config.$map-borderWidth) {
+
+  @each $inner-value in (x, y) {
+
+    #{util.class-generator(config.$abbr-divide-width, $inner-value, $outer-key)} > * + *
+    {
+      @if $inner-value==x {
+        --divide-x-reverse: 0;
+        border-right-width: calc(#{$outer-value} * var(--divide-x-reverse));
+        border-left-width: calc(#{$outer-value} * calc(1 - var(--divide-x-reverse)));
+        border-top-width: 0;
+        border-bottom-width: 0;
+      }
+
+      @else {
+        --divide-y-reverse: 0;
+        border-top-width: calc(#{$outer-value} * calc(1 - var(--divide-y-reverse)));
+        border-bottom-width: calc(#{$outer-value} * var(--divide-y-reverse));
+        border-right-width: 0;
+        border-left-width: 0;
+      }
+    }
+
+  }
+
+}
+
+#{util.class-generator(config.$abbr-divide-width, x, reverse)} > * + *
+{
+  --divide-x-reverse: 1;
+}
+
+#{util.class-generator(config.$abbr-divide-width, y, reverse)} > * + *
+{
+  --divide-y-reverse: 1;
+}
+
+// Divide Color
+@each $outer-key, $outer-value in util.map-handler(config.$map-divideColor) {
+
+  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+    #{util.class-generator(config.$abbr-divide-color, $outer-key)} > * + *
+    {
+      border-color: $outer-value;
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-divide-color, $outer-key)} > * + *
+    {
+      --divide-opacity: 1;
+      border-color: rgba($color: $outer-value, $alpha: var(--divide-opacity, 1));
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-divide-color, $outer-key, $inner-key)} > * + *
+      {
+        --divide-opacity: 1;
+        border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--divide-opacity, 1));
+      }
+
+    }
+
+  }
+
+}
+
+// Divide Color Opacity
+@each $key, $value in util.map-handler(config.$map-divideOpacity) {
+
+  #{util.class-generator(config.$abbr-divide-opacity, $key)}
+  {
+    --divide-opacity: #{$value};
+  }
+
+}
+
+// Divide Style
+@each $value in (
+  solid,
+  dashed,
+  dotted,
+  double,
+  none
+) {
+
+  #{util.class-generator(config.$abbr-divide-style, $value)} > * + *
+  {
+    border-style: #{$value};
+  }
+
+}
+
+// Box Shadow
+@each $key, $value in (
+  '': 3px,
+  0: 0px,
+  1: 1px,
+  2: 2px,
+  4: 4px,
+  8: 8px
+) {
+
+  #{util.class-generator(config.$abbr-box-shadow, $key)}
+  {
+    box-shadow: var(--ring-inset) 0 0 0 calc(#{$value} + var(--ring-offset-width)) var(--ring-color);
+  }
+
+}
+
+#{util.class-generator(config.$abbr-box-shadow, inset)}
+{
+  --ring-inset: inset
+}
+
+// Box Shadow Color
+@each $outer-key, $outer-value in util.map-handler(config.$map-boxShadowColor) {
+
+  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+    #{util.class-generator(config.$abbr-box-shadow-color, $outer-key)}
+    {
+      --ring-color: #{$outer-value};
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-box-shadow-color, $outer-key)}
+    {
+      --ring-color: #{rgba($color: $outer-value, $alpha: var(--ring-opacity, 1))};
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-box-shadow-color, $outer-key, $inner-key)}
+      {
+        --ring-color: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--ring-opacity, 1))};
+      }
+
+    }
+
+  }
+
+}
+
+// Box Shadow Color Opacity
+@each $key, $value in util.map-handler(config.$map-boxShadowOpacity) {
+
+  #{util.class-generator(config.$abbr-box-shadow-opacity, $key)}
+  {
+    --ring-opacity: #{$value};
+  }
+
+}
+
+// Box Shadow Offset
+@each $key, $value in (
+  0: 0px,
+  1: 1px,
+  2: 2px,
+  4: 4px,
+  8: 8px
+) {
+
+  #{util.class-generator(config.$abbr-box-shadow-offset, $key)}
+  {
+    --ring-offset-width: #{$value};
+    box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
+  }
+
+}
+
+// Box Shadow Offset Color
+@each $outer-key, $outer-value in util.map-handler(config.$map-boxShadowColor) {
+
+  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+    #{util.class-generator(config.$abbr-box-shadow-offset-color, $outer-key)}
+    {
+      --ring-offset-color: #{$outer-value};
+      box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-box-shadow-offset-color, $outer-key)}
+    {
+      --ring-offset-color: #{$outer-value};
+      box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-box-shadow-offset-color, $outer-key, $inner-key)}
+      {
+
+        --ring-offset-color: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--ring-opacity, 1))};
+        box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
+      }
+
+    }
+
   }
 
 }

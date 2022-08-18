@@ -1,3 +1,4 @@
+@use '../config';
 @use '../utils/util';
 
 /* - Background 背景 -
@@ -40,10 +41,12 @@
   local,
   scroll
 ) {
-  #{selector-decorator(connector-decorator(($atomic-background-attachment-name, $value)))}
+
+  #{util.class-generator(config.$abbr-background-attachment, $value)}
   {
     @include background(attachment, $value);
   }
+
 }
 
 // Background Clip
@@ -53,92 +56,80 @@
   content: content-box,
   text: text
 ) {
-  #{selector-decorator(connector-decorator(($atomic-background-clip-name, $key)))}
+
+  #{util.class-generator(config.$abbr-background-clip, $key)}
   {
     @include background(clip, $value);
   }
+
 }
 
 // Background Color
+@each $outer-key, $outer-value in util.map-handler(config.$map-backgroundColor) {
 
-#{selector-decorator(connector-decorator(($atomic-background-color-name, transparent)))}
-{
-  @include background(color, transparent);
-}
+  // transparent 为内置关键字，加 ’‘ 转换为普通字符串
+  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
 
-#{selector-decorator(connector-decorator(($atomic-background-color-name, current)))}
-{
-  @include background(color, currentColor);
-}
-
-#{selector-decorator(connector-decorator(($atomic-background-color-name, black)))}
-{
-  #{$atomic-var-background-opacity-name}: 1;
-  @include background(color, rgba($color: $atomic-color-black-base, $alpha: var(#{$atomic-var-background-opacity-name}, 1)));
-}
-
-#{selector-decorator(connector-decorator(($atomic-background-color-name, white)))}
-{
-  #{$atomic-var-background-opacity-name}: 1;
-  @include background(color, rgba($color: $atomic-color-white-base, $alpha: var(#{$atomic-var-background-opacity-name}, 1)));
-}
-
-@each $color-key, $color-value in util.color-hues-generator() {
-  #{selector-decorator(connector-decorator(($atomic-background-color-name, $color-key)))}
-  {
-    #{$atomic-var-background-opacity-name}: 1;
-    @include background(color, rgba($color: $color-value, $alpha: var(#{$atomic-var-background-opacity-name}, 1)));
-  }
-
-  @each $opacity in util.color-brightness-generator() {
-    #{selector-decorator(connector-decorator(($atomic-background-color-name, $color-key, $opacity)))}
+    #{util.class-generator(config.$abbr-background-color, $outer-key)}
     {
-      #{$atomic-var-background-opacity-name}: 1;
-      @include background(color, rgba($color: lighter-color($color-value, $opacity), $alpha: var(#{$atomic-var-background-opacity-name}, 1)));
+      @include background(color, $outer-value);
     }
+
   }
+  @else {
+
+    #{util.class-generator(config.$abbr-background-color, $outer-key)}
+    {
+      --bg-opacity: 1;
+      @include background(color, rgba($color: $outer-value, $alpha: var(--bg-opacity, 1)));
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-background-color, $outer-key, $inner-key)}
+      {
+        --bg-opacity: 1;
+        @include background(color, rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--bg-opacity, 1)));
+      }
+
+    }
+
+  }
+
 }
 
 // Background Color Opacity
-@each $key, $value in util.opacities-generator() {
-  #{selector-decorator(connector-decorator(($atomic-background-opacity-name, $key)))}
+@each $key, $value in util.map-handler(config.$map-backgroundOpacity) {
+
+  #{util.class-generator(config.$abbr-background-opacity, $key)}
   {
-    #{$atomic-var-background-opacity-name}: #{$value};
+    --bg-opacity: #{$value};
   }
+
 }
 
 // Background Origin
-#{selector-decorator(connector-decorator(($atomic-background-origin-name, border)))}
-{
-  @include background(origin, border-box);
-}
+@each $key, $value in (
+  border: border-box,
+  padding: padding-box,
+  content: content-box
+) {
 
-#{selector-decorator(connector-decorator(($atomic-background-origin-name, padding)))}
-{
-  @include background(origin, padding-box);
-}
+  #{util.class-generator(config.$abbr-background-origin, $key)}
+  {
+    @include background(origin, $value);
+  }
 
-#{selector-decorator(connector-decorator(($atomic-background-origin-name, content)))}
-{
-  @include background(origin, content-box);
 }
 
 // Background Position
-@each $key, $value in (
-  bottom: bottom,
-  center: center,
-  left: left,
-  left-bottom: left bottom,
-  left-top: left top,
-  right: right,
-  right-bottom: right bottom,
-  right-top: right top,
-  top: top
-) {
-  #{selector-decorator(connector-decorator(($atomic-background-position-name, $key)))}
+@each $key, $value in util.map-handler(config.$map-backgroundPosition) {
+
+  #{util.class-generator(config.$abbr-background-position, $key)}
   {
     @include background(position, $value);
   }
+
 }
 
 // Background Repeat
@@ -150,182 +141,174 @@
   repeat-round: round,
   repeat-space: space
 ) {
-  #{selector-decorator(connector-decorator(($atomic-background-position-name, $key)))}
+
+  #{util.class-generator(config.$abbr-background-repeat, $key)}
   {
     @include background(repeat, $value);
   }
+
 }
 
 // Background Size
-@each $value in (
-  auto,
-  cover,
-  contain
-) {
-  #{selector-decorator(connector-decorator(($atomic-background-size-name, $value)))}
+@each $key, $value in util.map-handler(config.$map-backgroundSize) {
+
+  #{util.class-generator(config.$abbr-background-size, $key)}
   {
     @include background(size, $value);
   }
+
 }
 
 // Background Image
-#{selector-decorator(connector-decorator(($atomic-background-image-name, none)))}
-{
-  @include background(image, none);
-}
+@each $key, $value in util.map-handler(config.$map-backgroundImage) {
 
-@each $key, $value in (
-  t: top,
-  tr: top right,
-  r: right,
-  br: bottom right,
-  b: bottom,
-  bl: bottom left,
-  l: left,
-  tl: top left
-) {
-  #{selector-decorator(connector-decorator(($atomic-background-image-name, gradient, to, $key)))}
+  #{util.class-generator(config.$abbr-background-image, $key)}
   {
-    @include background(image, linear-gradient(to #{$value}, var($atomic-var-gradient-stops-name)));
+    @include background(image, $value);
   }
+
 }
 
 // Background Image Gradient Stops From
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, transparent)))}
-{
-  #{$atomic-var-gradient-from-name}: transparent;
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    var($atomic-var-gradient-to-name, rgba(0, 0, 0, 0));
-}
+@each $outer-key, $outer-value in config.$map-backgroundColor {
 
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, current)))}
-{
-  #{$atomic-var-gradient-from-name}: currentColor;
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    var($atomic-var-gradient-to-name, rgba(255, 255, 255, 0));
-}
+  @if $outer-key == inherit {}
+  @else if $outer-key == transparent + '' {
 
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, black)))}
-{
-  #{$atomic-var-gradient-from-name}: $atomic-color-black-base;
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    var($atomic-var-gradient-to-name, rgba($color: $atomic-color-black-base, $alpha: 0));
-}
-
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, white)))}
-{
-  #{$atomic-var-gradient-from-name}: $atomic-color-white-base;
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    var($atomic-var-gradient-to-name, rgba($color: $atomic-color-white-base, $alpha: 0));
-}
-
-@each $color-key, $color-value in util.color-hues-generator() {
-  #{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, $color-key)))}
-  {
-    #{$atomic-var-gradient-from-name}: $color-value;
-    #{$atomic-var-gradient-stops-name}:
-      var($atomic-var-gradient-from-name),
-      var($atomic-var-gradient-to-name, rgba($color: $color-value, $alpha: 0));
-  }
-
-  @each $opacity in util.color-brightness-generator() {
-    #{selector-decorator(connector-decorator(($atomic-background-image-gradient-from-name, $color-key, $opacity)))}
+    #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
     {
-      #{$atomic-var-gradient-from-name}:
-        rgba($color: lighter-color($color-value, $opacity), $alpha: 1);
-      #{$atomic-var-gradient-stops-name}:
-        var($atomic-var-gradient-from-name),
-        var($atomic-var-gradient-to-name, rgba($color: lighter-color($color-value, $opacity), $alpha: 0));
+      --gradient-from: transparent;
+      --gradient-stops:
+        var(--gradient-from),
+        var(--gradient-to, rgba(0, 0, 0, 0));
     }
+
   }
+  @else if $outer-key == current {
+
+    #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
+    {
+      --gradient-from: currentColor;
+      --gradient-stops:
+        var(--gradient-from),
+        var(--gradient-to, rgba(255, 255, 255, 0));
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
+    {
+      --gradient-from: #{$outer-value};
+      --gradient-stops:
+        var(--gradient-from),
+        var(--gradient-to, #{rgba($color: $outer-value, $alpha: 0)});
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key, $inner-key)}
+      {
+        --gradient-from: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)};
+        --gradient-stops:
+          var(--gradient-from),
+          var(--gradient-to, #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 0)});
+      }
+
+    }
+
+  }
+
 }
 
 // Background Image Gradient Stops Via
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, transparent)))}
-{
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    transparent,
-    var($atomic-var-gradient-to-name, rgba(0, 0, 0, 0));
-}
+@each $outer-key, $outer-value in config.$map-backgroundColor {
 
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, current)))}
-{
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    currentColor,
-    var($atomic-var-gradient-to-name, rgba(255, 255, 255, 0));
-}
+  @if $outer-key == inherit {}
+  @else if $outer-key == transparent + '' {
 
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, black)))}
-{
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    $atomic-color-black-base,
-    var($atomic-var-gradient-to-name, rgba($color: $atomic-color-black-base, $alpha: 0));
-}
-
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, white)))}
-{
-  #{$atomic-var-gradient-stops-name}:
-    var($atomic-var-gradient-from-name),
-    $atomic-color-white-base,
-    var($atomic-var-gradient-to-name, rgba($color: $atomic-color-white-base, $alpha: 0));
-}
-
-@each $color-key, $color-value in util.color-hues-generator() {
-  #{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, $color-key)))}
-  {
-    #{$atomic-var-gradient-stops-name}: var($atomic-var-gradient-from-name),
-    $color-value,
-    var($atomic-var-gradient-to-name, rgba($color: $color-value, $alpha: 0));
-  }
-
-  @each $opacity in util.color-brightness-generator() {
-    #{selector-decorator(connector-decorator(($atomic-background-image-gradient-via-name, $color-key, $opacity)))}
+    #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
     {
-      #{$atomic-var-gradient-stops-name}: var($atomic-var-gradient-from-name),
-      rgba($color: lighter-color($color-value, $opacity), $alpha: 1),
-      var($atomic-var-gradient-to-name, rgba($color: lighter-color($color-value, $opacity), $alpha: 0));
+      --gradient-stops:
+        var(--gradient-from),
+        transparent,
+        var(--gradient-to, rgba(0, 0, 0, 0));
     }
+
   }
+  @else if $outer-key == current {
+
+    #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
+    {
+      --gradient-stops:
+        var(--gradient-from),
+        currentColor,
+        var(--gradient-to, rgba(255, 255, 255, 0));
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
+    {
+      --gradient-stops:
+        var(--gradient-from),
+        #{$outer-value},
+        var(--gradient-to, #{rgba($color: $outer-value, $alpha: 0)});
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key, $inner-key)}
+      {
+        --gradient-stops:
+          var(--gradient-from),
+          #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)},
+          var(--gradient-to, #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 0)});
+      }
+
+    }
+
+  }
+
 }
 
 // Background Image Gradient Stops To
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, transparent)))}
-{
-  #{$atomic-var-gradient-to-name}: transparent;
-}
+@each $outer-key, $outer-value in config.$map-backgroundColor {
 
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, current)))}
-{
-  #{$atomic-var-gradient-to-name}: currentColor;
-}
+  @if $outer-key == inherit {}
+  @else if $outer-key == transparent + '' {
 
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, black)))}
-{
-  #{$atomic-var-gradient-to-name}: $atomic-color-black-base;
-}
-
-#{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, white)))}
-{
-  #{$atomic-var-gradient-to-name}: $atomic-color-white-base;
-}
-
-@each $color-key, $color-value in util.color-hues-generator() {
-  #{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, $color-key)))}
-  {
-    #{$atomic-var-gradient-to-name}: $color-value;
-  }
-
-  @each $opacity in util.color-brightness-generator() {
-    #{selector-decorator(connector-decorator(($atomic-background-image-gradient-to-name, $color-key, $opacity)))}
+    #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
     {
-      #{$atomic-var-gradient-to-name}: rgba($color: lighter-color($color-value, $opacity), $alpha: 1);
+      --gradient-to: transparent;
     }
+
   }
+  @else if $outer-key == current {
+
+    #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
+    {
+      --gradient-to: currentColor;
+    }
+
+  }
+  @else {
+
+    #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
+    {
+      --gradient-to: #{$outer-value};
+    }
+
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key, $inner-key)}
+      {
+        --gradient-to: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)};
+      }
+
+    }
+
+  }
+
 }

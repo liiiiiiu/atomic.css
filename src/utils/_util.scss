@@ -130,20 +130,25 @@
 }
 
 @function backslash-escape($value) {
-  $dot-index: str-index($value, '.');
+  @if type-of($value: $value) == 'string' {
 
-  $slash-index: str-index($value, '/');
+    $dot-index: str-index($value, '.');
 
-  @if $dot-index != null {
-    @return unquote($string: str-insert(quote($string: $value), '\\', $dot-index));
+    $slash-index: str-index($value, '/');
+
+    @if $dot-index !=null {
+      @return unquote($string: str-insert(quote($string: $value), '\\', $dot-index));
+    }
+
+    @if $slash-index !=null {
+      @return unquote($string: str-insert(quote($string: $value), '\\', $slash-index));
+    }
+
+    @return unquote($string: $value);
+
   }
 
-  @if $slash-index != null {
-    @return unquote($string: str-insert(quote($string: $value), '\\', $slash-index));
-  }
-
-
-  @return unquote($string: $value);
+  @return $value;
 }
 
 // 处理字典数据，对特殊字符进行转义
@@ -174,59 +179,16 @@
   @return ();
 }
 
-// Generator
-
-
-// 颜色明度数组生成器
-@function color-brightness-generator() {
-  @return (
-    50,
-    100,
-    200,
-    300,
-    400,
-    500,
-    600,
-    700,
-    800,
-    900
-  );
-}
-
-// 透明度数组生成器
-@function opacities-generator() {
-  @return (
-    0: 0,
-    5: 0.05,
-    10: 0.1,
-    20: 0.2,
-    30: 0.3,
-    40: 0.4,
-    50: 0.5,
-    60: 0.6,
-    70: 0.7,
-    75: 0.75,
-    80: 0.8,
-    90: 0.9,
-    95: 0.95,
-    100: 1
-  );
-}
-
-// 数字列表生成器
-@function number-list-generator($min: 0, $max: 100, $step: 1) {
-  $list: ();
-  $index: $min;
-
-  @while $index <= $max {
-    $list: append(
-      $list: $list,
-      $val: $index,
-      $separator: comma
-    );
-
-    $index: big($index, $step);
-  }
-
-  @return $list;
-}
+// 颜色明度数组
+$map-color-brightness: (
+  '50': 50,
+  '100': 100,
+  '200': 200,
+  '300': 300,
+  '400': 400,
+  '500': 500,
+  '600': 600,
+  '700': 700,
+  '800': 800,
+  '900': 900
+);

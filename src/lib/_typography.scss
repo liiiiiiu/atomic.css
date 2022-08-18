@@ -135,171 +135,172 @@
 
 }
 
-// // Text Color
-// #{selector-decorator(connector-decorator(($atomic-text-color-name, transparent)))}
-// {
-//   color: transparent;
-// }
+// Text Color
+@each $outer-key, $outer-value in util.map-handler(config.$map-textColor) {
 
-// #{selector-decorator(connector-decorator(($atomic-text-color-name, current)))}
-// {
-//   color: currentColor;
-// }
+  // transparent 为内置关键字，加 ’‘ 转换为普通字符串
+  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
 
-// #{selector-decorator(connector-decorator(($atomic-text-color-name, black)))}
-// {
-//   #{$atomic-var-text-opacity-name}: 1;
-//   color: rgba($color: $atomic-color-black-base, $alpha: var(#{$atomic-var-text-opacity-name}, 1));
-// }
+    #{util.class-generator(config.$abbr-text-color, $outer-key)}
+    {
+      color: $outer-value;
+    }
 
-// #{selector-decorator(connector-decorator(($atomic-text-color-name, white)))}
-// {
-//   #{$atomic-var-text-opacity-name}: 1;
-//   color: rgba($color: $atomic-color-white-base, $alpha: var(#{$atomic-var-text-opacity-name}, 1));
-// }
+  }
+  @else {
 
-// @each $color-key, $color-value in util.color-hues-generator() {
-//   #{selector-decorator(connector-decorator(($atomic-text-color-name, $color-key)))}
-//   {
-//     #{$atomic-var-text-opacity-name}: 1;
-//     color: rgba($color: $color-value, $alpha: var(#{$atomic-var-text-opacity-name}, 1));
-//   }
+    #{util.class-generator(config.$abbr-text-color, $outer-key)}
+    {
+      --text-opacity: 1;
+      color: rgba($color: $outer-value, $alpha: var(--text-opacity, 1));
+    }
 
-//   @each $opacity in util.color-brightness-generator() {
-//     #{selector-decorator(connector-decorator(($atomic-text-color-name, $color-key, $opacity)))}
-//     {
-//       #{$atomic-var-text-opacity-name}: 1;
-//       color: rgba($color: lighter-color($color-value, $opacity), $alpha: var(#{$atomic-var-text-opacity-name}, 1));
-//     }
-//   }
-// }
+    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
 
-// // Text Color Opacity
-// @each $key, $value in util.opacities-generator() {
-//   #{selector-decorator(connector-decorator(($atomic-text-opacity-name, $key)))}
-//   {
-//     #{$atomic-var-text-opacity-name}: #{$value};
-//   }
-// }
+      #{util.class-generator(config.$abbr-text-color, $outer-key, $inner-key)}
+      {
+        --text-opacity: 1;
+        color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--text-opacity, 1));
+      }
 
-// // Text Decoration
-// @each $key, $value in (
-//   underline: underline,
-//   line-through: line-through,
-//   no-underline: none
-// ) {
-//   #{selector-decorator(connector-decorator(($key)))}
-//   {
-//     text-decoration: $value;
-//   }
-// }
+    }
 
-// // Text Transform
-// @each $key, $value in (
-//   uppercase: uppercase,
-//   lowercase: lowercase,
-//   capitalize: capitalize,
-//   normal-case: none
-// ) {
-//   #{selector-decorator(connector-decorator(($key)))}
-//   {
-//     text-transform: $value;
-//   }
-// }
+  }
 
-// // Text Overflow
-// #{selector-decorator(connector-decorator((truncate)))}
-// {
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-// }
+}
 
-// #{selector-decorator(connector-decorator(($atomic-text-overflow-name, ellipsis)))}
-// {
-//   text-overflow: ellipsis;
-// }
+// Text Color Opacity
+@each $key, $value in util.map-handler(config.$map-textOpacity) {
 
-// #{selector-decorator(connector-decorator(($atomic-text-overflow-name, clip)))}
-// {
-//   text-overflow: clip;
-// }
+  #{util.class-generator(config.$abbr-text-opacity, $key)}
+  {
+    --text-opacity: #{$value};
+  }
 
-// // Line clamp
-// #{selector-decorator(connector-decorator(($atomic-line-clamp-name, 1)))} {
-//   width: 100%;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-// }
+}
 
-// %clamp-base {
-//   word-break: break-all;
-//   display: -webkit-box;
-//   -webkit-box-orient: vertical;
-//   overflow: hidden;
-// }
+// Text Decoration
+@each $key, $value in (
+  underline: underline,
+  line-through: line-through,
+  no-underline: none
+) {
 
-// $line-clamp-index: 2;
-// @while $line-clamp-index <= 6 {
-//   #{selector-decorator(#{connector-decorator(($atomic-line-clamp-name, $line-clamp-index))})} {
-//     @extend %clamp-base;
-//     -webkit-line-clamp: $line-clamp-index;
-//   }
-//   $line-clamp-index: util.big($line-clamp-index);
-// }
+  #{util.class-generator($key)}
+  {
+    text-decoration: $value;
+  }
 
-// // Vertical Align
-// @each $value in (
-//   baseline,
-//   top,
-//   middle,
-//   bottom,
-//   text-top,
-//   text-bottom
-// ) {
-//   #{selector-decorator(connector-decorator(($atomic-vertical-align-name, $value)))}
-//   {
-//     vertical-align: $value;
-//   }
-// }
+}
 
-// // White Space
-// @each $value in (
-//   normal,
-//   nowrap,
-//   pre,
-//   pre-line,
-//   pre-wrap
-// ) {
-//   #{selector-decorator(connector-decorator(($atomic-white-space-name, $value)))}
-//   {
-//     white-space: $value;
-//   }
-// }
+// Text Transform
+@each $key, $value in (
+  uppercase: uppercase,
+  lowercase: lowercase,
+  capitalize: capitalize,
+  normal-case: none
+) {
 
-// // Text Overflow
-// #{selector-decorator(connector-decorator((truncate)))}
-// {
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   white-space: nowrap;
-// }
+  #{util.class-generator($key)}
+  {
+    text-transform: $value;
+  }
 
-// // Word Break
-// #{selector-decorator(connector-decorator(($atomic-word-break-name, normal)))}
-// {
-//   overflow-wrap: normal;
-//   word-break: normal;
-// }
+}
 
-// #{selector-decorator(connector-decorator(($atomic-word-break-name, words)))}
-// {
-//   overflow-wrap: break-word;
-// }
+// Text Overflow
+#{util.class-generator(truncate)}
+{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
-// #{selector-decorator(connector-decorator(($atomic-word-break-name, all)))}
-// {
-//   word-break: break-all;
-// }
+#{util.class-generator(config.$abbr-text-overflow, ellipsis)}
+{
+  text-overflow: ellipsis;
+}
+
+#{util.class-generator(config.$abbr-text-overflow, clip)}
+{
+  text-overflow: clip;
+}
+
+// Line clamp
+#{util.class-generator(config.$abbr-line-clamp, 1)} {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%clamp-base {
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+$line-clamp-index: 2;
+
+@while $line-clamp-index <= 6 {
+
+  #{util.class-generator(config.$abbr-line-clamp, $line-clamp-index)} {
+    @extend %clamp-base;
+    -webkit-line-clamp: $line-clamp-index;
+  }
+
+  $line-clamp-index: util.big($line-clamp-index);
+
+}
+
+// Vertical Align
+@each $value in (
+  baseline,
+  top,
+  middle,
+  bottom,
+  text-top,
+  text-bottom
+) {
+
+  #{util.class-generator(config.$abbr-vertical-align, $value)}
+  {
+    vertical-align: $value;
+  }
+
+}
+
+// White Space
+@each $value in (
+  normal,
+  nowrap,
+  pre,
+  pre-line,
+  pre-wrap
+) {
+
+  #{util.class-generator(config.$abbr-white-space, $value)}
+  {
+    white-space: $value;
+  }
+
+}
+
+// Word Break
+#{util.class-generator(config.$abbr-word-break, normal)}
+{
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+#{util.class-generator(config.$abbr-word-break, words)}
+{
+  overflow-wrap: break-word;
+}
+
+#{util.class-generator(config.$abbr-word-break, all)}
+{
+  word-break: break-all;
+}
 
