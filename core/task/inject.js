@@ -49,7 +49,9 @@ function injectBreakpoint(content, mediaQueryContent) {
   // 正则会排除 :root @keyframes 等属性
   const rclassname = /([\n\s]+\.[\w\d\-\_\\.]+(,|\s*))/g
   const rprop = /\{([^}])*}/g
-  const rclass = /[\n\s]+\.[\w\d\-\_\\.]+(,|\s*){([^}])*}/g
+
+  // TODO: 匹配不对，classname和prop之间没匹配
+  const rclass = /[\n\s]+\.[\w\d\-\_\\.]+(,|\s*)\{([^}])*}/g
 
   const classNames = mediaQueryContent.match(rclassname)
 
@@ -60,7 +62,7 @@ function injectBreakpoint(content, mediaQueryContent) {
 
   if (!classNames || !classNames.length) return false
 
-  const props = mediaQueryContent.match(rprop)
+  const props = mediaQueryContent.match(rclass)
   const screens = theme.screens
 
   console.log('classNames', classNames.length, props.length, classNames, props)
