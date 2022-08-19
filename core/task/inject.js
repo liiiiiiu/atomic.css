@@ -46,7 +46,12 @@ function injectBreakpoint(content, mediaQueryContent) {
     || !(theme && theme.screens)
   ) return false
 
-  const classNames = mediaQueryContent.match(/([\n\s]+\.[\w\d\-\_\\.]+(,|\s*))/g)
+  // 正则会排除 :root @keyframes 等属性
+  const rclassname = /([\n\s]+\.[\w\d\-\_\\.]+(,|\s*))/g
+  const rprop = /\{([^}])*}/g
+  const rclass = /[\n\s]+\.[\w\d\-\_\\.]+(,|\s*){([^}])*}/g
+
+  const classNames = mediaQueryContent.match(rclassname)
 
   // const test = /([\n\s]+\.[\w\d\-\_\\.]+(,|\s*)){1,}/g
   // // console.log('test', '.-inset-x-2\.5 {'.match(test))
@@ -55,8 +60,12 @@ function injectBreakpoint(content, mediaQueryContent) {
 
   if (!classNames || !classNames.length) return false
 
-  const props = mediaQueryContent.match(/\{([^}])*}/g)
+  const props = mediaQueryContent.match(rprop)
   const screens = theme.screens
+
+  console.log('classNames', classNames.length, props.length, classNames, props)
+
+  return false
 
   let finalContent = content
   let mediaContent = ''
@@ -84,7 +93,7 @@ function injectBreakpoint(content, mediaQueryContent) {
 
       mediaContent += (className.slice(0, 1) + `${key}\\:` + className.slice(1))
       mediaContent += '\t'
-      mediaContent += props[j]
+      mediaContent += (props[j] ? props[j].match(rprop) : props[j])
       mediaContent += '\n'
 
       if (i >= classNames.length - 1) {

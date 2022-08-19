@@ -103,24 +103,6 @@
 
 }
 
-#{util.class-generator(config.$abbr-clear)}
-{
-  display: inline-table;
-}
-#{util.class-generator(config.$abbr-clear)}
-{
-  *zoom: 1;
-}
-#{util.class-generator(config.$abbr-clear)}::after
-{
-  content: " ";
-  display: block;
-  visibility: hidden;
-  height: 0;
-  font-size: 0;
-  clear: both;
-}
-
 // Isolation
 #{util.class-generator(isolate)}
 {
@@ -247,8 +229,8 @@
 
     @if $outer-key != 'auto' {
 
-      #{util.class-generator(#{'-'}#{
-          nth($list: $inner-key, $n: 1)},
+      #{util.class-generator('-',
+          nth($list: $inner-key, $n: 1),
           nth($list: $inner-key, $n: 2),
           $outer-key
         )

@@ -1,6 +1,7 @@
 @use '../config';
 
 :root {
+
   @each $key, $value in config.$map-colors {
 
     @if ($key != inherit and $key != current and $key != '' + transparent) {
@@ -10,4 +11,5 @@
     }
 
   }
+
 }

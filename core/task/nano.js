@@ -63,14 +63,9 @@ function minifyBreakpoint(cb) {
   const sourceFilePath = path.join(destDir, fcss(sourceFileName))
   const breakpointFilePath = path.join(destDir, fcss(breakpointFileName))
 
-  const content = fs.readFileSync(sourceFilePath, {
-    encoding: 'utf-8'
-  })
-  let mediaQueryContent = ''
-  if (content) {
-    // 删除头部 :root 样式
-    mediaQueryContent = content.slice(content.split('}', 1).join('').length + 1)
-  }
+  const content = fs.readFileSync(sourceFilePath, { encoding: 'utf-8' })
+
+  let mediaQueryContent = content
 
   if (!injectBreakpoint(content, mediaQueryContent)) {
     cb()

@@ -1,0 +1,60 @@
+@use '../config';
+@use '../utils/util';
+
+/* - Effects 盒模型效果 -
+************************* */
+
+// Box Shadow
+@each $key, $value in util.map-handler(config.$map-boxShadow) {
+
+  #{util.class-generator(config.$abbr-box-shadow, $key)}
+  {
+    box-shadow: $value;
+  }
+
+}
+
+// Opacity
+@each $key, $value in util.map-handler(config.$map-opacity) {
+
+  #{util.class-generator(config.$abbr-opacity, $key)}
+  {
+    opacity: $value;
+  }
+
+}
+
+// Mix Blend Mode
+// Background Blend Mode
+@each $outer-key, $outer-value in (
+  normal: normal,
+  multiply: multiply,
+  screen: screen,
+  overlay: overlay,
+  darken: darken,
+  lighten: lighten,
+  color-dodge: color-dodge,
+  color-burn: color-burn,
+  hard-light: hard-light,
+  soft-light: soft-light,
+  difference: difference,
+  exclusion: exclusion,
+  hue: hue,
+  saturation: saturation,
+  color: color,
+  luminosity: luminosity
+) {
+
+  @each $inner-key, $inner-value in (
+    config.$abbr-mix-blend-mode: mix-blend-mode,
+    config.$abbr-background-blend-mode: background-blend-mode
+  ) {
+
+    #{util.class-generator($inner-key, $outer-key)}
+    {
+      #{$inner-value}: #{$outer-value};
+    }
+
+  }
+
+}

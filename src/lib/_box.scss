@@ -63,7 +63,7 @@
 
       @if $outer-key != 'auto' {
 
-        #{util.class-generator(#{'-' + config.$abbr-margin}, $outer-key)}
+        #{util.class-generator('-', config.$abbr-margin, $outer-key)}
         {
 
           @each $value in $inner-values {
@@ -88,7 +88,7 @@
 
       @if $outer-key != 'auto' {
 
-        #{util.class-generator(#{'-' + config.$abbr-margin + $inner-key}, $outer-key)}
+        #{util.class-generator('-', config.$abbr-margin + $inner-key, $outer-key)}
         {
 
           @each $value in $inner-values {
@@ -374,121 +374,6 @@
   #{util.class-generator(config.$abbr-divide-style, $value)} > * + *
   {
     border-style: #{$value};
-  }
-
-}
-
-// Box Shadow
-@each $key, $value in (
-  '': 3px,
-  0: 0px,
-  1: 1px,
-  2: 2px,
-  4: 4px,
-  8: 8px
-) {
-
-  #{util.class-generator(config.$abbr-box-shadow, $key)}
-  {
-    box-shadow: var(--ring-inset) 0 0 0 calc(#{$value} + var(--ring-offset-width)) var(--ring-color);
-  }
-
-}
-
-#{util.class-generator(config.$abbr-box-shadow, inset)}
-{
-  --ring-inset: inset
-}
-
-// Box Shadow Color
-@each $outer-key, $outer-value in util.map-handler(config.$map-boxShadowColor) {
-
-  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
-
-    #{util.class-generator(config.$abbr-box-shadow-color, $outer-key)}
-    {
-      --ring-color: #{$outer-value};
-    }
-
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-box-shadow-color, $outer-key)}
-    {
-      --ring-color: #{rgba($color: $outer-value, $alpha: var(--ring-opacity, 1))};
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-box-shadow-color, $outer-key, $inner-key)}
-      {
-        --ring-color: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--ring-opacity, 1))};
-      }
-
-    }
-
-  }
-
-}
-
-// Box Shadow Color Opacity
-@each $key, $value in util.map-handler(config.$map-boxShadowOpacity) {
-
-  #{util.class-generator(config.$abbr-box-shadow-opacity, $key)}
-  {
-    --ring-opacity: #{$value};
-  }
-
-}
-
-// Box Shadow Offset
-@each $key, $value in (
-  0: 0px,
-  1: 1px,
-  2: 2px,
-  4: 4px,
-  8: 8px
-) {
-
-  #{util.class-generator(config.$abbr-box-shadow-offset, $key)}
-  {
-    --ring-offset-width: #{$value};
-    box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
-  }
-
-}
-
-// Box Shadow Offset Color
-@each $outer-key, $outer-value in util.map-handler(config.$map-boxShadowColor) {
-
-  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
-
-    #{util.class-generator(config.$abbr-box-shadow-offset-color, $outer-key)}
-    {
-      --ring-offset-color: #{$outer-value};
-      box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
-    }
-
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-box-shadow-offset-color, $outer-key)}
-    {
-      --ring-offset-color: #{$outer-value};
-      box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-box-shadow-offset-color, $outer-key, $inner-key)}
-      {
-
-        --ring-offset-color: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--ring-opacity, 1))};
-        box-shadow: 0 0 0 var(--ring-offset-width) var(--ring-offset-color), var(--ring-shadow);
-      }
-
-    }
-
   }
 
 }

@@ -1,0 +1,104 @@
+@use '../config';
+@use '../utils/util';
+
+/* - Animation 动画 -
+************************* */
+
+// Transition Property
+@each $key, $value in util.map-handler(config.$map-transitionProperty) {
+
+  #{util.class-generator(config.$abbr-transition-property, $key)}
+  {
+    transition-property: $value;
+
+    @if ($key != 'none') {
+      transition-timing-function: map-get($map: config.$map-transitionTimingFunction, $key: DEFAULT);
+      transition-duration: map-get($map: config.$map-transitionDuration, $key: DEFAULT);
+    }
+  }
+
+}
+
+// Transition Duration
+@each $key, $value in util.map-handler(config.$map-transitionDuration) {
+
+  #{util.class-generator(config.$abbr-transition-duration, $key)}
+  {
+    transition-duration: $value;
+  }
+
+}
+
+// Transition Timing Function
+@each $key, $value in util.map-handler(config.$map-transitionTimingFunction) {
+
+  #{util.class-generator(config.$abbr-transition-timing-function, $key)}
+  {
+    transition-timing-function: $value;
+  }
+
+}
+
+// Transition Delay
+@each $key, $value in util.map-handler(config.$map-transitionDelay) {
+
+  #{util.class-generator(config.$abbr-transition-delay, $key)} {
+    transition-delay: $value;
+  }
+
+}
+
+// Animate
+@each $key, $value in util.map-handler(config.$map-animation) {
+
+  #{util.class-generator(config.$abbr-animation, $key)} {
+    animation: $value;
+  }
+
+}
+
+@each $key, $value in util.map-handler(config.$map-animation) {
+
+  @if $key != none {
+
+    @keyframes #{$key} {
+
+      @if $key == spin {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @else if $key == ping {
+        75%, 100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      @else if $key == pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: .5;
+        }
+      }
+      @else if $key == bounce {
+        0%, 100% {
+          transform: translateY(-25%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+
+    }
+
+  }
+
+}

@@ -40,17 +40,6 @@
   @return $result;
 }
 
-// 给类名打上选择器、前缀
-@function selector-decorator($name, $selector: '.', $prefix: config.$class-prefix) {
-  $_prefix: '';
-
-  @if $prefix != '' {
-    $_prefix: $prefix + config.$class-connector;
-  }
-
-  @return $selector + $_prefix + $name;
-}
-
 // 给类名打上连接符
 @function connector-decorator($list...) {
   $result: '';
@@ -77,41 +66,35 @@
 
   $list-len: length($list: $new-list);
 
-  $connector: config.$class-connector;
+  $separator: '';
 
-  $connectors: config.$class-connectors;
+  $separators: config.$class-separators;
 
-  @if type-of($value: $connectors) == 'string' {
-    $connectors: (unquote($string: $connectors));
+  @if length($list: $separators) < 1 {
+    $separators: ('-')
   }
 
-  $connectors-len: 0;
+  $separator: nth($list: $separators, $n: 1);
 
-  @if config.$class-connector {
-    $connectors-len: length($list: $connectors);
-  }
-
-  @if $connectors-len > 0 {
-    $connector: nth($list: $connectors, $n: 1);
-  }
+  $separators-len: length($list: $separators);
 
   $index: 1;
 
   @while $index <= $list-len {
 
-    @if $connectors-len > 0 {
+    @if $separators-len > 0 {
 
-      @if $index <= $connectors-len {
-        $connector: nth($list: $connectors, $n: $index);
+      @if $index <= $separators-len {
+        $separator: nth($list: $separators, $n: $index);
       }
 
     }
 
     @if $index == $list-len {
-      $connector: '';
+      $separator: '';
     }
 
-    $result: $result + nth($list: $new-list, $n: $index) + $connector;
+    $result: $result + nth($list: $new-list, $n: $index) + $separator;
 
     $index: big($index);
 
@@ -120,8 +103,43 @@
   @return $result;
 }
 
-@function class-generator($list...) {
-  @return selector-decorator(connector-decorator($list...));
+@function class-generator($classes...) {
+  $selector: '.';
+
+  $prefix: config.$class-prefix;
+
+  $new-classes: ();
+
+  $first-class: nth($list: $classes, $n: 1);
+
+  $tag: '';
+
+  $index: 1;
+
+  // 兼容负数
+  @if $first-class == '-' {
+    $tag: $first-class;
+
+    $index: 2;
+  }
+
+  @while $index <= length($classes) {
+    $new-classes: append(
+      $list: $new-classes,
+      $val: nth($list: $classes, $n: $index),
+      $separator: comma
+    );
+
+    $index: big($index);
+  }
+
+  @return
+    $selector +
+    $tag +
+    connector-decorator(
+      $prefix,
+      $new-classes...
+    );
 }
 
 // 带透明度的颜色混合

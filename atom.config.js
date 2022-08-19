@@ -6,19 +6,14 @@ module.exports = {
     },
     class: {
       // CSS 公共前缀
-      // $class-prefix: 'my';
+      // prefix: 'my';
       // => .my-w-screen { width: 100vw; }
       prefix: '',
 
-      // CSS 单一连接符
-      // $class-connector: '_';
-      // => .w_screen { width: 100vw; }
-      connector: '-',
-
       // CSS 多连接符
-      // $class-connectors: ['_', '-'];
+      // separators: ['_', '-'];
       // => .max_w-full { max-width: 100%; }
-      connectors: [],
+      separators: ['-'],
     },
     // CSS 样式名缩写
     abbr: {
@@ -96,11 +91,15 @@ module.exports = {
       'divide-color': 'divide',
       'divide-opacity': 'divide-opacity',
       'divide-style': 'divide',
-      'box-shadow': 'ring',
-      'box-shadow-color': 'ring',
-      'box-shadow-opacity': 'ring-opacity',
-      'box-shadow-offset': 'ring-offset',
-      'box-shadow-offset-color': 'ring-offset',
+      'box-shadow': 'shadow',
+      opacity: 'opacity',
+      'mix-blend-mode': 'mix-blend',
+      'background-blend-mode': 'bg-blend',
+      'transition-property': 'transition',
+      'transition-duration': 'duration',
+      'transition-timing-function': 'ease',
+      'transition-delay': 'delay',
+      animation: 'animate'
     }
   },
   theme: {
@@ -592,8 +591,79 @@ module.exports = {
     divideColor: theme => theme.borderColor,
     divideOpacity: theme => theme.borderOpacity,
     divideWidth: theme => theme.borderWidth,
-    boxShadowColor: theme => theme.colors,
-    boxShadowOpacity: theme => theme.opacity,
+    boxShadow: {
+      sm: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+      DEFAULT: '0 1px 3px 0 rgb(0 0 0 / 0.1)',
+      md: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+      lg: '0 10px 15px -3px rgb(0 0 0 / 0.1)',
+      xl: '0 20px 25px -5px rgb(0 0 0 / 0.1)',
+      '2xl': '0 25px 50px -12px rgb(0 0 0 / 0.25)',
+      inner: 'inset 0 2px 4px 0 rgb(0 0 0 / 0.05)',
+      none: 'none',
+    },
+    animation: {
+      none: 'none',
+      spin: 'spin 1s linear infinite',
+      ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
+      pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      bounce: 'bounce 1s infinite',
+    },
+    transformOrigin: {
+      center: 'center',
+      top: 'top',
+      'top-right': 'top right',
+      right: 'right',
+      'bottom-right': 'bottom right',
+      bottom: 'bottom',
+      'bottom-left': 'bottom left',
+      left: 'left',
+      'top-left': 'top left',
+    },
+    transitionDelay: {
+      75: '75ms',
+      100: '100ms',
+      150: '150ms',
+      200: '200ms',
+      300: '300ms',
+      500: '500ms',
+      700: '700ms',
+      1000: '1000ms',
+    },
+    transitionDuration: {
+      DEFAULT: '150ms',
+      75: '75ms',
+      100: '100ms',
+      150: '150ms',
+      200: '200ms',
+      300: '300ms',
+      500: '500ms',
+      700: '700ms',
+      1000: '1000ms',
+    },
+    transitionProperty: {
+      none: 'none',
+      all: 'all',
+      opacity: 'opacity',
+      shadow: 'box-shadow',
+      transform: 'transform',
+    },
+    transitionTimingFunction: {
+      DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      linear: 'linear',
+      in: 'cubic-bezier(0.4, 0, 1, 1)',
+      out: 'cubic-bezier(0, 0, 0.2, 1)',
+      'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
+    },
+    translate: theme => ({
+      ...theme.spacing,
+      '1/2': '50%',
+      '1/3': '33.333333%',
+      '2/3': '66.666667%',
+      '1/4': '25%',
+      '2/4': '50%',
+      '3/4': '75%',
+      full: '100%',
+    }),
   }
 }
 
@@ -630,13 +700,6 @@ module.exports = {
 //   //     '7xl': '80rem',
 //   //   },
 
-//   //   animation: {
-//   //     none: 'none',
-//   //     spin: 'spin 1s linear infinite',
-//   //     ping: 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
-//   //     pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-//   //     bounce: 'bounce 1s infinite',
-//   //   },
 //   //   aspectRatio: {
 //   //     auto: 'auto',
 //   //     square: '1 / 1',
@@ -787,35 +850,6 @@ module.exports = {
 //   //     '11/12': '91.666667%',
 //   //     full: '100%',
 //   //   }),
-//   //   gradientColorStops: ({ theme }) => theme('colors'),
-//   //   keyframes: {
-//   //     spin: {
-//   //       to: {
-//   //         transform: 'rotate(360deg)',
-//   //       },
-//   //     },
-//   //     ping: {
-//   //       '75%, 100%': {
-//   //         transform: 'scale(2)',
-//   //         opacity: '0',
-//   //       },
-//   //     },
-//   //     pulse: {
-//   //       '50%': {
-//   //         opacity: '.5',
-//   //       },
-//   //     },
-//   //     bounce: {
-//   //       '0%, 100%': {
-//   //         transform: 'translateY(-25%)',
-//   //         animationTimingFunction: 'cubic-bezier(0.8,0,1,1)',
-//   //       },
-//   //       '50%': {
-//   //         transform: 'none',
-//   //         animationTimingFunction: 'cubic-bezier(0,0,0.2,1)',
-//   //       },
-//   //     },
-//   //   },
 //   //   placeholderColor: ({ theme }) => theme('colors'),
 //   //   placeholderOpacity: ({ theme }) => theme('opacity'),
 //   //   outlineColor: ({ theme }) => theme('colors'),
@@ -827,30 +861,6 @@ module.exports = {
 //   //     8: '8px',
 //   //   },
 //   //   outlineWidth: {
-//   //     0: '0px',
-//   //     1: '1px',
-//   //     2: '2px',
-//   //     4: '4px',
-//   //     8: '8px',
-//   //   },
-//   //   ringColor: ({ theme }) => ({
-//   //     DEFAULT: theme(`colors.blue.500`, '#3b82f6'),
-//   //     ...theme('colors'),
-//   //   }),
-//   //   ringOffsetColor: ({ theme }) => theme('colors'),
-//   //   ringOffsetWidth: {
-//   //     0: '0px',
-//   //     1: '1px',
-//   //     2: '2px',
-//   //     4: '4px',
-//   //     8: '8px',
-//   //   },
-//   //   ringOpacity: ({ theme }) => ({
-//   //     DEFAULT: '0.5',
-//   //     ...theme('opacity'),
-//   //   }),
-//   //   ringWidth: {
-//   //     DEFAULT: '3px',
 //   //     0: '0px',
 //   //     1: '1px',
 //   //     2: '2px',
@@ -932,65 +942,6 @@ module.exports = {
 //   //   },
 //   //   textIndent: ({ theme }) => ({
 //   //     ...theme('spacing'),
-//   //   }),
-//   //   transformOrigin: {
-//   //     center: 'center',
-//   //     top: 'top',
-//   //     'top-right': 'top right',
-//   //     right: 'right',
-//   //     'bottom-right': 'bottom right',
-//   //     bottom: 'bottom',
-//   //     'bottom-left': 'bottom left',
-//   //     left: 'left',
-//   //     'top-left': 'top left',
-//   //   },
-//   //   transitionDelay: {
-//   //     75: '75ms',
-//   //     100: '100ms',
-//   //     150: '150ms',
-//   //     200: '200ms',
-//   //     300: '300ms',
-//   //     500: '500ms',
-//   //     700: '700ms',
-//   //     1000: '1000ms',
-//   //   },
-//   //   transitionDuration: {
-//   //     DEFAULT: '150ms',
-//   //     75: '75ms',
-//   //     100: '100ms',
-//   //     150: '150ms',
-//   //     200: '200ms',
-//   //     300: '300ms',
-//   //     500: '500ms',
-//   //     700: '700ms',
-//   //     1000: '1000ms',
-//   //   },
-//   //   transitionProperty: {
-//   //     none: 'none',
-//   //     all: 'all',
-//   //     DEFAULT:
-//   //       'color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter',
-//   //     colors: 'color, background-color, border-color, text-decoration-color, fill, stroke',
-//   //     opacity: 'opacity',
-//   //     shadow: 'box-shadow',
-//   //     transform: 'transform',
-//   //   },
-//   //   transitionTimingFunction: {
-//   //     DEFAULT: 'cubic-bezier(0.4, 0, 0.2, 1)',
-//   //     linear: 'linear',
-//   //     in: 'cubic-bezier(0.4, 0, 1, 1)',
-//   //     out: 'cubic-bezier(0, 0, 0.2, 1)',
-//   //     'in-out': 'cubic-bezier(0.4, 0, 0.2, 1)',
-//   //   },
-//   //   translate: ({ theme }) => ({
-//   //     ...theme('spacing'),
-//   //     '1/2': '50%',
-//   //     '1/3': '33.333333%',
-//   //     '2/3': '66.666667%',
-//   //     '1/4': '25%',
-//   //     '2/4': '50%',
-//   //     '3/4': '75%',
-//   //     full: '100%',
 //   //   }),
 //   //   willChange: {
 //   //     auto: 'auto',

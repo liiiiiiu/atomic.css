@@ -1,7 +1,6 @@
 $use-normalize: true;
 $class-prefix: '';
-$class-connector: '-';
-$class-connectors: ();
+$class-separators: ('-', );
 $abbr-container: container;
 $abbr-box-decoration-break: decoration;
 $abbr-box-sizing: box;
@@ -76,11 +75,15 @@ $abbr-divide-width: divide;
 $abbr-divide-color: divide;
 $abbr-divide-opacity: divide-opacity;
 $abbr-divide-style: divide;
-$abbr-box-shadow: ring;
-$abbr-box-shadow-color: ring;
-$abbr-box-shadow-opacity: ring-opacity;
-$abbr-box-shadow-offset: ring-offset;
-$abbr-box-shadow-offset-color: ring-offset;
+$abbr-box-shadow: shadow;
+$abbr-opacity: opacity;
+$abbr-mix-blend-mode: mix-blend;
+$abbr-background-blend-mode: bg-blend;
+$abbr-transition-property: transition;
+$abbr-transition-duration: duration;
+$abbr-transition-timing-function: ease;
+$abbr-transition-delay: delay;
+$abbr-animation: animate;
 $map-screens: ('sm': 640px,
 'md': 768px,
 'lg': 1024px,
@@ -922,34 +925,102 @@ $map-divideWidth: ('0': 0px,
 '8': 8px,
 'DEFAULT': 1px,
 );
-$map-boxShadowColor: ('brand': #1890ff,
-'inherit': inherit,
-'current': currentColor,
-'transparent': transparent,
-'black': #000,
-'white': #fff,
-'gray': #111827,
-'red': #f5222d,
-'yellow': #fadb14,
-'green': #52c41a,
-'blue': #1890ff,
-'indigo': #312e81,
-'purple': #722ed1,
-'pink': #eb2f96,
+$map-boxShadow: ('sm': 0 1px 2px 0 rgb(0 0 0 / 0.05),
+'DEFAULT': 0 1px 3px 0 rgb(0 0 0 / 0.1),
+'md': 0 4px 6px -1px rgb(0 0 0 / 0.1),
+'lg': 0 10px 15px -3px rgb(0 0 0 / 0.1),
+'xl': 0 20px 25px -5px rgb(0 0 0 / 0.1),
+'2xl': 0 25px 50px -12px rgb(0 0 0 / 0.25),
+'inner': inset 0 2px 4px 0 rgb(0 0 0 / 0.05),
+'none': none,
 );
-$map-boxShadowOpacity: ('0': 0,
-'5': 0.05,
-'10': 0.1,
-'20': 0.2,
-'25': 0.25,
-'30': 0.3,
-'40': 0.4,
-'50': 0.5,
-'60': 0.6,
-'70': 0.7,
-'75': 0.75,
-'80': 0.8,
-'90': 0.9,
-'95': 0.95,
-'100': 1,
+$map-animation: ('none': none,
+'spin': spin 1s linear infinite,
+'ping': ping 1s cubic-bezier(0, 0, 0.2, 1) infinite,
+'pulse': pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite,
+'bounce': bounce 1s infinite,
+);
+$map-transformOrigin: ('center': center,
+'top': top,
+'top-right': top right,
+'right': right,
+'bottom-right': bottom right,
+'bottom': bottom,
+'bottom-left': bottom left,
+'left': left,
+'top-left': top left,
+);
+$map-transitionDelay: ('75': 75ms,
+'100': 100ms,
+'150': 150ms,
+'200': 200ms,
+'300': 300ms,
+'500': 500ms,
+'700': 700ms,
+'1000': 1000ms,
+);
+$map-transitionDuration: ('75': 75ms,
+'100': 100ms,
+'150': 150ms,
+'200': 200ms,
+'300': 300ms,
+'500': 500ms,
+'700': 700ms,
+'1000': 1000ms,
+'DEFAULT': 150ms,
+);
+$map-transitionProperty: ('none': none,
+'all': all,
+'opacity': opacity,
+'shadow': box-shadow,
+'transform': transform,
+);
+$map-transitionTimingFunction: ('DEFAULT': cubic-bezier(0.4, 0, 0.2, 1),
+'linear': linear,
+'in': cubic-bezier(0.4, 0, 1, 1),
+'out': cubic-bezier(0, 0, 0.2, 1),
+'in-out': cubic-bezier(0.4, 0, 0.2, 1),
+);
+$map-translate: ('0': 0px,
+'1': 0.25rem,
+'2': 0.5rem,
+'3': 0.75rem,
+'4': 1rem,
+'5': 1.25rem,
+'6': 1.5rem,
+'7': 1.75rem,
+'8': 2rem,
+'9': 2.25rem,
+'10': 2.5rem,
+'11': 2.75rem,
+'12': 3rem,
+'14': 3.5rem,
+'16': 4rem,
+'20': 5rem,
+'24': 6rem,
+'28': 7rem,
+'32': 8rem,
+'36': 9rem,
+'40': 10rem,
+'44': 11rem,
+'48': 12rem,
+'52': 13rem,
+'56': 14rem,
+'60': 15rem,
+'64': 16rem,
+'72': 18rem,
+'80': 20rem,
+'96': 24rem,
+'px': 1px,
+'0.5': 0.125rem,
+'1.5': 0.375rem,
+'2.5': 0.625rem,
+'3.5': 0.875rem,
+'1/2': 50%,
+'1/3': 33.333333%,
+'2/3': 66.666667%,
+'1/4': 25%,
+'2/4': 50%,
+'3/4': 75%,
+'full': 100%,
 );
