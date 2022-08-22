@@ -1,4 +1,17 @@
 @charset "UTF-8";
+:root {
+  --color-brand: #1890ff;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-gray: #111827;
+  --color-red: #f5222d;
+  --color-yellow: #fadb14;
+  --color-green: #52c41a;
+  --color-blue: #1890ff;
+  --color-indigo: #312e81;
+  --color-purple: #722ed1;
+  --color-pink: #eb2f96;
+}
 /* - Layout 布局 -
 ************************* */
 .container {
@@ -11232,6 +11245,173 @@
 }
 .to-pink-900 {
   --gradient-to: #ed44a1;
+}
+/* - Effects 盒模型效果 -
+************************* */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.shadow {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.shadow-xl {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.shadow-2xl {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.shadow-inner {
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.shadow-none {
+  box-shadow: none;
+}
+.opacity-0 {
+  opacity: 0;
+}
+.opacity-5 {
+  opacity: 0.05;
+}
+.opacity-10 {
+  opacity: 0.1;
+}
+.opacity-20 {
+  opacity: 0.2;
+}
+.opacity-25 {
+  opacity: 0.25;
+}
+.opacity-30 {
+  opacity: 0.3;
+}
+.opacity-40 {
+  opacity: 0.4;
+}
+.opacity-50 {
+  opacity: 0.5;
+}
+.opacity-60 {
+  opacity: 0.6;
+}
+.opacity-70 {
+  opacity: 0.7;
+}
+.opacity-75 {
+  opacity: 0.75;
+}
+.opacity-80 {
+  opacity: 0.8;
+}
+.opacity-90 {
+  opacity: 0.9;
+}
+.opacity-95 {
+  opacity: 0.95;
+}
+.opacity-100 {
+  opacity: 1;
+}
+.mix-blend-normal {
+  mix-blend-mode: normal;
+}
+.bg-blend-normal {
+  background-blend-mode: normal;
+}
+.mix-blend-multiply {
+  mix-blend-mode: multiply;
+}
+.bg-blend-multiply {
+  background-blend-mode: multiply;
+}
+.mix-blend-screen {
+  mix-blend-mode: screen;
+}
+.bg-blend-screen {
+  background-blend-mode: screen;
+}
+.mix-blend-overlay {
+  mix-blend-mode: overlay;
+}
+.bg-blend-overlay {
+  background-blend-mode: overlay;
+}
+.mix-blend-darken {
+  mix-blend-mode: darken;
+}
+.bg-blend-darken {
+  background-blend-mode: darken;
+}
+.mix-blend-lighten {
+  mix-blend-mode: lighten;
+}
+.bg-blend-lighten {
+  background-blend-mode: lighten;
+}
+.mix-blend-color-dodge {
+  mix-blend-mode: color-dodge;
+}
+.bg-blend-color-dodge {
+  background-blend-mode: color-dodge;
+}
+.mix-blend-color-burn {
+  mix-blend-mode: color-burn;
+}
+.bg-blend-color-burn {
+  background-blend-mode: color-burn;
+}
+.mix-blend-hard-light {
+  mix-blend-mode: hard-light;
+}
+.bg-blend-hard-light {
+  background-blend-mode: hard-light;
+}
+.mix-blend-soft-light {
+  mix-blend-mode: soft-light;
+}
+.bg-blend-soft-light {
+  background-blend-mode: soft-light;
+}
+.mix-blend-difference {
+  mix-blend-mode: difference;
+}
+.bg-blend-difference {
+  background-blend-mode: difference;
+}
+.mix-blend-exclusion {
+  mix-blend-mode: exclusion;
+}
+.bg-blend-exclusion {
+  background-blend-mode: exclusion;
+}
+.mix-blend-hue {
+  mix-blend-mode: hue;
+}
+.bg-blend-hue {
+  background-blend-mode: hue;
+}
+.mix-blend-saturation {
+  mix-blend-mode: saturation;
+}
+.bg-blend-saturation {
+  background-blend-mode: saturation;
+}
+.mix-blend-color {
+  mix-blend-mode: color;
+}
+.bg-blend-color {
+  background-blend-mode: color;
+}
+.mix-blend-luminosity {
+  mix-blend-mode: luminosity;
+}
+.bg-blend-luminosity {
+  background-blend-mode: luminosity;
 }
 /* - Animation 动画 -
 ************************* */
@@ -22534,6 +22714,171 @@
 .sm\:to-pink-900	{
   --gradient-to: #ed44a1;
 }
+.sm\:shadow-sm	{
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.sm\:shadow	{
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.sm\:shadow-md	{
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.sm\:shadow-lg	{
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.sm\:shadow-xl	{
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.sm\:shadow-2xl	{
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.sm\:shadow-inner	{
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.sm\:shadow-none	{
+  box-shadow: none;
+}
+.sm\:opacity-0	{
+  opacity: 0;
+}
+.sm\:opacity-5	{
+  opacity: 0.05;
+}
+.sm\:opacity-10	{
+  opacity: 0.1;
+}
+.sm\:opacity-20	{
+  opacity: 0.2;
+}
+.sm\:opacity-25	{
+  opacity: 0.25;
+}
+.sm\:opacity-30	{
+  opacity: 0.3;
+}
+.sm\:opacity-40	{
+  opacity: 0.4;
+}
+.sm\:opacity-50	{
+  opacity: 0.5;
+}
+.sm\:opacity-60	{
+  opacity: 0.6;
+}
+.sm\:opacity-70	{
+  opacity: 0.7;
+}
+.sm\:opacity-75	{
+  opacity: 0.75;
+}
+.sm\:opacity-80	{
+  opacity: 0.8;
+}
+.sm\:opacity-90	{
+  opacity: 0.9;
+}
+.sm\:opacity-95	{
+  opacity: 0.95;
+}
+.sm\:opacity-100	{
+  opacity: 1;
+}
+.sm\:mix-blend-normal	{
+  mix-blend-mode: normal;
+}
+.sm\:bg-blend-normal	{
+  background-blend-mode: normal;
+}
+.sm\:mix-blend-multiply	{
+  mix-blend-mode: multiply;
+}
+.sm\:bg-blend-multiply	{
+  background-blend-mode: multiply;
+}
+.sm\:mix-blend-screen	{
+  mix-blend-mode: screen;
+}
+.sm\:bg-blend-screen	{
+  background-blend-mode: screen;
+}
+.sm\:mix-blend-overlay	{
+  mix-blend-mode: overlay;
+}
+.sm\:bg-blend-overlay	{
+  background-blend-mode: overlay;
+}
+.sm\:mix-blend-darken	{
+  mix-blend-mode: darken;
+}
+.sm\:bg-blend-darken	{
+  background-blend-mode: darken;
+}
+.sm\:mix-blend-lighten	{
+  mix-blend-mode: lighten;
+}
+.sm\:bg-blend-lighten	{
+  background-blend-mode: lighten;
+}
+.sm\:mix-blend-color-dodge	{
+  mix-blend-mode: color-dodge;
+}
+.sm\:bg-blend-color-dodge	{
+  background-blend-mode: color-dodge;
+}
+.sm\:mix-blend-color-burn	{
+  mix-blend-mode: color-burn;
+}
+.sm\:bg-blend-color-burn	{
+  background-blend-mode: color-burn;
+}
+.sm\:mix-blend-hard-light	{
+  mix-blend-mode: hard-light;
+}
+.sm\:bg-blend-hard-light	{
+  background-blend-mode: hard-light;
+}
+.sm\:mix-blend-soft-light	{
+  mix-blend-mode: soft-light;
+}
+.sm\:bg-blend-soft-light	{
+  background-blend-mode: soft-light;
+}
+.sm\:mix-blend-difference	{
+  mix-blend-mode: difference;
+}
+.sm\:bg-blend-difference	{
+  background-blend-mode: difference;
+}
+.sm\:mix-blend-exclusion	{
+  mix-blend-mode: exclusion;
+}
+.sm\:bg-blend-exclusion	{
+  background-blend-mode: exclusion;
+}
+.sm\:mix-blend-hue	{
+  mix-blend-mode: hue;
+}
+.sm\:bg-blend-hue	{
+  background-blend-mode: hue;
+}
+.sm\:mix-blend-saturation	{
+  mix-blend-mode: saturation;
+}
+.sm\:bg-blend-saturation	{
+  background-blend-mode: saturation;
+}
+.sm\:mix-blend-color	{
+  mix-blend-mode: color;
+}
+.sm\:bg-blend-color	{
+  background-blend-mode: color;
+}
+.sm\:mix-blend-luminosity	{
+  mix-blend-mode: luminosity;
+}
+.sm\:bg-blend-luminosity	{
+  background-blend-mode: luminosity;
+}
 .sm\:transition-none	{
   transition-property: none;
 }
@@ -33725,6 +34070,171 @@
 }
 .md\:to-pink-900	{
   --gradient-to: #ed44a1;
+}
+.md\:shadow-sm	{
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.md\:shadow	{
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.md\:shadow-md	{
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.md\:shadow-lg	{
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.md\:shadow-xl	{
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.md\:shadow-2xl	{
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.md\:shadow-inner	{
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.md\:shadow-none	{
+  box-shadow: none;
+}
+.md\:opacity-0	{
+  opacity: 0;
+}
+.md\:opacity-5	{
+  opacity: 0.05;
+}
+.md\:opacity-10	{
+  opacity: 0.1;
+}
+.md\:opacity-20	{
+  opacity: 0.2;
+}
+.md\:opacity-25	{
+  opacity: 0.25;
+}
+.md\:opacity-30	{
+  opacity: 0.3;
+}
+.md\:opacity-40	{
+  opacity: 0.4;
+}
+.md\:opacity-50	{
+  opacity: 0.5;
+}
+.md\:opacity-60	{
+  opacity: 0.6;
+}
+.md\:opacity-70	{
+  opacity: 0.7;
+}
+.md\:opacity-75	{
+  opacity: 0.75;
+}
+.md\:opacity-80	{
+  opacity: 0.8;
+}
+.md\:opacity-90	{
+  opacity: 0.9;
+}
+.md\:opacity-95	{
+  opacity: 0.95;
+}
+.md\:opacity-100	{
+  opacity: 1;
+}
+.md\:mix-blend-normal	{
+  mix-blend-mode: normal;
+}
+.md\:bg-blend-normal	{
+  background-blend-mode: normal;
+}
+.md\:mix-blend-multiply	{
+  mix-blend-mode: multiply;
+}
+.md\:bg-blend-multiply	{
+  background-blend-mode: multiply;
+}
+.md\:mix-blend-screen	{
+  mix-blend-mode: screen;
+}
+.md\:bg-blend-screen	{
+  background-blend-mode: screen;
+}
+.md\:mix-blend-overlay	{
+  mix-blend-mode: overlay;
+}
+.md\:bg-blend-overlay	{
+  background-blend-mode: overlay;
+}
+.md\:mix-blend-darken	{
+  mix-blend-mode: darken;
+}
+.md\:bg-blend-darken	{
+  background-blend-mode: darken;
+}
+.md\:mix-blend-lighten	{
+  mix-blend-mode: lighten;
+}
+.md\:bg-blend-lighten	{
+  background-blend-mode: lighten;
+}
+.md\:mix-blend-color-dodge	{
+  mix-blend-mode: color-dodge;
+}
+.md\:bg-blend-color-dodge	{
+  background-blend-mode: color-dodge;
+}
+.md\:mix-blend-color-burn	{
+  mix-blend-mode: color-burn;
+}
+.md\:bg-blend-color-burn	{
+  background-blend-mode: color-burn;
+}
+.md\:mix-blend-hard-light	{
+  mix-blend-mode: hard-light;
+}
+.md\:bg-blend-hard-light	{
+  background-blend-mode: hard-light;
+}
+.md\:mix-blend-soft-light	{
+  mix-blend-mode: soft-light;
+}
+.md\:bg-blend-soft-light	{
+  background-blend-mode: soft-light;
+}
+.md\:mix-blend-difference	{
+  mix-blend-mode: difference;
+}
+.md\:bg-blend-difference	{
+  background-blend-mode: difference;
+}
+.md\:mix-blend-exclusion	{
+  mix-blend-mode: exclusion;
+}
+.md\:bg-blend-exclusion	{
+  background-blend-mode: exclusion;
+}
+.md\:mix-blend-hue	{
+  mix-blend-mode: hue;
+}
+.md\:bg-blend-hue	{
+  background-blend-mode: hue;
+}
+.md\:mix-blend-saturation	{
+  mix-blend-mode: saturation;
+}
+.md\:bg-blend-saturation	{
+  background-blend-mode: saturation;
+}
+.md\:mix-blend-color	{
+  mix-blend-mode: color;
+}
+.md\:bg-blend-color	{
+  background-blend-mode: color;
+}
+.md\:mix-blend-luminosity	{
+  mix-blend-mode: luminosity;
+}
+.md\:bg-blend-luminosity	{
+  background-blend-mode: luminosity;
 }
 .md\:transition-none	{
   transition-property: none;
@@ -44918,6 +45428,171 @@
 .lg\:to-pink-900	{
   --gradient-to: #ed44a1;
 }
+.lg\:shadow-sm	{
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.lg\:shadow	{
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.lg\:shadow-md	{
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.lg\:shadow-lg	{
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.lg\:shadow-xl	{
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.lg\:shadow-2xl	{
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.lg\:shadow-inner	{
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.lg\:shadow-none	{
+  box-shadow: none;
+}
+.lg\:opacity-0	{
+  opacity: 0;
+}
+.lg\:opacity-5	{
+  opacity: 0.05;
+}
+.lg\:opacity-10	{
+  opacity: 0.1;
+}
+.lg\:opacity-20	{
+  opacity: 0.2;
+}
+.lg\:opacity-25	{
+  opacity: 0.25;
+}
+.lg\:opacity-30	{
+  opacity: 0.3;
+}
+.lg\:opacity-40	{
+  opacity: 0.4;
+}
+.lg\:opacity-50	{
+  opacity: 0.5;
+}
+.lg\:opacity-60	{
+  opacity: 0.6;
+}
+.lg\:opacity-70	{
+  opacity: 0.7;
+}
+.lg\:opacity-75	{
+  opacity: 0.75;
+}
+.lg\:opacity-80	{
+  opacity: 0.8;
+}
+.lg\:opacity-90	{
+  opacity: 0.9;
+}
+.lg\:opacity-95	{
+  opacity: 0.95;
+}
+.lg\:opacity-100	{
+  opacity: 1;
+}
+.lg\:mix-blend-normal	{
+  mix-blend-mode: normal;
+}
+.lg\:bg-blend-normal	{
+  background-blend-mode: normal;
+}
+.lg\:mix-blend-multiply	{
+  mix-blend-mode: multiply;
+}
+.lg\:bg-blend-multiply	{
+  background-blend-mode: multiply;
+}
+.lg\:mix-blend-screen	{
+  mix-blend-mode: screen;
+}
+.lg\:bg-blend-screen	{
+  background-blend-mode: screen;
+}
+.lg\:mix-blend-overlay	{
+  mix-blend-mode: overlay;
+}
+.lg\:bg-blend-overlay	{
+  background-blend-mode: overlay;
+}
+.lg\:mix-blend-darken	{
+  mix-blend-mode: darken;
+}
+.lg\:bg-blend-darken	{
+  background-blend-mode: darken;
+}
+.lg\:mix-blend-lighten	{
+  mix-blend-mode: lighten;
+}
+.lg\:bg-blend-lighten	{
+  background-blend-mode: lighten;
+}
+.lg\:mix-blend-color-dodge	{
+  mix-blend-mode: color-dodge;
+}
+.lg\:bg-blend-color-dodge	{
+  background-blend-mode: color-dodge;
+}
+.lg\:mix-blend-color-burn	{
+  mix-blend-mode: color-burn;
+}
+.lg\:bg-blend-color-burn	{
+  background-blend-mode: color-burn;
+}
+.lg\:mix-blend-hard-light	{
+  mix-blend-mode: hard-light;
+}
+.lg\:bg-blend-hard-light	{
+  background-blend-mode: hard-light;
+}
+.lg\:mix-blend-soft-light	{
+  mix-blend-mode: soft-light;
+}
+.lg\:bg-blend-soft-light	{
+  background-blend-mode: soft-light;
+}
+.lg\:mix-blend-difference	{
+  mix-blend-mode: difference;
+}
+.lg\:bg-blend-difference	{
+  background-blend-mode: difference;
+}
+.lg\:mix-blend-exclusion	{
+  mix-blend-mode: exclusion;
+}
+.lg\:bg-blend-exclusion	{
+  background-blend-mode: exclusion;
+}
+.lg\:mix-blend-hue	{
+  mix-blend-mode: hue;
+}
+.lg\:bg-blend-hue	{
+  background-blend-mode: hue;
+}
+.lg\:mix-blend-saturation	{
+  mix-blend-mode: saturation;
+}
+.lg\:bg-blend-saturation	{
+  background-blend-mode: saturation;
+}
+.lg\:mix-blend-color	{
+  mix-blend-mode: color;
+}
+.lg\:bg-blend-color	{
+  background-blend-mode: color;
+}
+.lg\:mix-blend-luminosity	{
+  mix-blend-mode: luminosity;
+}
+.lg\:bg-blend-luminosity	{
+  background-blend-mode: luminosity;
+}
 .lg\:transition-none	{
   transition-property: none;
 }
@@ -56110,6 +56785,171 @@
 .xl\:to-pink-900	{
   --gradient-to: #ed44a1;
 }
+.xl\:shadow-sm	{
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.xl\:shadow	{
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.xl\:shadow-md	{
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.xl\:shadow-lg	{
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.xl\:shadow-xl	{
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.xl\:shadow-2xl	{
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.xl\:shadow-inner	{
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.xl\:shadow-none	{
+  box-shadow: none;
+}
+.xl\:opacity-0	{
+  opacity: 0;
+}
+.xl\:opacity-5	{
+  opacity: 0.05;
+}
+.xl\:opacity-10	{
+  opacity: 0.1;
+}
+.xl\:opacity-20	{
+  opacity: 0.2;
+}
+.xl\:opacity-25	{
+  opacity: 0.25;
+}
+.xl\:opacity-30	{
+  opacity: 0.3;
+}
+.xl\:opacity-40	{
+  opacity: 0.4;
+}
+.xl\:opacity-50	{
+  opacity: 0.5;
+}
+.xl\:opacity-60	{
+  opacity: 0.6;
+}
+.xl\:opacity-70	{
+  opacity: 0.7;
+}
+.xl\:opacity-75	{
+  opacity: 0.75;
+}
+.xl\:opacity-80	{
+  opacity: 0.8;
+}
+.xl\:opacity-90	{
+  opacity: 0.9;
+}
+.xl\:opacity-95	{
+  opacity: 0.95;
+}
+.xl\:opacity-100	{
+  opacity: 1;
+}
+.xl\:mix-blend-normal	{
+  mix-blend-mode: normal;
+}
+.xl\:bg-blend-normal	{
+  background-blend-mode: normal;
+}
+.xl\:mix-blend-multiply	{
+  mix-blend-mode: multiply;
+}
+.xl\:bg-blend-multiply	{
+  background-blend-mode: multiply;
+}
+.xl\:mix-blend-screen	{
+  mix-blend-mode: screen;
+}
+.xl\:bg-blend-screen	{
+  background-blend-mode: screen;
+}
+.xl\:mix-blend-overlay	{
+  mix-blend-mode: overlay;
+}
+.xl\:bg-blend-overlay	{
+  background-blend-mode: overlay;
+}
+.xl\:mix-blend-darken	{
+  mix-blend-mode: darken;
+}
+.xl\:bg-blend-darken	{
+  background-blend-mode: darken;
+}
+.xl\:mix-blend-lighten	{
+  mix-blend-mode: lighten;
+}
+.xl\:bg-blend-lighten	{
+  background-blend-mode: lighten;
+}
+.xl\:mix-blend-color-dodge	{
+  mix-blend-mode: color-dodge;
+}
+.xl\:bg-blend-color-dodge	{
+  background-blend-mode: color-dodge;
+}
+.xl\:mix-blend-color-burn	{
+  mix-blend-mode: color-burn;
+}
+.xl\:bg-blend-color-burn	{
+  background-blend-mode: color-burn;
+}
+.xl\:mix-blend-hard-light	{
+  mix-blend-mode: hard-light;
+}
+.xl\:bg-blend-hard-light	{
+  background-blend-mode: hard-light;
+}
+.xl\:mix-blend-soft-light	{
+  mix-blend-mode: soft-light;
+}
+.xl\:bg-blend-soft-light	{
+  background-blend-mode: soft-light;
+}
+.xl\:mix-blend-difference	{
+  mix-blend-mode: difference;
+}
+.xl\:bg-blend-difference	{
+  background-blend-mode: difference;
+}
+.xl\:mix-blend-exclusion	{
+  mix-blend-mode: exclusion;
+}
+.xl\:bg-blend-exclusion	{
+  background-blend-mode: exclusion;
+}
+.xl\:mix-blend-hue	{
+  mix-blend-mode: hue;
+}
+.xl\:bg-blend-hue	{
+  background-blend-mode: hue;
+}
+.xl\:mix-blend-saturation	{
+  mix-blend-mode: saturation;
+}
+.xl\:bg-blend-saturation	{
+  background-blend-mode: saturation;
+}
+.xl\:mix-blend-color	{
+  mix-blend-mode: color;
+}
+.xl\:bg-blend-color	{
+  background-blend-mode: color;
+}
+.xl\:mix-blend-luminosity	{
+  mix-blend-mode: luminosity;
+}
+.xl\:bg-blend-luminosity	{
+  background-blend-mode: luminosity;
+}
 .xl\:transition-none	{
   transition-property: none;
 }
@@ -67301,6 +68141,171 @@
 }
 .\2xl\:to-pink-900	{
   --gradient-to: #ed44a1;
+}
+.\2xl\:shadow-sm	{
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+.\2xl\:shadow	{
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.\2xl\:shadow-md	{
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.\2xl\:shadow-lg	{
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+.\2xl\:shadow-xl	{
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+.\2xl\:shadow-2xl	{
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+.\2xl\:shadow-inner	{
+  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+.\2xl\:shadow-none	{
+  box-shadow: none;
+}
+.\2xl\:opacity-0	{
+  opacity: 0;
+}
+.\2xl\:opacity-5	{
+  opacity: 0.05;
+}
+.\2xl\:opacity-10	{
+  opacity: 0.1;
+}
+.\2xl\:opacity-20	{
+  opacity: 0.2;
+}
+.\2xl\:opacity-25	{
+  opacity: 0.25;
+}
+.\2xl\:opacity-30	{
+  opacity: 0.3;
+}
+.\2xl\:opacity-40	{
+  opacity: 0.4;
+}
+.\2xl\:opacity-50	{
+  opacity: 0.5;
+}
+.\2xl\:opacity-60	{
+  opacity: 0.6;
+}
+.\2xl\:opacity-70	{
+  opacity: 0.7;
+}
+.\2xl\:opacity-75	{
+  opacity: 0.75;
+}
+.\2xl\:opacity-80	{
+  opacity: 0.8;
+}
+.\2xl\:opacity-90	{
+  opacity: 0.9;
+}
+.\2xl\:opacity-95	{
+  opacity: 0.95;
+}
+.\2xl\:opacity-100	{
+  opacity: 1;
+}
+.\2xl\:mix-blend-normal	{
+  mix-blend-mode: normal;
+}
+.\2xl\:bg-blend-normal	{
+  background-blend-mode: normal;
+}
+.\2xl\:mix-blend-multiply	{
+  mix-blend-mode: multiply;
+}
+.\2xl\:bg-blend-multiply	{
+  background-blend-mode: multiply;
+}
+.\2xl\:mix-blend-screen	{
+  mix-blend-mode: screen;
+}
+.\2xl\:bg-blend-screen	{
+  background-blend-mode: screen;
+}
+.\2xl\:mix-blend-overlay	{
+  mix-blend-mode: overlay;
+}
+.\2xl\:bg-blend-overlay	{
+  background-blend-mode: overlay;
+}
+.\2xl\:mix-blend-darken	{
+  mix-blend-mode: darken;
+}
+.\2xl\:bg-blend-darken	{
+  background-blend-mode: darken;
+}
+.\2xl\:mix-blend-lighten	{
+  mix-blend-mode: lighten;
+}
+.\2xl\:bg-blend-lighten	{
+  background-blend-mode: lighten;
+}
+.\2xl\:mix-blend-color-dodge	{
+  mix-blend-mode: color-dodge;
+}
+.\2xl\:bg-blend-color-dodge	{
+  background-blend-mode: color-dodge;
+}
+.\2xl\:mix-blend-color-burn	{
+  mix-blend-mode: color-burn;
+}
+.\2xl\:bg-blend-color-burn	{
+  background-blend-mode: color-burn;
+}
+.\2xl\:mix-blend-hard-light	{
+  mix-blend-mode: hard-light;
+}
+.\2xl\:bg-blend-hard-light	{
+  background-blend-mode: hard-light;
+}
+.\2xl\:mix-blend-soft-light	{
+  mix-blend-mode: soft-light;
+}
+.\2xl\:bg-blend-soft-light	{
+  background-blend-mode: soft-light;
+}
+.\2xl\:mix-blend-difference	{
+  mix-blend-mode: difference;
+}
+.\2xl\:bg-blend-difference	{
+  background-blend-mode: difference;
+}
+.\2xl\:mix-blend-exclusion	{
+  mix-blend-mode: exclusion;
+}
+.\2xl\:bg-blend-exclusion	{
+  background-blend-mode: exclusion;
+}
+.\2xl\:mix-blend-hue	{
+  mix-blend-mode: hue;
+}
+.\2xl\:bg-blend-hue	{
+  background-blend-mode: hue;
+}
+.\2xl\:mix-blend-saturation	{
+  mix-blend-mode: saturation;
+}
+.\2xl\:bg-blend-saturation	{
+  background-blend-mode: saturation;
+}
+.\2xl\:mix-blend-color	{
+  mix-blend-mode: color;
+}
+.\2xl\:bg-blend-color	{
+  background-blend-mode: color;
+}
+.\2xl\:mix-blend-luminosity	{
+  mix-blend-mode: luminosity;
+}
+.\2xl\:bg-blend-luminosity	{
+  background-blend-mode: luminosity;
 }
 .\2xl\:transition-none	{
   transition-property: none;
