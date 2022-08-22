@@ -1,4 +1,4 @@
-$use-normalize: false;
+$use-normalize: true;
 $class-prefix: '';
 $class-separators: ('-', );
 $abbr-container: container;
@@ -50,6 +50,7 @@ $abbr-text-align: text;
 $abbr-text-color: text;
 $abbr-text-opacity: text-opacity;
 $abbr-text-overflow: overflow;
+$abbr-text-indent: text-indent;
 $abbr-line-clamp: line-clamp;
 $abbr-vertical-align: align;
 $abbr-white-space: whitespace;
@@ -84,6 +85,18 @@ $abbr-transition-duration: duration;
 $abbr-transition-timing-function: ease;
 $abbr-transition-delay: delay;
 $abbr-animation: animate;
+$abbr-transform: transform;
+$abbr-transform-origin: origin;
+$abbr-scale: scale;
+$abbr-rotate: rotate;
+$abbr-translate: translate;
+$abbr-skew: skew;
+$abbr-appearance: appearance;
+$abbr-cursor: cursor;
+$abbr-outline: outline;
+$abbr-pointer-events: pointer-events;
+$abbr-resize: resize;
+$abbr-user-select: select;
 $map-screens: ('sm': 640px,
 'md': 768px,
 'lg': 1024px,
@@ -703,6 +716,42 @@ $map-listStyleType: ('none': none,
 'disc': disc,
 'decimal': decimal,
 );
+$map-textIndent: ('0': 0px,
+'1': 0.25rem,
+'2': 0.5rem,
+'3': 0.75rem,
+'4': 1rem,
+'5': 1.25rem,
+'6': 1.5rem,
+'7': 1.75rem,
+'8': 2rem,
+'9': 2.25rem,
+'10': 2.5rem,
+'11': 2.75rem,
+'12': 3rem,
+'14': 3.5rem,
+'16': 4rem,
+'20': 5rem,
+'24': 6rem,
+'28': 7rem,
+'32': 8rem,
+'36': 9rem,
+'40': 10rem,
+'44': 11rem,
+'48': 12rem,
+'52': 13rem,
+'56': 14rem,
+'60': 15rem,
+'64': 16rem,
+'72': 18rem,
+'80': 20rem,
+'96': 24rem,
+'px': 1px,
+'0.5': 0.125rem,
+'1.5': 0.375rem,
+'2.5': 0.625rem,
+'3.5': 0.875rem,
+);
 $map-opacity: ('0': 0,
 '5': 0.05,
 '10': 0.1,
@@ -1023,4 +1072,75 @@ $map-translate: ('0': 0px,
 '2/4': 50%,
 '3/4': 75%,
 'full': 100%,
+);
+$map-rotate: ('0': 0deg,
+'1': 1deg,
+'2': 2deg,
+'3': 3deg,
+'6': 6deg,
+'12': 12deg,
+'45': 45deg,
+'90': 90deg,
+'180': 180deg,
+);
+$map-saturate: ('0': 0,
+'50': .5,
+'100': 1,
+'150': 1.5,
+'200': 2,
+);
+$map-scale: ('0': 0,
+'50': .5,
+'75': .75,
+'90': .9,
+'95': .95,
+'100': 1,
+'105': 1.05,
+'110': 1.1,
+'125': 1.25,
+'150': 1.5,
+);
+$map-skew: ('0': 0deg,
+'1': 1deg,
+'2': 2deg,
+'3': 3deg,
+'6': 6deg,
+'12': 12deg,
+);
+$map-cursor: ('auto': auto,
+'default': default,
+'pointer': pointer,
+'wait': wait,
+'text': text,
+'move': move,
+'help': help,
+'not-allowed': not-allowed,
+'none': none,
+'context-menu': context-menu,
+'progress': progress,
+'cell': cell,
+'crosshair': crosshair,
+'vertical-text': vertical-text,
+'alias': alias,
+'copy': copy,
+'no-drop': no-drop,
+'grab': grab,
+'grabbing': grabbing,
+'all-scroll': all-scroll,
+'col-resize': col-resize,
+'row-resize': row-resize,
+'n-resize': n-resize,
+'e-resize': e-resize,
+'s-resize': s-resize,
+'w-resize': w-resize,
+'ne-resize': ne-resize,
+'nw-resize': nw-resize,
+'se-resize': se-resize,
+'sw-resize': sw-resize,
+'ew-resize': ew-resize,
+'ns-resize': ns-resize,
+'nesw-resize': nesw-resize,
+'nwse-resize': nwse-resize,
+'zoom-in': zoom-in,
+'zoom-out': zoom-out,
 );

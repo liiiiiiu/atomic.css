@@ -304,3 +304,12 @@ $line-clamp-index: 2;
   word-break: break-all;
 }
 
+// Text Indent
+@each $key, $value in util.map-handler(config.$map-textIndent) {
+
+  #{util.class-generator(config.$abbr-text-indent, $key)}
+  {
+    text-indent: $value;
+  }
+
+}

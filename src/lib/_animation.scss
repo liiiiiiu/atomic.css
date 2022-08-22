@@ -57,6 +57,106 @@
 
 }
 
+// Transform
+#{util.class-generator(config.$abbr-transform)} {
+  --translate-x: 0;
+  --translate-y: 0;
+  --rotate: 0;
+  --skew-x: 0;
+  --skew-y: 0;
+  --scale-x: 1;
+  --scale-y: 1;
+  transform: translateX(var(--translate-x)) translateY(var(--translate-y)) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+}
+
+#{util.class-generator(config.$abbr-transform, gpu)} {
+  --translate-x: 0;
+  --translate-y: 0;
+  --rotate: 0;
+  --skew-x: 0;
+  --skew-y: 0;
+  --scale-x: 1;
+  --scale-y: 1;
+  transform: translate3d(var(--translate-x), var(--translate-y), 0) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+}
+
+// Transform Origin
+@each $key, $value in util.map-handler(config.$map-transformOrigin) {
+
+  #{util.class-generator(config.$abbr-transform-origin, $key)} {
+    transform-origin: $value;
+  }
+
+}
+
+// Scale
+@each $outer-key, $outer-value in util.map-handler(config.$map-scale) {
+
+  @each $inner-value in ('', x, y) {
+
+    #{util.class-generator(config.$abbr-scale, $inner-value, $outer-key)} {
+
+      @if $inner-value == '' {
+        --scale-x: #{$outer-value};
+        --scale-y: #{$outer-value};
+      }
+      @else {
+        #{'--scale-'}#{$inner-value}: #{$outer-value};
+      }
+
+    }
+
+  }
+
+}
+
+// Rotate
+@each $key, $value in util.map-handler(config.$map-rotate) {
+
+  #{util.class-generator(config.$abbr-rotate, $key)} {
+    --rotate: #{$value};
+  }
+
+  #{util.class-generator('-', config.$abbr-rotate, $key)} {
+    --rotate: #{'-'}#{$value};
+  }
+}
+
+// Scale
+@each $outer-key, $outer-value in util.map-handler(config.$map-translate) {
+
+  @each $inner-value in (x, y) {
+
+    #{util.class-generator(config.$abbr-translate, $inner-value, $outer-key)} {
+      #{'--translate-'}#{$inner-value}: #{$outer-value};
+    }
+
+    #{util.class-generator('-', config.$abbr-translate, $inner-value, $outer-key)} {
+      #{'--translate-'}#{$inner-value}: #{'-'}#{$outer-value};
+    }
+
+  }
+
+}
+
+// Scale
+@each $outer-key, $outer-value in util.map-handler(config.$map-skew) {
+
+  @each $inner-value in (x, y) {
+
+    #{util.class-generator(config.$abbr-skew, $inner-value, $outer-key)} {
+      #{'--skew-'}#{$inner-value}: #{$outer-value};
+    }
+
+    #{util.class-generator('-', config.$abbr-skew, $inner-value, $outer-key)} {
+      #{'--skew-'}#{$inner-value}: #{'-'}#{$outer-value};
+    }
+
+  }
+
+}
+
+// @keyframes
 @each $key, $value in util.map-handler(config.$map-animation) {
 
   @if $key != none {
@@ -102,3 +202,4 @@
   }
 
 }
+

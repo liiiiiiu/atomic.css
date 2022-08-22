@@ -1,0 +1,78 @@
+@use '../config';
+@use '../utils/util';
+
+/* - Interaction 交互 -
+************************* */
+
+// Appearance
+#{util.class-generator(config.$abbr-appearance, none)} {
+  appearance: none;
+}
+
+// Cursor
+@each $key, $value in config.$map-cursor {
+
+  #{util.class-generator(config.$abbr-cursor, $key)}
+  {
+    cursor: $value;
+  }
+
+}
+
+// Outline
+@each $key, $value in (
+  none: transparent + '',
+  white: white,
+  black: black
+) {
+
+  #{util.class-generator(config.$abbr-outline, $key)}
+  {
+    outline: 2px solid #{$value};
+    outline-offset: 2px;
+  }
+
+}
+
+// Pointer Events
+@each $key, $value in (
+  none: none,
+  auto: auto
+) {
+
+  #{util.class-generator(config.$abbr-pointer-events, $key)}
+  {
+    pointer-events: $value;
+  }
+
+}
+
+// Resize
+@each $key, $value in (
+  none: none,
+  x: horizontal,
+  y: vertical,
+  '': both
+) {
+
+  #{util.class-generator(config.$abbr-resize, $key)}
+  {
+    resize: $value;
+  }
+
+}
+
+// Resize
+@each $key, $value in (
+  none: none,
+  text: text,
+  all: all,
+  auto: auto
+) {
+
+  #{util.class-generator(config.$abbr-user-select, $key)}
+  {
+    user-select: $value;
+  }
+
+}
