@@ -11,7 +11,10 @@ const {
 } = require('./clean')
 
 const {
-  injectAttemp
+  injectAttemp,
+  injectBreakpoint,
+  injectNormalize2Breakpoint,
+  injectNormalize2Source
 } = require('./inject')
 
 const {
@@ -42,7 +45,13 @@ function watchSourceChange(cb) {
 
       cleanAttemp,
 
+      injectBreakpoint,
+
+      injectNormalize2Breakpoint,
+
       minifyBreakpoint,
+
+      injectNormalize2Source,
 
       minifySource
     )

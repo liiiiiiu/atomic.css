@@ -17,10 +17,6 @@ const {
   fcss
 } = require('./base')
 
-const {
-  injectBreakpoint
-} = require('./inject')
-
 // 压缩编译后的源码样式并输出到 dist 目录
 function minifySource(cb) {
   pump([
@@ -60,24 +56,9 @@ function minifySource(cb) {
 
 // 压缩生成的断点样式并输出到 dist 目录
 function minifyBreakpoint(cb) {
-  const sourceFilePath = path.join(destDir, fcss(sourceFileName))
   const breakpointFilePath = path.join(destDir, fcss(breakpointFileName))
 
-  const content = fs.readFileSync(sourceFilePath, {
-    encoding: 'utf-8'
-  })
-  let mediaQueryContent = content
-  if (content) {
-    // 删除头部 :root 样式
-    mediaQueryContent = content.slice(content.split('}', 1).join('').length + 1)
-
-    // mediaQueryContent = content.replace(/:root {[^}]*/g, '')
-
-
-    // console.log('mediaQueryContent', mediaQueryContent)
-  }
-
-  if (!injectBreakpoint(content, mediaQueryContent)) {
+  if (!fs.existsSync(breakpointFilePath)) {
     cb()
   } else {
     pump([

@@ -1,10 +1,14 @@
 const gulp = require('gulp')
 const pump = require('pump')
 const concat = require('gulp-concat')
+const removeEmptyLines = require('gulp-remove-empty-lines')
 const path = require('path')
 const fs = require('fs')
 
-const { theme } = require('../../atom.config')
+const {
+  theme,
+  decorator
+} = require('../../atom.config')
 
 const {
   attempFileName,
@@ -18,12 +22,12 @@ const {
 // 将自定义样式注入源码
 function injectAttemp(cb) {
   const attempFilePath = path.join(devDir, fcss(attempFileName))
-  const attempToFilePath = path.join(destDir, fcss(sourceFileName))
+  const sourceFilePath = path.join(destDir, fcss(sourceFileName))
 
-  if (fs.existsSync(attempFilePath) && fs.existsSync(attempToFilePath)) {
+  if (fs.existsSync(attempFilePath) && fs.existsSync(sourceFilePath)) {
     pump([
       // 输入文件
-      gulp.src([attempToFilePath, attempFilePath]),
+      gulp.src([sourceFilePath, attempFilePath]),
 
       // 拼接文件
       concat(fcss(sourceFileName), {
@@ -39,19 +43,33 @@ function injectAttemp(cb) {
 }
 
 // 生成响应式断点样式文件并注入 dest 目录
-function injectBreakpoint(content, mediaQueryContent) {
+function injectBreakpoint(cb) {
+  const sourceFilePath = path.join(destDir, fcss(sourceFileName))
+
+  const content = fs.readFileSync(sourceFilePath, { encoding: 'utf-8' })
+
+  let mediaQueryContent = content
+
+  if (content) {
+    // 排除 :root 和 @media 样式
+    const rclass = /[\n\s]+\.[\w\d\-\_\\.]+(,|\s[\>\*\+]*)\{([^}])*}/g
+    mediaQueryContent = content.match(rclass)
+    if (mediaQueryContent && mediaQueryContent.length) {
+      mediaQueryContent = mediaQueryContent.join('')
+    }
+    // console.log('mediaQueryContent', mediaQueryContent)
+  }
+
   if (
     !content
     || !mediaQueryContent
     || !(theme && theme.screens)
-  ) return false
+  ) {
+    return cb()
+  }
 
-  // 正则会排除 :root @keyframes 等属性
   const rclassname = /([\n\s]+\.[\w\d\-\_\\.]+(,|\s*))/g
   const rprop = /\{([^}])*}/g
-
-  // TODO: 匹配不对，classname和prop之间没匹配
-  const rclass = /[\n\s]+\.[\w\d\-\_\\.]+(,|\s*)\{([^}])*}/g
 
   const classNames = mediaQueryContent.match(rclassname)
 
@@ -60,14 +78,12 @@ function injectBreakpoint(content, mediaQueryContent) {
   // console.log('test', '\n.-inset-x-3 { right: -0.75rem; }'.match(test))
   // // .-inset-x-2\.5
 
-  if (!classNames || !classNames.length) return false
+  if (!classNames || !classNames.length) return cb()
 
-  const props = mediaQueryContent.match(rclass)
+  const props = mediaQueryContent.match(rprop)
   const screens = theme.screens
 
-  console.log('classNames', classNames.length, props.length, classNames, props)
-
-  return false
+  // console.log('classNames', classNames.length, props.length)
 
   let finalContent = content
   let mediaContent = ''
@@ -114,11 +130,78 @@ function injectBreakpoint(content, mediaQueryContent) {
     flag: 'w'
   })
 
-  return true
+  pump([
+    // 输入文件
+    gulp.src(path.join(destDir, fcss(breakpointFileName))),
+
+    // 移除空行
+    removeEmptyLines(),
+
+    // 输出目录
+    gulp.dest(destDir),
+  ], cb)
+}
+
+// 将 normalize.css 注入断点
+function injectNormalize2Breakpoint(cb) {
+  if (decorator && decorator.use && decorator.use.normalize) {
+    const normalizeFilePath = path.join('node_modules/normalize.css', fcss('normalize'))
+    const breakpointFilePath = path.join(destDir, fcss(breakpointFileName))
+
+    if (fs.existsSync(normalizeFilePath) && fs.existsSync(breakpointFilePath)) {
+      pump([
+        // 输入文件
+        gulp.src([breakpointFilePath, normalizeFilePath]),
+
+        // 拼接文件
+        concat(fcss(breakpointFileName), {
+          newLine: '\n\n'
+        }),
+
+        // 输出目录
+        gulp.dest(destDir)
+      ], cb)
+    } else {
+      cb()
+    }
+
+  } else {
+    cb()
+  }
+}
+
+// 将 normalize.css 注入源码
+function injectNormalize2Source(cb) {
+  if (decorator && decorator.use && decorator.use.normalize) {
+    const normalizeFilePath = path.join('node_modules/normalize.css', fcss('normalize'))
+    const sourceFilePath = path.join(destDir, fcss(sourceFileName))
+
+    if (fs.existsSync(normalizeFilePath) && fs.existsSync(sourceFilePath)) {
+      pump([
+        // 输入文件
+        gulp.src([sourceFilePath, normalizeFilePath]),
+
+        // 拼接文件
+        concat(fcss(sourceFileName), {
+          newLine: '\n\n'
+        }),
+
+        // 输出目录
+        gulp.dest(destDir)
+      ], cb)
+    } else {
+      cb()
+    }
+
+  } else {
+    cb()
+  }
 }
 
 
 module.exports = {
   injectAttemp,
-  injectBreakpoint
+  injectBreakpoint,
+  injectNormalize2Breakpoint,
+  injectNormalize2Source
 }
