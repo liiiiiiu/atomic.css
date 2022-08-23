@@ -12,13 +12,13 @@ module.exports = {
       rem2rpx: 37.5,
     },
     class: {
-      // CSS 公共前缀
+      // 公共前缀
       // prefix: '';
       // => w-screen { width: 100vw; };
       // prefix: 'my';
       // => .my-w-screen { width: 100vw; }.
       prefix: '',
-      // CSS 分隔符
+      // 分隔符
       // separators: ['_', '-'];
       // => .max_w-full { max-width: 100%; }
       separators: ['-'],
@@ -31,7 +31,7 @@ module.exports = {
         slash: 's'
       }
     },
-    // CSS 样式名缩写
+    // 样式名缩写
     // 缩写使用 null 或者 false 将禁用该功能类
     abbr: {
       container: 'container',
