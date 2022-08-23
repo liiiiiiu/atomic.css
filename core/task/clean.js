@@ -10,7 +10,7 @@ const {
   attempFileName,
   fcss,
   fscss
-} = require('./base')
+} = require('../base')
 
 // 删除 dest 目录
 function cleanDest(cb) {

@@ -286,35 +286,36 @@
 
   @each $inner-value in (x, y) {
 
-    #{util.class-generator(config.$abbr-divide-width, $inner-value, $outer-key)} > * + *
+    #{util.class-generator(config.$abbr-divide-width, $inner-value, $outer-key)} :nth-child(even)
     {
-      @if $inner-value==x {
-        --divide-x-reverse: 0;
-        border-right-width: calc(#{$outer-value} * var(--divide-x-reverse));
-        border-left-width: calc(#{$outer-value} * calc(1 - var(--divide-x-reverse)));
-        border-top-width: 0;
-        border-bottom-width: 0;
-      }
 
-      @else {
-        --divide-y-reverse: 0;
-        border-top-width: calc(#{$outer-value} * calc(1 - var(--divide-y-reverse)));
-        border-bottom-width: calc(#{$outer-value} * var(--divide-y-reverse));
-        border-right-width: 0;
-        border-left-width: 0;
-      }
+        @if $inner-value == x {
+          --divide-x-reverse: 0;
+          border-right-width: calc(#{$outer-value} * var(--divide-x-reverse));
+          border-left-width: calc(#{$outer-value} * calc(1 - var(--divide-x-reverse)));
+          border-top-width: 0;
+          border-bottom-width: 0;
+        }
+        @else {
+          --divide-y-reverse: 0;
+          border-top-width: calc(#{$outer-value} * calc(1 - var(--divide-y-reverse)));
+          border-bottom-width: calc(#{$outer-value} * var(--divide-y-reverse));
+          border-right-width: 0;
+          border-left-width: 0;
+        }
+
     }
 
   }
 
 }
 
-#{util.class-generator(config.$abbr-divide-width, x, reverse)} > * + *
+#{util.class-generator(config.$abbr-divide-width, x, reverse)} :nth-child(even)
 {
   --divide-x-reverse: 1;
 }
 
-#{util.class-generator(config.$abbr-divide-width, y, reverse)} > * + *
+#{util.class-generator(config.$abbr-divide-width, y, reverse)} :nth-child(even)
 {
   --divide-y-reverse: 1;
 }
@@ -324,7 +325,7 @@
 
   @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
 
-    #{util.class-generator(config.$abbr-divide-color, $outer-key)} > * + *
+    #{util.class-generator(config.$abbr-divide-color, $outer-key)} :nth-child(even)
     {
       border-color: $outer-value;
     }
@@ -332,7 +333,7 @@
   }
   @else {
 
-    #{util.class-generator(config.$abbr-divide-color, $outer-key)} > * + *
+    #{util.class-generator(config.$abbr-divide-color, $outer-key)} :nth-child(even)
     {
       --divide-opacity: 1;
       border-color: rgba($color: $outer-value, $alpha: var(--divide-opacity, 1));
@@ -340,7 +341,7 @@
 
     @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
 
-      #{util.class-generator(config.$abbr-divide-color, $outer-key, $inner-key)} > * + *
+      #{util.class-generator(config.$abbr-divide-color, $outer-key, $inner-key)} :nth-child(even)
       {
         --divide-opacity: 1;
         border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--divide-opacity, 1));
@@ -371,9 +372,9 @@
   none
 ) {
 
-  #{util.class-generator(config.$abbr-divide-style, $value)} > * + *
+  #{util.class-generator(config.$abbr-divide-style, $value)} :nth-child(even)
   {
-    border-style: #{$value};
+    border-style: $value;
   }
 
 }

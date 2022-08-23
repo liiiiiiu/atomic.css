@@ -1,19 +1,33 @@
 module.exports = {
   decorator: {
     use: {
-      // CSS Normalize
+      // 是否引入 normalize.css
       normalize: true,
+      // 是否在生成 wxss 样式时，使用 rpx 替换 rem
+      // rpx 为微信小程序的响应式单位
+      rpx: true,
+      // rem 转换为 rpx 的比例
+      // 开启 rpx 后生效
+      // 1rem = 37.5rpx
+      rem2rpx: 37.5,
     },
     class: {
       // CSS 公共前缀
       // prefix: 'my';
       // => .my-w-screen { width: 100vw; }
       prefix: '',
-
-      // CSS 多连接符
+      // CSS 分隔符
       // separators: ['_', '-'];
       // => .max_w-full { max-width: 100%; }
       separators: ['-'],
+      // 自定义的转义符
+      // 由于微信小程序的样式名不支持使用 '\' 转义，需要额外适配
+      customEscape: {
+        // .w-0\.5
+        dot: 'd',
+        // .w-1\/3
+        slash: 's'
+      }
     },
     // CSS 样式名缩写
     abbr: {
@@ -116,6 +130,7 @@ module.exports = {
       'user-select': 'select'
     }
   },
+  // 主题配置
   theme: {
     screens: {
       sm: '640px',

@@ -7,11 +7,15 @@ const {
 } = require('./core/task/clean')
 
 const {
-  injectAttemp,
-  injectBreakpoint,
-  injectNormalize2Breakpoint,
-  injectNormalize2Source
-} = require('./core/task/inject')
+  concatAttemp,
+  concatNormalize2Breakpoint,
+  concatNormalize2Source
+} = require('./core/task/concat')
+
+const {
+  generateBreakpoint,
+  generateWxss
+} = require('./core/task/generate')
 
 const {
   compileConfig,
@@ -22,6 +26,7 @@ const {
 const {
   minifySource,
   minifyBreakpoint,
+  minifyWxss
 } = require('./core/task/nano')
 
 const {
@@ -48,32 +53,37 @@ gulp.task('default',
     // 先将自定义样式文件的 sass 编译打包为 css 文件
     compileAttemp,
 
-    // 再将自定义样式文件内的所有样式注入打包后 css 源码
-    injectAttemp,
+    // 将自定义样式与打包后的 css 源码合并
+    concatAttemp,
 
-    // 注入完成后清空自定义样式文件
+    // 合并完成后清空自定义样式文件
     cleanAttemp,
 
     // 此时 css 源码内已包含内置样式以及自定义样式
-    // 根据这些样式生成断点样式文件
-    injectBreakpoint,
+    // 根据这些样式生成断点样式
+    generateBreakpoint,
 
-    // 由于 normalize 不需要响应式断点，所以在 `injectBreakpoint` 之后执行
-    injectNormalize2Breakpoint,
+    // 由于 normalize 不需要响应式断点，所以在 `generateBreakpoint` 之后执行
+    // 将 normalize.css 与断点样式合并
+    concatNormalize2Breakpoint,
 
-    // 生成压缩后的断点样式文件
+    // 压缩并生成断点 min 文件
     minifyBreakpoint,
 
-    // 将 normalize 注入 css 源码
-    injectNormalize2Source,
+    // 生成适用于微信小程序的样式文件
+    generateWxss,
 
-    // 最后再生成打包后的 css 源码压缩文件
+    // 小程序拥有独立标签，无需合并 normalize.css
+    // 压缩并生成微信小程序 min 文件
+    minifyWxss,
+
+    // 将 normalize.css 与源码样式合并
+    concatNormalize2Source,
+
+    // 最后再压缩 css 源码并生成 min 文件
     minifySource,
 
     // 处理完上面的步骤后，监听 sass 文件的变化，并根据 sass 变化同步打包生成新的样式文件
     watchSourceChange
   )
 )
-
-// TODO: 微信小程序的样式文件不支持使用 \ 转义，需要额外适配
-gulp.task('wx')

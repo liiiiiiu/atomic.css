@@ -3,7 +3,7 @@ const path = require('path')
 
 const {
   rootDir
-} = require('./base')
+} = require('../base')
 
 const {
   cleanDest,
@@ -11,11 +11,15 @@ const {
 } = require('./clean')
 
 const {
-  injectAttemp,
-  injectBreakpoint,
-  injectNormalize2Breakpoint,
-  injectNormalize2Source
-} = require('./inject')
+  concatAttemp,
+  concatNormalize2Breakpoint,
+  concatNormalize2Source
+} = require('./concat')
+
+const {
+  generateBreakpoint,
+  generateWxss
+} = require('./generate')
 
 const {
   compileSource,
@@ -24,7 +28,8 @@ const {
 
 const {
   minifyBreakpoint,
-  minifySource
+  minifySource,
+  minifyWxss
 } = require('./nano')
 
 // 监听源码文件变化
@@ -41,17 +46,21 @@ function watchSourceChange(cb) {
 
       compileAttemp,
 
-      injectAttemp,
+      concatAttemp,
 
       cleanAttemp,
 
-      injectBreakpoint,
+      generateBreakpoint,
 
-      injectNormalize2Breakpoint,
+      concatNormalize2Breakpoint,
 
       minifyBreakpoint,
 
-      injectNormalize2Source,
+      generateWxss,
+
+      minifyWxss,
+
+      concatNormalize2Source,
 
       minifySource
     )

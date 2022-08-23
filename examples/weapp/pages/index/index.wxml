@@ -1,16 +1,13 @@
 <!--index.wxml-->
-<page-meta
-  root-font-size="20px"
->
-  <view class="container">
-    <view class="w-100 h-100 bgc-blue fx fx-jc-c fx-ai-c bdrs-round bd mt-30">
-      <text class="c-black-6">test</text>
-    </view>
-    <view class="w-90vw h-10vh bgc-black mt-50 ta-c">
-      <text class="c-white ls-2 lh-5">2111</text>
-    </view>
-    <view class="a" style="margin: 1rem;">
-      esdsaa
-    </view>
+<view class="divide-x-2 divide-purple divide-solid">
+  <view class="view">
+    <p class="text-purple line-clamp-2">
+      222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+    </p>
   </view>
-</page-meta>
+  <view class="view mt-10 bg-red bg-gradient-to-r from-red-500 shadow-xl animate-spin"></view>
+  <view class="view mt-10 bg-gradient-to-r from-green-500 transform skew-y-12 scale-100 -rotate-45 translate-x-3.5"></view>
+  <view class="view mt-10 top-0.5 bg-gradient-to-l from-blue-500 via-red to-purple col-span-12"></view>
+  <view class="view mt-10 bg-white border-pink border-2">
+  </view>
+</view>

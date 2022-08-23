@@ -11,6 +11,7 @@ const destDir = 'dist'
 const concatFileExt = (fileName, ext = 'scss') => fileName ? fileName + '.' + ext : fileName
 const fscss = fileName => concatFileExt(fileName, 'scss')
 const fcss = fileName => concatFileExt(fileName, 'css')
+const fwxss = fileName => concatFileExt(fileName, 'wxss')
 
 module.exports = {
   sourceFileName,
@@ -22,5 +23,6 @@ module.exports = {
   devDir,
   destDir,
   fscss,
-  fcss
+  fcss,
+  fwxss
 }

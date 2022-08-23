@@ -18,7 +18,7 @@ const {
   sourceFileName,
   attempFileName,
   fscss
-} = require('./base')
+} = require('../base')
 
 const {
   decorator,
@@ -128,8 +128,7 @@ function parseThemeConfig(config) {
       config[outerKey] = config[outerKey](config)
     }
     Object.keys(config[outerKey]).forEach(innerKey => {
-      let propValue = config[outerKey][innerKey]
-      content += (`'${innerKey}': ${parseValue(propValue)},\n`)
+      content += (`'${innerKey}': ${parseValue(config[outerKey][innerKey])},\n`)
     })
 
     content += ');\n'

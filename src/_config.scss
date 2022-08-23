@@ -1,6 +1,10 @@
 $use-normalize: true;
+$use-rpx: true;
+$use-rem2rpx: 37.5;
 $class-prefix: '';
 $class-separators: ('-', );
+$customEscape-dot: d;
+$customEscape-slash: s;
 $abbr-container: container;
 $abbr-box-decoration-break: decoration;
 $abbr-box-sizing: box;

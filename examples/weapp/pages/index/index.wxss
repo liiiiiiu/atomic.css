@@ -1,1 +1,10 @@
 /**index.wxss**/
+
+page {
+  padding: 20px;
+}
+
+.view {
+  width: 100px;
+  height: 100px;
+}
