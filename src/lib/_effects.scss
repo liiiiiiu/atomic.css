@@ -5,54 +5,90 @@
 ************************* */
 
 // Box Shadow
-@each $key, $value in util.map-handler(config.$map-boxShadow) {
+@if util.expect(config.$abbr-box-shadow) {
 
-  #{util.class-generator(config.$abbr-box-shadow, $key)}
-  {
-    box-shadow: $value;
+  @each $key, $value in util.map-handler(config.$map-boxShadow) {
+
+    #{util.class-generator(config.$abbr-box-shadow, $key)}
+    {
+      box-shadow: $value;
+    }
+
   }
 
 }
 
 // Opacity
-@each $key, $value in util.map-handler(config.$map-opacity) {
+@if util.expect(config.$abbr-opacity) {
 
-  #{util.class-generator(config.$abbr-opacity, $key)}
-  {
-    opacity: $value;
+  @each $key, $value in util.map-handler(config.$map-opacity) {
+
+    #{util.class-generator(config.$abbr-opacity, $key)}
+    {
+      opacity: $value;
+    }
+
   }
 
 }
 
 // Mix Blend Mode
-// Background Blend Mode
-@each $outer-key, $outer-value in (
-  normal: normal,
-  multiply: multiply,
-  screen: screen,
-  overlay: overlay,
-  darken: darken,
-  lighten: lighten,
-  color-dodge: color-dodge,
-  color-burn: color-burn,
-  hard-light: hard-light,
-  soft-light: soft-light,
-  difference: difference,
-  exclusion: exclusion,
-  hue: hue,
-  saturation: saturation,
-  color: color,
-  luminosity: luminosity
-) {
+@if util.expect(config.$abbr-mix-blend-mode) {
 
-  @each $inner-key, $inner-value in (
-    config.$abbr-mix-blend-mode: mix-blend-mode,
-    config.$abbr-background-blend-mode: background-blend-mode
+  @each $key, $value in (
+    normal: normal,
+    multiply: multiply,
+    screen: screen,
+    overlay: overlay,
+    darken: darken,
+    lighten: lighten,
+    color-dodge: color-dodge,
+    color-burn: color-burn,
+    hard-light: hard-light,
+    soft-light: soft-light,
+    difference: difference,
+    exclusion: exclusion,
+    hue: hue,
+    saturation: saturation,
+    color: color,
+    luminosity: luminosity
   ) {
 
-    #{util.class-generator($inner-key, $outer-key)}
+    #{util.class-generator(config.$abbr-mix-blend-mode, $key)}
     {
-      #{$inner-value}: #{$outer-value};
+      mix-blend-mode: $value;
+    }
+
+  }
+
+}
+
+
+// Background Blend Mode
+@if util.expect(config.$abbr-background-blend-mode) {
+
+  @each $key, $value in (
+    normal: normal,
+    multiply: multiply,
+    screen: screen,
+    overlay: overlay,
+    darken: darken,
+    lighten: lighten,
+    color-dodge: color-dodge,
+    color-burn: color-burn,
+    hard-light: hard-light,
+    soft-light: soft-light,
+    difference: difference,
+    exclusion: exclusion,
+    hue: hue,
+    saturation: saturation,
+    color: color,
+    luminosity: luminosity
+  ) {
+
+    #{util.class-generator(config.$abbr-background-blend-mode, $key)}
+    {
+      background-blend-mode: $value;
     }
 
   }

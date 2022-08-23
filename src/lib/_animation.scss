@@ -5,103 +5,135 @@
 ************************* */
 
 // Transition Property
-@each $key, $value in util.map-handler(config.$map-transitionProperty) {
+@if util.expect(config.$abbr-transition-property) {
 
-  #{util.class-generator(config.$abbr-transition-property, $key)}
-  {
-    transition-property: $value;
+  @each $key, $value in util.map-handler(config.$map-transitionProperty) {
 
-    @if ($key != 'none') {
-      transition-timing-function: map-get($map: config.$map-transitionTimingFunction, $key: DEFAULT);
-      transition-duration: map-get($map: config.$map-transitionDuration, $key: DEFAULT);
+    #{util.class-generator(config.$abbr-transition-property, $key)}
+    {
+      transition-property: $value;
+
+      @if ($key != 'none') {
+        transition-timing-function: map-get($map: config.$map-transitionTimingFunction, $key: DEFAULT);
+        transition-duration: map-get($map: config.$map-transitionDuration, $key: DEFAULT);
+      }
     }
+
   }
 
 }
 
 // Transition Duration
-@each $key, $value in util.map-handler(config.$map-transitionDuration) {
+@if util.expect(config.$abbr-transition-duration) {
 
-  #{util.class-generator(config.$abbr-transition-duration, $key)}
-  {
-    transition-duration: $value;
+  @each $key, $value in util.map-handler(config.$map-transitionDuration) {
+
+    #{util.class-generator(config.$abbr-transition-duration, $key)}
+    {
+      transition-duration: $value;
+    }
+
   }
 
 }
 
 // Transition Timing Function
-@each $key, $value in util.map-handler(config.$map-transitionTimingFunction) {
+@if util.expect(config.$abbr-transition-timing-function) {
 
-  #{util.class-generator(config.$abbr-transition-timing-function, $key)}
-  {
-    transition-timing-function: $value;
+  @each $key, $value in util.map-handler(config.$map-transitionTimingFunction) {
+
+    #{util.class-generator(config.$abbr-transition-timing-function, $key)}
+    {
+      transition-timing-function: $value;
+    }
+
   }
 
 }
 
 // Transition Delay
-@each $key, $value in util.map-handler(config.$map-transitionDelay) {
+@if util.expect(config.$abbr-transition-delay) {
 
-  #{util.class-generator(config.$abbr-transition-delay, $key)} {
-    transition-delay: $value;
+  @each $key, $value in util.map-handler(config.$map-transitionDelay) {
+
+    #{util.class-generator(config.$abbr-transition-delay, $key)} {
+      transition-delay: $value;
+    }
+
   }
 
 }
 
 // Animate
-@each $key, $value in util.map-handler(config.$map-animation) {
+@if util.expect(config.$abbr-animation) {
 
-  #{util.class-generator(config.$abbr-animation, $key)} {
-    animation: $value;
+  @each $key, $value in util.map-handler(config.$map-animation) {
+
+    #{util.class-generator(config.$abbr-animation, $key)} {
+      animation: $value;
+    }
+
   }
 
 }
 
 // Transform
-#{util.class-generator(config.$abbr-transform)} {
-  --translate-x: 0;
-  --translate-y: 0;
-  --rotate: 0;
-  --skew-x: 0;
-  --skew-y: 0;
-  --scale-x: 1;
-  --scale-y: 1;
-  transform: translateX(var(--translate-x)) translateY(var(--translate-y)) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
-}
+@if util.expect(config.$abbr-transform) {
 
-#{util.class-generator(config.$abbr-transform, gpu)} {
-  --translate-x: 0;
-  --translate-y: 0;
-  --rotate: 0;
-  --skew-x: 0;
-  --skew-y: 0;
-  --scale-x: 1;
-  --scale-y: 1;
-  transform: translate3d(var(--translate-x), var(--translate-y), 0) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+  #{util.class-generator(config.$abbr-transform)} {
+    --translate-x: 0;
+    --translate-y: 0;
+    --rotate: 0;
+    --skew-x: 0;
+    --skew-y: 0;
+    --scale-x: 1;
+    --scale-y: 1;
+    transform: translateX(var(--translate-x)) translateY(var(--translate-y)) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+  }
+
+  #{util.class-generator(config.$abbr-transform, gpu)} {
+    --translate-x: 0;
+    --translate-y: 0;
+    --rotate: 0;
+    --skew-x: 0;
+    --skew-y: 0;
+    --scale-x: 1;
+    --scale-y: 1;
+    transform: translate3d(var(--translate-x), var(--translate-y), 0) rotate(var(--rotate)) skewX(var(--skew-x)) skewY(var(--skew-y)) scaleX(var(--scale-x)) scaleY(var(--scale-y));
+  }
+
 }
 
 // Transform Origin
-@each $key, $value in util.map-handler(config.$map-transformOrigin) {
+@if util.expect(config.$abbr-transform-origin) {
 
-  #{util.class-generator(config.$abbr-transform-origin, $key)} {
-    transform-origin: $value;
+  @each $key, $value in util.map-handler(config.$map-transformOrigin) {
+
+    #{util.class-generator(config.$abbr-transform-origin, $key)} {
+      transform-origin: $value;
+    }
+
   }
 
 }
 
 // Scale
-@each $outer-key, $outer-value in util.map-handler(config.$map-scale) {
+@if util.expect(config.$abbr-scale) {
 
-  @each $inner-value in ('', x, y) {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-scale) {
 
-    #{util.class-generator(config.$abbr-scale, $inner-value, $outer-key)} {
+    @each $inner-value in ('', x, y) {
 
-      @if $inner-value == '' {
-        --scale-x: #{$outer-value};
-        --scale-y: #{$outer-value};
-      }
-      @else {
-        #{'--scale-'}#{$inner-value}: #{$outer-value};
+      #{util.class-generator(config.$abbr-scale, $inner-value, $outer-key)} {
+
+        @if $inner-value == '' {
+          --scale-x: #{$outer-value};
+          --scale-y: #{$outer-value};
+        }
+        @else {
+          #{'--scale-'}#{$inner-value}: #{$outer-value};
+        }
+
       }
 
     }
@@ -111,45 +143,57 @@
 }
 
 // Rotate
-@each $key, $value in util.map-handler(config.$map-rotate) {
+@if util.expect(config.$abbr-rotate) {
 
-  #{util.class-generator(config.$abbr-rotate, $key)} {
-    --rotate: #{$value};
-  }
+  @each $key, $value in util.map-handler(config.$map-rotate) {
 
-  #{util.class-generator('-', config.$abbr-rotate, $key)} {
-    --rotate: #{'-'}#{$value};
-  }
-}
-
-// Scale
-@each $outer-key, $outer-value in util.map-handler(config.$map-translate) {
-
-  @each $inner-value in (x, y) {
-
-    #{util.class-generator(config.$abbr-translate, $inner-value, $outer-key)} {
-      #{'--translate-'}#{$inner-value}: #{$outer-value};
+    #{util.class-generator(config.$abbr-rotate, $key)} {
+      --rotate: #{$value};
     }
 
-    #{util.class-generator('-', config.$abbr-translate, $inner-value, $outer-key)} {
-      #{'--translate-'}#{$inner-value}: #{'-'}#{$outer-value};
+    #{util.class-generator('-', config.$abbr-rotate, $key)} {
+      --rotate: #{'-'}#{$value};
     }
-
   }
 
 }
 
-// Scale
-@each $outer-key, $outer-value in util.map-handler(config.$map-skew) {
+// Translate
+@if util.expect(config.$abbr-translate) {
 
-  @each $inner-value in (x, y) {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-translate) {
 
-    #{util.class-generator(config.$abbr-skew, $inner-value, $outer-key)} {
-      #{'--skew-'}#{$inner-value}: #{$outer-value};
+    @each $inner-value in (x, y) {
+
+      #{util.class-generator(config.$abbr-translate, $inner-value, $outer-key)} {
+        #{'--translate-'}#{$inner-value}: #{$outer-value};
+      }
+
+      #{util.class-generator('-', config.$abbr-translate, $inner-value, $outer-key)} {
+        #{'--translate-'}#{$inner-value}: #{'-'}#{$outer-value};
+      }
+
     }
 
-    #{util.class-generator('-', config.$abbr-skew, $inner-value, $outer-key)} {
-      #{'--skew-'}#{$inner-value}: #{'-'}#{$outer-value};
+  }
+
+}
+
+// Skew
+@if util.expect(config.$abbr-skew) {
+
+  @each $outer-key, $outer-value in util.map-handler(config.$map-skew) {
+
+    @each $inner-value in (x, y) {
+
+      #{util.class-generator(config.$abbr-skew, $inner-value, $outer-key)} {
+        #{'--skew-'}#{$inner-value}: #{$outer-value};
+      }
+
+      #{util.class-generator('-', config.$abbr-skew, $inner-value, $outer-key)} {
+        #{'--skew-'}#{$inner-value}: #{'-'}#{$outer-value};
+      }
+
     }
 
   }
@@ -157,44 +201,48 @@
 }
 
 // @keyframes
-@each $key, $value in util.map-handler(config.$map-animation) {
+@if util.expect(config.$abbr-animation) {
 
-  @if $key != none {
+  @each $key, $value in util.map-handler(config.$map-animation) {
 
-    @keyframes #{$key} {
+    @if $key != none {
 
-      @if $key == spin {
-        from {
-          transform: rotate(0deg);
+      @keyframes #{$key} {
+
+        @if $key == spin {
+          from {
+            transform: rotate(0deg);
+          }
+
+          to {
+            transform: rotate(360deg);
+          }
+        }
+        @else if $key == ping {
+          75%, 100% {
+            transform: scale(2);
+            opacity: 0;
+          }
+        }
+        @else if $key == pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: .5;
+          }
+        }
+        @else if $key == bounce {
+          0%, 100% {
+            transform: translateY(-25%);
+            animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+          }
+          50% {
+            transform: translateY(0);
+            animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+          }
         }
 
-        to {
-          transform: rotate(360deg);
-        }
-      }
-      @else if $key == ping {
-        75%, 100% {
-          transform: scale(2);
-          opacity: 0;
-        }
-      }
-      @else if $key == pulse {
-        0%, 100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: .5;
-        }
-      }
-      @else if $key == bounce {
-        0%, 100% {
-          transform: translateY(-25%);
-          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-        }
-        50% {
-          transform: translateY(0);
-          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-        }
       }
 
     }

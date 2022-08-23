@@ -36,60 +36,72 @@
 }
 
 // Background Attachment
-@each $value in (
-  fixed,
-  local,
-  scroll
-) {
+@if util.expect(config.$abbr-background-attachment) {
 
-  #{util.class-generator(config.$abbr-background-attachment, $value)}
-  {
-    @include background(attachment, $value);
+  @each $value in (
+    fixed,
+    local,
+    scroll
+  ) {
+
+    #{util.class-generator(config.$abbr-background-attachment, $value)}
+    {
+      @include background(attachment, $value);
+    }
+
   }
 
 }
 
 // Background Clip
-@each $key, $value in (
-  border: border-box,
-  padding: padding-box,
-  content: content-box,
-  text: text
-) {
+@if util.expect(config.$abbr-background-clip) {
 
-  #{util.class-generator(config.$abbr-background-clip, $key)}
-  {
-    @include background(clip, $value);
+  @each $key, $value in (
+    border: border-box,
+    padding: padding-box,
+    content: content-box,
+    text: text
+  ) {
+
+    #{util.class-generator(config.$abbr-background-clip, $key)}
+    {
+      @include background(clip, $value);
+    }
+
   }
 
 }
 
 // Background Color
-@each $outer-key, $outer-value in util.map-handler(config.$map-backgroundColor) {
+@if util.expect(config.$abbr-background-color) {
 
-  // transparent 为内置关键字，加 ’‘ 转换为普通字符串
-  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-backgroundColor) {
 
-    #{util.class-generator(config.$abbr-background-color, $outer-key)}
-    {
-      @include background(color, $outer-value);
+    // transparent 为内置关键字，加 ’‘ 转换为普通字符串
+    @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+      #{util.class-generator(config.$abbr-background-color, $outer-key)}
+      {
+        @include background(color, $outer-value);
+      }
+
     }
+    @else {
 
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-background-color, $outer-key)}
-    {
-      --bg-opacity: 1;
-      @include background(color, rgba($color: $outer-value, $alpha: var(--bg-opacity, 1)));
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-background-color, $outer-key, $inner-key)}
+      #{util.class-generator(config.$abbr-background-color, $outer-key)}
       {
         --bg-opacity: 1;
-        @include background(color, rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--bg-opacity, 1)));
+        @include background(color, rgba($color: $outer-value, $alpha: var(--bg-opacity, 1)));
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-background-color, $outer-key, $inner-key)}
+        {
+          --bg-opacity: 1;
+          @include background(color, rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--bg-opacity, 1)));
+        }
+
       }
 
     }
@@ -99,120 +111,148 @@
 }
 
 // Background Color Opacity
-@each $key, $value in util.map-handler(config.$map-backgroundOpacity) {
+@if util.expect(config.$abbr-background-opacity) {
 
-  #{util.class-generator(config.$abbr-background-opacity, $key)}
-  {
-    --bg-opacity: #{$value};
+  @each $key, $value in util.map-handler(config.$map-backgroundOpacity) {
+
+    #{util.class-generator(config.$abbr-background-opacity, $key)}
+    {
+      --bg-opacity: #{$value};
+    }
+
   }
 
 }
 
 // Background Origin
-@each $key, $value in (
-  border: border-box,
-  padding: padding-box,
-  content: content-box
-) {
+@if util.expect(config.$abbr-background-origin) {
 
-  #{util.class-generator(config.$abbr-background-origin, $key)}
-  {
-    @include background(origin, $value);
+  @each $key, $value in (
+    border: border-box,
+    padding: padding-box,
+    content: content-box
+  ) {
+
+    #{util.class-generator(config.$abbr-background-origin, $key)}
+    {
+      @include background(origin, $value);
+    }
+
   }
 
 }
 
 // Background Position
-@each $key, $value in util.map-handler(config.$map-backgroundPosition) {
+@if util.expect(config.$abbr-background-position) {
 
-  #{util.class-generator(config.$abbr-background-position, $key)}
-  {
-    @include background(position, $value);
+  @each $key, $value in util.map-handler(config.$map-backgroundPosition) {
+
+    #{util.class-generator(config.$abbr-background-position, $key)}
+    {
+      @include background(position, $value);
+    }
+
   }
 
 }
 
 // Background Repeat
-@each $key, $value in (
-  repeat: repeat,
-  no-repeat: no-repeat,
-  repeat-x: repeat-x,
-  repeat-y: repeat-y,
-  repeat-round: round,
-  repeat-space: space
-) {
+@if util.expect(config.$abbr-background-repeat) {
 
-  #{util.class-generator(config.$abbr-background-repeat, $key)}
-  {
-    @include background(repeat, $value);
+  @each $key, $value in (
+    repeat: repeat,
+    no-repeat: no-repeat,
+    repeat-x: repeat-x,
+    repeat-y: repeat-y,
+    repeat-round: round,
+    repeat-space: space
+  ) {
+
+    #{util.class-generator(config.$abbr-background-repeat, $key)}
+    {
+      @include background(repeat, $value);
+    }
+
   }
 
 }
 
 // Background Size
-@each $key, $value in util.map-handler(config.$map-backgroundSize) {
+@if util.expect(config.$abbr-background-size) {
 
-  #{util.class-generator(config.$abbr-background-size, $key)}
-  {
-    @include background(size, $value);
+  @each $key, $value in util.map-handler(config.$map-backgroundSize) {
+
+    #{util.class-generator(config.$abbr-background-size, $key)}
+    {
+      @include background(size, $value);
+    }
+
   }
 
 }
 
 // Background Image
-@each $key, $value in util.map-handler(config.$map-backgroundImage) {
+@if util.expect(config.$abbr-background-image) {
 
-  #{util.class-generator(config.$abbr-background-image, $key)}
-  {
-    @include background(image, $value);
+  @each $key, $value in util.map-handler(config.$map-backgroundImage) {
+
+    #{util.class-generator(config.$abbr-background-image, $key)}
+    {
+      @include background(image, $value);
+    }
+
   }
 
 }
 
 // Background Image Gradient Stops From
-@each $outer-key, $outer-value in config.$map-backgroundColor {
+@if util.expect(config.$abbr-background-image-gradient-from) {
 
-  @if $outer-key == inherit {}
-  @else if $outer-key == transparent + '' {
+  @each $outer-key, $outer-value in config.$map-backgroundColor {
 
-    #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
-    {
-      --gradient-from: transparent;
-      --gradient-stops:
-        var(--gradient-from),
-        var(--gradient-to, rgba(0, 0, 0, 0));
-    }
+    @if $outer-key == inherit {}
+    @else if $outer-key == transparent + '' {
 
-  }
-  @else if $outer-key == current {
-
-    #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
-    {
-      --gradient-from: currentColor;
-      --gradient-stops:
-        var(--gradient-from),
-        var(--gradient-to, rgba(255, 255, 255, 0));
-    }
-
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
-    {
-      --gradient-from: #{$outer-value};
-      --gradient-stops:
-        var(--gradient-from),
-        var(--gradient-to, #{rgba($color: $outer-value, $alpha: 0)});
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key, $inner-key)}
+      #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
       {
-        --gradient-from: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)};
+        --gradient-from: transparent;
         --gradient-stops:
           var(--gradient-from),
-          var(--gradient-to, #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 0)});
+          var(--gradient-to, rgba(0, 0, 0, 0));
+      }
+
+    }
+    @else if $outer-key == current {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
+      {
+        --gradient-from: currentColor;
+        --gradient-stops:
+          var(--gradient-from),
+          var(--gradient-to, rgba(255, 255, 255, 0));
+      }
+
+    }
+    @else {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key)}
+      {
+        --gradient-from: #{$outer-value};
+        --gradient-stops:
+          var(--gradient-from),
+          var(--gradient-to, #{rgba($color: $outer-value, $alpha: 0)});
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-background-image-gradient-from, $outer-key, $inner-key)}
+        {
+          --gradient-from: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)};
+          --gradient-stops:
+            var(--gradient-from),
+            var(--gradient-to, #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 0)});
+        }
+
       }
 
     }
@@ -222,49 +262,53 @@
 }
 
 // Background Image Gradient Stops Via
-@each $outer-key, $outer-value in config.$map-backgroundColor {
+@if util.expect(config.$abbr-background-image-gradient-via) {
 
-  @if $outer-key == inherit {}
-  @else if $outer-key == transparent + '' {
+  @each $outer-key, $outer-value in config.$map-backgroundColor {
 
-    #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
-    {
-      --gradient-stops:
-        var(--gradient-from),
-        transparent,
-        var(--gradient-to, rgba(0, 0, 0, 0));
-    }
+    @if $outer-key == inherit {}
+    @else if $outer-key == transparent + '' {
 
-  }
-  @else if $outer-key == current {
-
-    #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
-    {
-      --gradient-stops:
-        var(--gradient-from),
-        currentColor,
-        var(--gradient-to, rgba(255, 255, 255, 0));
-    }
-
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
-    {
-      --gradient-stops:
-        var(--gradient-from),
-        #{$outer-value},
-        var(--gradient-to, #{rgba($color: $outer-value, $alpha: 0)});
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key, $inner-key)}
+      #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
       {
         --gradient-stops:
           var(--gradient-from),
-          #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)},
-          var(--gradient-to, #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 0)});
+          transparent,
+          var(--gradient-to, rgba(0, 0, 0, 0));
+      }
+
+    }
+    @else if $outer-key == current {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
+      {
+        --gradient-stops:
+          var(--gradient-from),
+          currentColor,
+          var(--gradient-to, rgba(255, 255, 255, 0));
+      }
+
+    }
+    @else {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key)}
+      {
+        --gradient-stops:
+          var(--gradient-from),
+          #{$outer-value},
+          var(--gradient-to, #{rgba($color: $outer-value, $alpha: 0)});
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-background-image-gradient-via, $outer-key, $inner-key)}
+        {
+          --gradient-stops:
+            var(--gradient-from),
+            #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)},
+            var(--gradient-to, #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 0)});
+        }
+
       }
 
     }
@@ -274,37 +318,41 @@
 }
 
 // Background Image Gradient Stops To
-@each $outer-key, $outer-value in config.$map-backgroundColor {
+@if util.expect(config.$abbr-background-image-gradient-to) {
 
-  @if $outer-key == inherit {}
-  @else if $outer-key == transparent + '' {
+  @each $outer-key, $outer-value in config.$map-backgroundColor {
 
-    #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
-    {
-      --gradient-to: transparent;
-    }
+    @if $outer-key == inherit {}
+    @else if $outer-key == transparent + '' {
 
-  }
-  @else if $outer-key == current {
-
-    #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
-    {
-      --gradient-to: currentColor;
-    }
-
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
-    {
-      --gradient-to: #{$outer-value};
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key, $inner-key)}
+      #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
       {
-        --gradient-to: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)};
+        --gradient-to: transparent;
+      }
+
+    }
+    @else if $outer-key == current {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
+      {
+        --gradient-to: currentColor;
+      }
+
+    }
+    @else {
+
+      #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key)}
+      {
+        --gradient-to: #{$outer-value};
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-background-image-gradient-to, $outer-key, $inner-key)}
+        {
+          --gradient-to: #{rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: 1)};
+        }
+
       }
 
     }

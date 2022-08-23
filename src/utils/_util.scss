@@ -197,6 +197,10 @@
   @return ();
 }
 
+@function expect($class-name) {
+  @return if(($class-name != null and $class-name != false), true, false)
+}
+
 // 颜色明度数组
 $map-color-brightness: (
   '50': 50,

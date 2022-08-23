@@ -5,37 +5,41 @@
 ************************* */
 
 // Padding
-@each $outer-key, $outer-value in util.map-handler(config.$map-padding) {
+@if util.expect(config.$abbr-padding) {
 
-  @each $inner-key, $inner-values in (
-    '': (padding),
-    't': (padding-top),
-    'r': (padding-right),
-    'b': (padding-bottom),
-    'l': (padding-left),
-    'x': (padding-right, padding-left),
-    'y': (padding-top, padding-bottom)
-  ) {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-padding) {
 
-    @if $inner-key == '' {
+    @each $inner-key, $inner-values in (
+      '': (padding),
+      't': (padding-top),
+      'r': (padding-right),
+      'b': (padding-bottom),
+      'l': (padding-left),
+      'x': (padding-right, padding-left),
+      'y': (padding-top, padding-bottom)
+    ) {
 
-      #{util.class-generator(config.$abbr-padding, $outer-key)}
-      {
+      @if $inner-key == '' {
 
-        @each $value in $inner-values {
-          #{$value}: $outer-value;
+        #{util.class-generator(config.$abbr-padding, $outer-key)}
+        {
+
+          @each $value in $inner-values {
+            #{$value}: $outer-value;
+          }
+
         }
 
       }
+      @else {
 
-    }
-    @else {
+        #{util.class-generator(#{config.$abbr-padding + $inner-key}, $outer-key)}
+        {
 
-      #{util.class-generator(#{config.$abbr-padding + $inner-key}, $outer-key)}
-      {
+          @each $value in $inner-values {
+            #{$value}: $outer-value;
+          }
 
-        @each $value in $inner-values {
-          #{$value}: $outer-value;
         }
 
       }
@@ -45,163 +49,197 @@
   }
 
 }
+
 
 // Margin
-@each $outer-key, $outer-value in util.map-handler(config.$map-margin) {
+@if util.expect(config.$abbr-margin) {
 
-  @each $inner-key, $inner-values in (
-    '': (margin),
-    't': (margin-top),
-    'r': (margin-right),
-    'b': (margin-bottom),
-    'l': (margin-left),
-    'x': (margin-right, margin-left),
-    'y': (margin-top, margin-bottom)
-  ) {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-margin) {
 
-    @if $outer-key == '' {
+    @each $inner-key, $inner-values in (
+      '': (margin),
+      't': (margin-top),
+      'r': (margin-right),
+      'b': (margin-bottom),
+      'l': (margin-left),
+      'x': (margin-right, margin-left),
+      'y': (margin-top, margin-bottom)
+    ) {
 
-      @if $outer-key != 'auto' {
+      @if $outer-key == '' {
 
-        #{util.class-generator('-', config.$abbr-margin, $outer-key)}
+        @if $outer-key != 'auto' {
+
+          #{util.class-generator('-', config.$abbr-margin, $outer-key)}
+          {
+
+            @each $value in $inner-values {
+              #{$value}: #{'-' + $outer-value};
+            }
+
+          }
+
+        }
+
+        #{util.class-generator(config.$abbr-margin, $outer-key)}
         {
 
           @each $value in $inner-values {
-            #{$value}: #{'-' + $outer-value};
+            #{$value}: $outer-value;
           }
 
         }
 
       }
+      @else {
 
-      #{util.class-generator(config.$abbr-margin, $outer-key)}
-      {
+        @if $outer-key != 'auto' {
 
-        @each $value in $inner-values {
-          #{$value}: $outer-value;
-        }
+          #{util.class-generator('-', config.$abbr-margin + $inner-key, $outer-key)}
+          {
 
-      }
+            @each $value in $inner-values {
+              #{$value}: #{'-' + $outer-value};
+            }
 
-    }
-    @else {
-
-      @if $outer-key != 'auto' {
-
-        #{util.class-generator('-', config.$abbr-margin + $inner-key, $outer-key)}
-        {
-
-          @each $value in $inner-values {
-            #{$value}: #{'-' + $outer-value};
           }
 
         }
 
-      }
+        #{util.class-generator(#{config.$abbr-margin + $inner-key}, $outer-key)}
+        {
 
-      #{util.class-generator(#{config.$abbr-margin + $inner-key}, $outer-key)}
-      {
+          @each $value in $inner-values {
+            #{$value}: $outer-value;
+          }
 
-        @each $value in $inner-values {
-          #{$value}: $outer-value;
         }
-
       }
     }
+
   }
 
 }
 
-// Width
-@each $key, $value in util.map-handler(config.$map-width) {
 
-  #{util.class-generator(config.$abbr-width, $key)}
-  {
-    width: $value;
+// Width
+@if util.expect(config.$abbr-width) {
+
+  @each $key, $value in util.map-handler(config.$map-width) {
+
+    #{util.class-generator(config.$abbr-width, $key)}
+    {
+      width: $value;
+    }
+
   }
 
 }
 
 // Min Width
-@each $key, $value in util.map-handler(config.$map-minWidth) {
+@if util.expect(config.$abbr-width) {
 
-  #{util.class-generator(min, config.$abbr-width, $key)}
-  {
-    min-width: $value;
+  @each $key, $value in util.map-handler(config.$map-minWidth) {
+
+    #{util.class-generator(min, config.$abbr-width, $key)}
+    {
+      min-width: $value;
+    }
+
   }
 
 }
 
 // Max Width
-@each $key, $value in util.map-handler(config.$map-maxWidth) {
+@if util.expect(config.$abbr-width) {
 
-  #{util.class-generator(max, config.$abbr-width, $key)}
-  {
-    max-width: $value;
+  @each $key, $value in util.map-handler(config.$map-maxWidth) {
+
+    #{util.class-generator(max, config.$abbr-width, $key)}
+    {
+      max-width: $value;
+    }
+
   }
 
 }
 
 // Height
-@each $key, $value in util.map-handler(config.$map-height) {
+@if util.expect(config.$abbr-height) {
 
-  #{util.class-generator(config.$abbr-height, $key)}
-  {
-    height: $value;
+  @each $key, $value in util.map-handler(config.$map-height) {
+
+    #{util.class-generator(config.$abbr-height, $key)}
+    {
+      height: $value;
+    }
+
   }
 
 }
 
 // Min Height
-@each $key, $value in util.map-handler(config.$map-minHeight) {
+@if util.expect(config.$abbr-height) {
 
-  #{util.class-generator(min, config.$abbr-height, $key)}
-  {
-    min-height: $value;
+  @each $key, $value in util.map-handler(config.$map-minHeight) {
+
+    #{util.class-generator(min, config.$abbr-height, $key)}
+    {
+      min-height: $value;
+    }
+
   }
 
 }
 
 // Max Height
-@each $key, $value in util.map-handler(config.$map-maxHeight) {
+@if util.expect(config.$abbr-height) {
 
-  #{util.class-generator(max, config.$abbr-height, $key)}
-  {
-    max-height: $value;
+  @each $key, $value in util.map-handler(config.$map-maxHeight) {
+
+    #{util.class-generator(max, config.$abbr-height, $key)}
+    {
+      max-height: $value;
+    }
+
   }
 
 }
 
 // Border Radius
-@each $outer-key, $outer-value in util.map-handler(config.$map-borderRadius) {
+@if util.expect(config.$abbr-border-radius) {
 
-  @each $inner-key, $inner-values in (
-    '': (),
-    't': (top-left, top-right),
-    'r': (top-right, bottom-right),
-    'b': (bottom-right, bottom-left),
-    'l': (top-left, bottom-left),
-    'tl': (top-left),
-    'tr': (top-right),
-    'br': (bottom-right),
-    'bl': (bottom-left)
-  ) {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-borderRadius) {
 
-    @if $inner-key == '' {
+    @each $inner-key, $inner-values in (
+      '': (),
+      't': (top-left, top-right),
+      'r': (top-right, bottom-right),
+      'b': (bottom-right, bottom-left),
+      'l': (top-left, bottom-left),
+      'tl': (top-left),
+      'tr': (top-right),
+      'br': (bottom-right),
+      'bl': (bottom-left)
+    ) {
 
-      #{util.class-generator(config.$abbr-border-radius, $outer-key)}
-      {
-        border-radius: $outer-value;
+      @if $inner-key == '' {
+
+        #{util.class-generator(config.$abbr-border-radius, $outer-key)}
+        {
+          border-radius: $outer-value;
+        }
+
       }
+      @else {
 
-    }
-    @else {
+        #{util.class-generator(config.$abbr-border-radius, $inner-key, $outer-key)}
+        {
 
-      #{util.class-generator(config.$abbr-border-radius, $inner-key, $outer-key)}
-      {
+          @each $value in $inner-values {
+            #{'border-'}#{$value}#{'-radius'}: $outer-value;
+          }
 
-        @each $value in $inner-values {
-          #{'border-'}#{$value}#{'-radius'}: $outer-value;
         }
 
       }
@@ -212,41 +250,50 @@
 
 }
 
-// Border Width
-@each $key, $value in util.map-handler(config.$map-borderWidth) {
 
-  #{util.class-generator(config.$abbr-border-width, $key)}
-  {
-    border-width: $value;
+// Border Width
+@if util.expect(config.$abbr-border-width) {
+
+  @each $key, $value in util.map-handler(config.$map-borderWidth) {
+
+    #{util.class-generator(config.$abbr-border-width, $key)}
+    {
+      border-width: $value;
+    }
+
   }
 
 }
 
 // Border Color
-@each $outer-key, $outer-value in util.map-handler(config.$map-borderColor) {
+@if util.expect(config.$abbr-border-color) {
 
-  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-borderColor) {
 
-    #{util.class-generator(config.$abbr-border-color, $outer-key)}
-    {
-      border-color: $outer-value;
+    @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+      #{util.class-generator(config.$abbr-border-color, $outer-key)}
+      {
+        border-color: $outer-value;
+      }
+
     }
+    @else {
 
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-border-color, $outer-key)}
-    {
-      --border-opacity: 1;
-      border-color: rgba($color: $outer-value, $alpha: var(--border-opacity, 1));
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-border-color, $outer-key, $inner-key)}
+      #{util.class-generator(config.$abbr-border-color, $outer-key)}
       {
         --border-opacity: 1;
-        border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--border-opacity, 1));
+        border-color: rgba($color: $outer-value, $alpha: var(--border-opacity, 1));
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-border-color, $outer-key, $inner-key)}
+        {
+          --border-opacity: 1;
+          border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--border-opacity, 1));
+        }
+
       }
 
     }
@@ -255,96 +302,113 @@
 
 }
 
-// Border Color Opacity
-@each $key, $value in util.map-handler(config.$map-borderOpacity) {
 
-  #{util.class-generator(config.$abbr-border-opacity, $key)}
-  {
-    --border-opacity: #{$value};
+// Border Color Opacity
+@if util.expect(config.$abbr-border-opacity) {
+
+  @each $key, $value in util.map-handler(config.$map-borderOpacity) {
+
+    #{util.class-generator(config.$abbr-border-opacity, $key)}
+    {
+      --border-opacity: #{$value};
+    }
+
   }
 
 }
 
 // Border Style
-@each $value in (
-  solid,
-  dashed,
-  dotted,
-  double,
-  none
-) {
+@if util.expect(config.$abbr-border-style) {
 
-  #{util.class-generator(config.$abbr-border-style, $value)}
-  {
-    border-style: #{$value};
+  @each $value in (
+    solid,
+    dashed,
+    dotted,
+    double,
+    none
+  ) {
+
+    #{util.class-generator(config.$abbr-border-style, $value)}
+    {
+      border-style: #{$value};
+    }
+
   }
 
 }
 
 // Divide Width
-@each $outer-key, $outer-value in util.map-handler(config.$map-borderWidth) {
+@if util.expect(config.$abbr-divide-width) {
 
-  @each $inner-value in (x, y) {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-borderWidth) {
 
-    #{util.class-generator(config.$abbr-divide-width, $inner-value, $outer-key)} :nth-child(even)
-    {
+    @each $inner-value in (x, y) {
 
-        @if $inner-value == x {
-          --divide-x-reverse: 0;
-          border-right-width: calc(#{$outer-value} * var(--divide-x-reverse));
-          border-left-width: calc(#{$outer-value} * calc(1 - var(--divide-x-reverse)));
-          border-top-width: 0;
-          border-bottom-width: 0;
-        }
-        @else {
-          --divide-y-reverse: 0;
-          border-top-width: calc(#{$outer-value} * calc(1 - var(--divide-y-reverse)));
-          border-bottom-width: calc(#{$outer-value} * var(--divide-y-reverse));
-          border-right-width: 0;
-          border-left-width: 0;
-        }
+      #{util.class-generator(config.$abbr-divide-width, $inner-value, $outer-key)} :nth-child(even)
+      {
+
+          @if $inner-value == x {
+            --divide-x-reverse: 0;
+            border-right-width: calc(#{$outer-value} * var(--divide-x-reverse));
+            border-left-width: calc(#{$outer-value} * calc(1 - var(--divide-x-reverse)));
+            border-top-width: 0;
+            border-bottom-width: 0;
+          }
+          @else {
+            --divide-y-reverse: 0;
+            border-top-width: calc(#{$outer-value} * calc(1 - var(--divide-y-reverse)));
+            border-bottom-width: calc(#{$outer-value} * var(--divide-y-reverse));
+            border-right-width: 0;
+            border-left-width: 0;
+          }
+
+      }
 
     }
 
   }
 
-}
+  #{util.class-generator(config.$abbr-divide-width, x, reverse)} :nth-child(even)
+  {
+    --divide-x-reverse: 1;
+  }
 
-#{util.class-generator(config.$abbr-divide-width, x, reverse)} :nth-child(even)
-{
-  --divide-x-reverse: 1;
-}
+  #{util.class-generator(config.$abbr-divide-width, y, reverse)} :nth-child(even)
+  {
+    --divide-y-reverse: 1;
+  }
 
-#{util.class-generator(config.$abbr-divide-width, y, reverse)} :nth-child(even)
-{
-  --divide-y-reverse: 1;
 }
 
 // Divide Color
-@each $outer-key, $outer-value in util.map-handler(config.$map-divideColor) {
+@if util.expect(config.$abbr-divide-color) {
 
-  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-divideColor) {
 
-    #{util.class-generator(config.$abbr-divide-color, $outer-key)} :nth-child(even)
-    {
-      border-color: $outer-value;
+    @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+      #{util.class-generator(config.$abbr-divide-color, $outer-key)} :nth-child(even)
+      {
+        border-color: $outer-value;
+      }
+
     }
+    @else {
 
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-divide-color, $outer-key)} :nth-child(even)
-    {
-      --divide-opacity: 1;
-      border-color: rgba($color: $outer-value, $alpha: var(--divide-opacity, 1));
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-divide-color, $outer-key, $inner-key)} :nth-child(even)
+      #{util.class-generator(config.$abbr-divide-color, $outer-key)} :nth-child(even)
       {
         --divide-opacity: 1;
-        border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--divide-opacity, 1));
+        border-color: rgba($color: $outer-value, $alpha: var(--divide-opacity, 1));
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-divide-color, $outer-key, $inner-key)} :nth-child(even)
+        {
+          --divide-opacity: 1;
+          border-color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--divide-opacity, 1));
+        }
+
       }
 
     }
@@ -353,28 +417,37 @@
 
 }
 
-// Divide Color Opacity
-@each $key, $value in util.map-handler(config.$map-divideOpacity) {
 
-  #{util.class-generator(config.$abbr-divide-opacity, $key)}
-  {
-    --divide-opacity: #{$value};
+// Divide Color Opacity
+@if util.expect(config.$abbr-divide-opacity) {
+
+  @each $key, $value in util.map-handler(config.$map-divideOpacity) {
+
+    #{util.class-generator(config.$abbr-divide-opacity, $key)}
+    {
+      --divide-opacity: #{$value};
+    }
+
   }
 
 }
 
 // Divide Style
-@each $value in (
-  solid,
-  dashed,
-  dotted,
-  double,
-  none
-) {
+@if util.expect(config.$abbr-divide-style) {
 
-  #{util.class-generator(config.$abbr-divide-style, $value)} :nth-child(even)
-  {
-    border-style: $value;
+  @each $value in (
+    solid,
+    dashed,
+    dotted,
+    double,
+    none
+  ) {
+
+    #{util.class-generator(config.$abbr-divide-style, $value)} :nth-child(even)
+    {
+      border-style: $value;
+    }
+
   }
 
 }

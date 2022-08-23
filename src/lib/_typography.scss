@@ -5,162 +5,203 @@
 ************************* */
 
 // Font Family
-#{util.class-generator(config.$abbr-font-family, sans)}
-{
-  font-family: ui-sans-serif,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
-    "Helvetica Neue",
-    Arial,
-    "Noto Sans",
-    sans-serif,
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
-    "Noto Color Emoji";
+@if util.expect(config.$abbr-font-family) {
+
+  #{util.class-generator(config.$abbr-font-family, sans)}
+  {
+    font-family: ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      "Noto Sans",
+      sans-serif,
+      "Apple Color Emoji",
+      "Segoe UI Emoji",
+      "Segoe UI Symbol",
+      "Noto Color Emoji";
+  }
+
+  #{util.class-generator(config.$abbr-font-family, serif)}
+  {
+    font-family: ui-serif,
+      Georgia,
+      Cambria,
+      "Times New Roman",
+      Times,
+      serif;
+  }
+
+  #{util.class-generator(config.$abbr-font-family, mono)}
+  {
+    font-family: ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      "Liberation Mono",
+      "Courier New",
+      monospace;
+  }
+
 }
 
-#{util.class-generator(config.$abbr-font-family, serif)}
-{
-  font-family: ui-serif,
-    Georgia,
-    Cambria,
-    "Times New Roman",
-    Times,
-    serif;
-}
-
-#{util.class-generator(config.$abbr-font-family, mono)}
-{
-  font-family: ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    "Liberation Mono",
-    "Courier New",
-    monospace;
-}
 
 // Font Size
-@each $key, $value in util.map-handler(config.$map-fontSize) {
+@if util.expect(config.$abbr-font-size) {
 
-  #{util.class-generator(config.$abbr-font-size, $key)}
-  {
-    font-size: $value;
-    line-height: map-get($map: util.map-handler(config.$map-fontSizeLineHeight), $key: $key);
+  @each $key, $value in util.map-handler(config.$map-fontSize) {
+
+    #{util.class-generator(config.$abbr-font-size, $key)}
+    {
+      font-size: $value;
+      line-height: map-get($map: util.map-handler(config.$map-fontSizeLineHeight), $key: $key);
+    }
+
   }
 
 }
 
 // Font Smoothing
-#{util.class-generator(config.$abbr-font-smoothing)}
-{
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@if util.expect(config.$abbr-font-smoothing) {
+
+  #{util.class-generator(config.$abbr-font-smoothing)}
+  {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #{util.class-generator(subpixel, config.$abbr-font-smoothing)}
+  {
+    -webkit-font-smoothing: auto;
+    -moz-osx-font-smoothing: auto;
+  }
+
 }
 
-#{util.class-generator(subpixel, config.$abbr-font-smoothing)}
-{
-  -webkit-font-smoothing: auto;
-  -moz-osx-font-smoothing: auto;
-}
+// Font Style
+@if util.expect(config.$abbr-font-style) {
 
-// // Font Style
-#{util.class-generator(config.$abbr-font-style)}
-{
-  font-style: italic;
-}
+  #{util.class-generator(config.$abbr-font-style)}
+  {
+    font-style: italic;
+  }
 
-#{util.class-generator('not', config.$abbr-font-style)}
-{
-  font-style: normal;
+  #{util.class-generator('not', config.$abbr-font-style)}
+  {
+    font-style: normal;
+  }
+
 }
 
 // Font Weight
-@each $key, $value in util.map-handler(config.$map-fontWeight) {
+@if util.expect(config.$abbr-font-weight) {
 
-  #{util.class-generator(config.$abbr-font-weight, $key)}
-  {
-    font-weight: $value;
+  @each $key, $value in util.map-handler(config.$map-fontWeight) {
+
+    #{util.class-generator(config.$abbr-font-weight, $key)}
+    {
+      font-weight: $value;
+    }
+
   }
 
 }
 
 // Letter Spacing
-@each $key, $value in util.map-handler(config.$map-letterSpacing) {
+@if util.expect(config.$abbr-letter-spacing) {
 
-  #{util.class-generator(config.$abbr-letter-spacing, $key)}
-  {
-    letter-spacing: $value;
+  @each $key, $value in util.map-handler(config.$map-letterSpacing) {
+
+    #{util.class-generator(config.$abbr-letter-spacing, $key)}
+    {
+      letter-spacing: $value;
+    }
+
   }
 
 }
 
 // Line Height
-@each $key, $value in util.map-handler(config.$map-lineHeight) {
+@if util.expect(config.$abbr-line-height) {
 
-  #{util.class-generator(config.$abbr-line-height, $key)}
-  {
-    line-height: $value;
+  @each $key, $value in util.map-handler(config.$map-lineHeight) {
+
+    #{util.class-generator(config.$abbr-line-height, $key)}
+    {
+      line-height: $value;
+    }
+
   }
 
 }
 
 // List Style Type
-@each $key, $value in util.map-handler(config.$map-listStyleType) {
+@if util.expect(config.$abbr-list-style) {
 
-  #{util.class-generator(config.$abbr-list-style, $key)}
-  {
-    list-style-type: $value;
+  @each $key, $value in util.map-handler(config.$map-listStyleType) {
+
+    #{util.class-generator(config.$abbr-list-style, $key)}
+    {
+      list-style-type: $value;
+    }
+
   }
 
 }
 
 // Text Align
-@each $value in (
-  left,
-  center,
-  right,
-  justify
-) {
+@if util.expect(config.$abbr-text-align) {
 
-  #{util.class-generator(config.$abbr-text-align, $value)}
-  {
-    text-align: $value;
+  @each $value in (
+    left,
+    center,
+    right,
+    justify
+  ) {
+
+    #{util.class-generator(config.$abbr-text-align, $value)}
+    {
+      text-align: $value;
+    }
+
   }
 
 }
 
 // Text Color
-@each $outer-key, $outer-value in util.map-handler(config.$map-textColor) {
+@if util.expect(config.$abbr-text-color) {
 
-  // transparent 为内置关键字，加 ’‘ 转换为普通字符串
-  @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+  @each $outer-key, $outer-value in util.map-handler(config.$map-textColor) {
 
-    #{util.class-generator(config.$abbr-text-color, $outer-key)}
-    {
-      color: $outer-value;
+    // transparent 为内置关键字，加 ’‘ 转换为普通字符串
+    @if ($outer-key == inherit) or ($outer-key == 'current') or ($outer-key == transparent + '') {
+
+      #{util.class-generator(config.$abbr-text-color, $outer-key)}
+      {
+        color: $outer-value;
+      }
+
     }
+    @else {
 
-  }
-  @else {
-
-    #{util.class-generator(config.$abbr-text-color, $outer-key)}
-    {
-      --text-opacity: 1;
-      color: rgba($color: $outer-value, $alpha: var(--text-opacity, 1));
-    }
-
-    @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
-
-      #{util.class-generator(config.$abbr-text-color, $outer-key, $inner-key)}
+      #{util.class-generator(config.$abbr-text-color, $outer-key)}
       {
         --text-opacity: 1;
-        color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--text-opacity, 1));
+        color: rgba($color: $outer-value, $alpha: var(--text-opacity, 1));
+      }
+
+      @each $inner-key, $inner-value in util.map-handler(util.$map-color-brightness) {
+
+        #{util.class-generator(config.$abbr-text-color, $outer-key, $inner-key)}
+        {
+          --text-opacity: 1;
+          color: rgba($color: util.lighter-color($outer-value, $inner-value), $alpha: var(--text-opacity, 1));
+        }
+
       }
 
     }
@@ -169,147 +210,184 @@
 
 }
 
-// Text Color Opacity
-@each $key, $value in util.map-handler(config.$map-textOpacity) {
 
-  #{util.class-generator(config.$abbr-text-opacity, $key)}
-  {
-    --text-opacity: #{$value};
+// Text Color Opacity
+@if util.expect(config.$abbr-text-opacity) {
+
+  @each $key, $value in util.map-handler(config.$map-textOpacity) {
+
+    #{util.class-generator(config.$abbr-text-opacity, $key)}
+    {
+      --text-opacity: #{$value};
+    }
+
   }
 
 }
 
 // Text Decoration
-@each $key, $value in (
-  underline: underline,
-  line-through: line-through,
-  no-underline: none
-) {
+@if util.expect(config.$abbr-text-decoration) {
 
-  #{util.class-generator($key)}
-  {
-    text-decoration: $value;
+  @each $key, $value in (
+    underline: underline,
+    line-through: line-through,
+    no-underline: none
+  ) {
+
+    #{util.class-generator(config.$abbr-text-decoration, $key)}
+    {
+      text-decoration: $value;
+    }
+
   }
 
 }
 
 // Text Transform
-@each $key, $value in (
-  uppercase: uppercase,
-  lowercase: lowercase,
-  capitalize: capitalize,
-  normal-case: none
-) {
+@if util.expect(config.$abbr-text-transform) {
 
-  #{util.class-generator($key)}
-  {
-    text-transform: $value;
+  @each $key, $value in (
+    uppercase: uppercase,
+    lowercase: lowercase,
+    capitalize: capitalize,
+    normal-case: none
+  ) {
+
+    #{util.class-generator(config.$abbr-text-transform, $key)}
+    {
+      text-transform: $value;
+    }
+
   }
 
 }
 
 // Text Overflow
-#{util.class-generator(truncate)}
-{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+@if util.expect(config.$abbr-text-overflow) {
 
-#{util.class-generator(config.$abbr-text-overflow, ellipsis)}
-{
-  text-overflow: ellipsis;
-}
+  #{util.class-generator(truncate)}
+  {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 
-#{util.class-generator(config.$abbr-text-overflow, clip)}
-{
-  text-overflow: clip;
+  #{util.class-generator(config.$abbr-text-overflow, ellipsis)}
+  {
+    text-overflow: ellipsis;
+  }
+
+  #{util.class-generator(config.$abbr-text-overflow, clip)}
+  {
+    text-overflow: clip;
+  }
+
 }
 
 // Line clamp
-#{util.class-generator(config.$abbr-line-clamp, 1)} {
-  width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
+@if util.expect(config.$abbr-line-clamp) {
 
-%clamp-base {
-  word-break: break-all;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-$line-clamp-index: 2;
-
-@while $line-clamp-index <= 6 {
-
-  #{util.class-generator(config.$abbr-line-clamp, $line-clamp-index)} {
-    @extend %clamp-base;
-    -webkit-line-clamp: $line-clamp-index;
+  #{util.class-generator(config.$abbr-line-clamp, 1)} {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  $line-clamp-index: util.big($line-clamp-index);
+  %clamp-base {
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  $line-clamp-index: 2;
+
+  @while $line-clamp-index <=6 {
+
+    #{util.class-generator(config.$abbr-line-clamp, $line-clamp-index)} {
+      @extend %clamp-base;
+      -webkit-line-clamp: $line-clamp-index;
+    }
+
+    $line-clamp-index: util.big($line-clamp-index);
+
+  }
 
 }
 
 // Vertical Align
-@each $value in (
-  baseline,
-  top,
-  middle,
-  bottom,
-  text-top,
-  text-bottom
-) {
+@if util.expect(config.$abbr-vertical-align) {
 
-  #{util.class-generator(config.$abbr-vertical-align, $value)}
-  {
-    vertical-align: $value;
+  @each $value in (
+    baseline,
+    top,
+    middle,
+    bottom,
+    text-top,
+    text-bottom
+  ) {
+
+    #{util.class-generator(config.$abbr-vertical-align, $value)}
+    {
+      vertical-align: $value;
+    }
+
   }
 
 }
 
 // White Space
-@each $value in (
-  normal,
-  nowrap,
-  pre,
-  pre-line,
-  pre-wrap
-) {
+@if util.expect(config.$abbr-white-space) {
 
-  #{util.class-generator(config.$abbr-white-space, $value)}
-  {
-    white-space: $value;
+  @each $value in (
+    normal,
+    nowrap,
+    pre,
+    pre-line,
+    pre-wrap
+  ) {
+
+    #{util.class-generator(config.$abbr-white-space, $value)}
+    {
+      white-space: $value;
+    }
+
   }
 
 }
 
 // Word Break
-#{util.class-generator(config.$abbr-word-break, normal)}
-{
-  overflow-wrap: normal;
-  word-break: normal;
-}
+@if util.expect(config.$abbr-word-break) {
 
-#{util.class-generator(config.$abbr-word-break, words)}
-{
-  overflow-wrap: break-word;
-}
+  #{util.class-generator(config.$abbr-word-break, normal)}
+  {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
 
-#{util.class-generator(config.$abbr-word-break, all)}
-{
-  word-break: break-all;
+  #{util.class-generator(config.$abbr-word-break, words)}
+  {
+    overflow-wrap: break-word;
+  }
+
+  #{util.class-generator(config.$abbr-word-break, all)}
+  {
+    word-break: break-all;
+  }
+
 }
 
 // Text Indent
-@each $key, $value in util.map-handler(config.$map-textIndent) {
+@if util.expect(config.$abbr-text-indent) {
 
-  #{util.class-generator(config.$abbr-text-indent, $key)}
-  {
-    text-indent: $value;
+  @each $key, $value in util.map-handler(config.$map-textIndent) {
+
+    #{util.class-generator(config.$abbr-text-indent, $key)}
+    {
+      text-indent: $value;
+    }
+
   }
 
 }

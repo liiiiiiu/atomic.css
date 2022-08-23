@@ -8,13 +8,15 @@ module.exports = {
       rpx: true,
       // rem 转换为 rpx 的比例
       // 开启 rpx 后生效
-      // 1rem = 37.5rpx
+      // 默认 1rem = 37.5rpx
       rem2rpx: 37.5,
     },
     class: {
       // CSS 公共前缀
+      // prefix: '';
+      // => w-screen { width: 100vw; };
       // prefix: 'my';
-      // => .my-w-screen { width: 100vw; }
+      // => .my-w-screen { width: 100vw; }.
       prefix: '',
       // CSS 分隔符
       // separators: ['_', '-'];
@@ -23,24 +25,27 @@ module.exports = {
       // 自定义的转义符
       // 由于微信小程序的样式名不支持使用 '\' 转义，需要额外适配
       customEscape: {
-        // .w-0\.5
+        // .w-0.5 => .w-0d5
         dot: 'd',
-        // .w-1\/3
+        // .w-1/3 => .w-1s3
         slash: 's'
       }
     },
     // CSS 样式名缩写
+    // 缩写使用 null 或者 false 将禁用该功能类
     abbr: {
       container: 'container',
       'box-decoration-break': 'decoration',
       'box-sizing': 'box',
+      display: '',
       float: 'float',
       clear: 'clear',
+      isolation: '',
       'object-fit': 'object',
       'object-position': 'object',
       overflow: 'overflow',
       'overscroll-behavior': 'overscroll',
-      position: 'position',
+      position: '',
       inset: 'inset',
       top: 'top',
       right: 'right',
@@ -49,6 +54,10 @@ module.exports = {
       visible: 'visible',
       'z-index': 'z',
       flex: 'flex',
+      'flex-direction': 'flex',
+      'flex-wrap': 'flex',
+      'flex-grow': 'flex',
+      'flex-shrink': 'flex',
       order: 'order',
       grid: 'grid',
       'grid-column': 'col',
@@ -68,6 +77,15 @@ module.exports = {
       margin: 'm',
       width: 'w',
       height: 'h',
+      'border-radius': 'rounded',
+      'border-width': 'border',
+      'border-color': 'border',
+      'border-opacity': 'border-opacity',
+      'border-style': 'border',
+      'divide-width': 'divide',
+      'divide-color': 'divide',
+      'divide-opacity': 'divide-opacity',
+      'divide-style': 'divide',
       'font-family': 'font',
       'font-size': 'text',
       'font-smoothing': 'antialiased',
@@ -79,12 +97,14 @@ module.exports = {
       'text-align': 'text',
       'text-color': 'text',
       'text-opacity': 'text-opacity',
+      'text-decoration': '',
+      'text-transform': '',
       'text-overflow': 'overflow',
-      'text-indent': 'text-indent',
       'line-clamp': 'line-clamp',
       'vertical-align': 'align',
       'white-space': 'whitespace',
       'word-break': 'break',
+      'text-indent': 'text-indent',
       'background-attachment': 'bg',
       'background-clip': 'bg-clip',
       'background-color': 'bg',
@@ -97,15 +117,6 @@ module.exports = {
       'background-image-gradient-from': 'from',
       'background-image-gradient-via': 'via',
       'background-image-gradient-to': 'to',
-      'border-radius': 'rounded',
-      'border-width': 'border',
-      'border-color': 'border',
-      'border-opacity': 'border-opacity',
-      'border-style': 'border',
-      'divide-width': 'divide',
-      'divide-color': 'divide',
-      'divide-opacity': 'divide-opacity',
-      'divide-style': 'divide',
       'box-shadow': 'shadow',
       opacity: 'opacity',
       'mix-blend-mode': 'mix-blend',
@@ -121,13 +132,13 @@ module.exports = {
       rotate: 'rotate',
       translate: 'translate',
       skew: 'skew',
-      skew: 'skew',
       appearance: 'appearance',
       cursor: 'cursor',
       outline: 'outline',
       'pointer-events': 'pointer-events',
       resize: 'resize',
-      'user-select': 'select'
+      'user-select': 'select',
+      'screen-reader': 'sr'
     }
   },
   // 主题配置
