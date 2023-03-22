@@ -1,6 +1,6 @@
 $use-normalize: true;
 $use-rpx: true;
-$use-rem2rpx: 37.5;
+$use-rem2rpx: 32;
 $class-prefix: '';
 $class-separators: ('-', );
 $customEscape-dot: d;
@@ -116,8 +116,7 @@ $map-screens: ('sm': 640px,
 'xl': 1280px,
 '2xl': 1536px,
 );
-$map-colors: ('brand': #1890ff,
-'inherit': inherit,
+$map-colors: ('inherit': inherit,
 'current': currentColor,
 'transparent': transparent,
 'black': #000,
@@ -781,8 +780,7 @@ $map-opacity: ('0': 0,
 '95': 0.95,
 '100': 1,
 );
-$map-textColor: ('brand': #1890ff,
-'inherit': inherit,
+$map-textColor: ('inherit': inherit,
 'current': currentColor,
 'transparent': transparent,
 'black': #000,
@@ -812,8 +810,7 @@ $map-textOpacity: ('0': 0,
 '95': 0.95,
 '100': 1,
 );
-$map-backgroundColor: ('brand': #1890ff,
-'inherit': inherit,
+$map-backgroundColor: ('inherit': inherit,
 'current': currentColor,
 'transparent': transparent,
 'black': #000,
@@ -867,8 +864,7 @@ $map-backgroundSize: ('auto': auto,
 'cover': cover,
 'contain': contain,
 );
-$map-borderColor: ('brand': #1890ff,
-'inherit': inherit,
+$map-borderColor: ('inherit': inherit,
 'current': currentColor,
 'transparent': transparent,
 'black': #000,
@@ -950,8 +946,7 @@ $map-borderWidth: ('0': 0px,
 '8': 8px,
 'DEFAULT': 1px,
 );
-$map-divideColor: ('brand': #1890ff,
-'inherit': inherit,
+$map-divideColor: ('inherit': inherit,
 'current': currentColor,
 'transparent': transparent,
 'black': #000,

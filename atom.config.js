@@ -9,7 +9,7 @@ module.exports = {
       // rem 转换为 rpx 的比例
       // 开启 rpx 后生效
       // 默认 1rem = 37.5rpx
-      rem2rpx: 37.5,
+      rem2rpx: 32,
     },
     class: {
       // 公共前缀
@@ -151,8 +151,6 @@ module.exports = {
       '2xl': '1536px',
     },
     colors: {
-      // brand 代表品牌色
-      brand: '#1890ff',
       inherit: 'inherit',
       current: 'currentColor',
       transparent: 'transparent',
